@@ -1,0 +1,25 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Element-Name: PG_AzureRTOS_ADU_bootloader_Application_Project
+Element-Type: testsuite
+Element-Version: 2.0
+Id: _v-a60G-wEe2aY95Y4UZw9w
+Runtime-Version: 2.5.4.202210020716
+Save-Time: 11/30/22, 2:05 PM
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
+Content-Type: text/testcase
+Entry-Name: testcase-items
+
+_DPhNcHB0Ee2-uLmUpKPN3w	// kind: 'test' name: 'RXC_PG_RSKRX671_ADU_bootloader_application' path: '../TestCases/PG_AzureRTOS_ADU_application_project/RXC_PG_RSKRX671_ADU_bootloader_application.test'
+_M375QG-wEe2aY95Y4UZw9w	// kind: 'test' name: 'GNURX_PG_RSKRX671_ADU_bootloader_application' path: '../TestCases/PG_AzureRTOS_ADU_application_project/GNURX_PG_RSKRX671_ADU_bootloader_application.test'
+_-FVnoG-vEe2aY95Y4UZw9w	// kind: 'test' name: 'GNURX_PG_72NEnvisionkit_ADU_bootloader_application' path: '../TestCases/PG_AzureRTOS_ADU_application_project/GNURX_PG_72NEnvisionkit_ADU_bootloader_application.test'
+_8ffEEHBzEe2-uLmUpKPN3w	// kind: 'test' name: 'RXC_PG_NewCK65N_ADU_bootloader_application' path: '../TestCases/PG_AzureRTOS_ADU_application_project/RXC_PG_NewCK65N_ADU_bootloader_application.test'
+_mBVcEG-vEe2aY95Y4UZw9w	// kind: 'test' name: 'GNURX_PG_CloudKit65N_ADU_bootloader_application' path: '../TestCases/PG_AzureRTOS_ADU_application_project/GNURX_PG_CloudKit65N_ADU_bootloader_application.test'
+_B8_1oHB0Ee2-uLmUpKPN3w	// kind: 'test' name: 'RXC_PG_RSKRX65N2MB_ADU_bootloader_application' path: '../TestCases/PG_AzureRTOS_ADU_application_project/RXC_PG_RSKRX65N2MB_ADU_bootloader_application.test'
+_5S060HBzEe2-uLmUpKPN3w	// kind: 'test' name: 'RXC_PG_72NEnvisionkit_ADU_bootloader_application' path: '../TestCases/PG_AzureRTOS_ADU_application_project/RXC_PG_72NEnvisionkit_ADU_bootloader_application.test'
+_nnU0YG-tEe2aY95Y4UZw9w	// kind: 'test' name: 'GNURX_PG_RSKRX65N2MB_ADU_bootloader_application' path: '../TestCases/PG_AzureRTOS_ADU_application_project/GNURX_PG_RSKRX65N2MB_ADU_bootloader_application.test'
+_7LrS0HBzEe2-uLmUpKPN3w	// kind: 'test' name: 'RXC_PG_CloudKit65N_ADU_bootloader_application' path: '../TestCases/PG_AzureRTOS_ADU_application_project/RXC_PG_CloudKit65N_ADU_bootloader_application.test'
+_zILWgG-vEe2aY95Y4UZw9w	// kind: 'test' name: 'GNURX_PG_NewCK65N_ADU_bootloader_application' path: '../TestCases/PG_AzureRTOS_ADU_application_project/GNURX_PG_NewCK65N_ADU_bootloader_application.test'
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--

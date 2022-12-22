@@ -1,0 +1,37 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _CbRv0IzaEemOC-jzSKPFQA,_QSjtsJP2EemibuIcIDpJqA,_QVBL0JP2EemibuIcIDpJqA,_F0yXII17EemXsdvsbcJPYw,_GAAIoI17EemXsdvsbcJPYw,_uixO0BvoEeq9Ssnuxnbu8A,_QYRUIJP2EemibuIcIDpJqA,_qHCi8JP3EemibuIcIDpJqA,_5dcPIBfKEemuzYLhhCLAcA
+Element-Name: ResourceChangeAfterChangeEther2Wifi
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _suEcMEDOEeuHIt0KAYVVfw
+Runtime-Version: 2.5.2.202109092356
+Save-Time: 3/14/22, 4:30 PM
+Tags: RTOS_APPLICATION
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+
+open_project [getProjectName] 
+select_component [getProjectName] $RTOS_APPLICATION true
+
+select_combox_item [getProjectName] $RTOS_APPLICATION "The connection type" "WIFI"
+
+try {
+	get-window "Change Configurations" | get-button Yes | click
+} -catch {
+}
+
+check_property_value [getProjectName] $RTOS_APPLICATION "The connection type" WIFI
+
+generate_code [getProjectName]
+
+
+
+
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

@@ -1,0 +1,26 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Element-Name: PG_GCCRX Object_GUI_Add_Remove_Object
+Element-Type: testsuite
+Element-Version: 2.0
+Id: _TDj_sLEtEeqGiLHaD9JPUg
+Manually-Ordered: true
+Runtime-Version: 2.5.1.202001221320
+Save-Time: 6/18/20, 1:31 PM
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
+Content-Type: text/testcase
+Entry-Name: testcase-items
+
+_O-cZ4LEsEeqGiLHaD9JPUg	// kind: 'test' name: 'PG_GCCRX' path: '../TestCases/Initialize class/PG_GCCRX.test'
+_0ZPQ4JQKEemUl60Z_2AvQw	// kind: 'test' name: 'Add new Event Group and check default value' path: '../TestCases/Add_Remove object/Add new Event Group and check default value.test'
+_0Z278JQKEemUl60Z_2AvQw	// kind: 'test' name: 'Add new MsgBuffer and check default value' path: '../TestCases/Add_Remove object/Add new MsgBuffer and check default value.test'
+_0YtFYJQKEemUl60Z_2AvQw	// kind: 'test' name: 'Add new Queues object and chek default values' path: '../TestCases/Add_Remove object/Add new Queues object and chek default values.test'
+_0ZqHoJQKEemUl60Z_2AvQw	// kind: 'test' name: 'Add new Semaphores objects and check default values' path: '../TestCases/Add_Remove object/Add new Semaphores objects and check default values.test'
+_0ZcFMJQKEemUl60Z_2AvQw	// kind: 'test' name: 'Add new Software Timers object and chek default values' path: '../TestCases/Add_Remove object/Add new Software Timers object and chek default values.test'
+_0axh8JQKEemUl60Z_2AvQw	// kind: 'test' name: 'Add new Stream buffer  and check default value' path: '../TestCases/Add_Remove object/Add new Stream buffer  and check default value.test'
+_0aWEIJQKEemUl60Z_2AvQw	// kind: 'test' name: 'Add new Task object and chek default values' path: '../TestCases/Add_Remove object/Add new Task object and chek default values.test'
+_0a9vMJQKEemUl60Z_2AvQw	// kind: 'test' name: 'Check default value of the second row' path: '../TestCases/Add_Remove object/Check default value of the second row.test'
+_0alUsJQKEemUl60Z_2AvQw	// kind: 'test' name: 'Check default values of the third row' path: '../TestCases/Add_Remove object/Check default values of the third row.test'
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--

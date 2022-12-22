@@ -1,0 +1,25 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Element-Name: PG_AzureRTOS_IoTSDK_Application_Project
+Element-Type: testsuite
+Element-Version: 2.0
+Id: _g_qkwGATEe2uw6gVVg9dpQ
+Runtime-Version: 2.5.2.202109092356
+Save-Time: 11/9/22, 4:47 PM
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
+Content-Type: text/testcase
+Entry-Name: testcase-items
+
+_sG1esF5sEe2uw6gVVg9dpQ	// kind: 'test' name: 'GNURX_PG_72NEnvision_IoTSDK_application' path: '../TestCases/PG_AzureRTOS_IoTSDK_Application_Project/GNURX_PG_72NEnvision_IoTSDK_application.test'
+_sHHykF5sEe2uw6gVVg9dpQ	// kind: 'test' name: 'GNURX_PG_CloudKit65N_IoTSDK_application' path: '../TestCases/PG_AzureRTOS_IoTSDK_Application_Project/GNURX_PG_CloudKit65N_IoTSDK_application.test'
+_sGh8sF5sEe2uw6gVVg9dpQ	// kind: 'test' name: 'GNURX_PG_671_IoTSDK_application' path: '../TestCases/PG_AzureRTOS_IoTSDK_Application_Project/GNURX_PG_671_IoTSDK_application.test'
+_sHcisF5sEe2uw6gVVg9dpQ	// kind: 'test' name: 'GNURX_PG_NEWCK65N_IoTSDK_application' path: '../TestCases/PG_AzureRTOS_IoTSDK_Application_Project/GNURX_PG_NEWCK65N_IoTSDK_application.test'
+_sHyg8F5sEe2uw6gVVg9dpQ	// kind: 'test' name: 'GNURX_PG_RSKRX65N2MB_IoTSDK_application' path: '../TestCases/PG_AzureRTOS_IoTSDK_Application_Project/GNURX_PG_RSKRX65N2MB_IoTSDK_application.test'
+_sIGqAF5sEe2uw6gVVg9dpQ	// kind: 'test' name: 'RXC_PG_671_IoTSDK_application' path: '../TestCases/PG_AzureRTOS_IoTSDK_Application_Project/RXC_PG_671_IoTSDK_application.test'
+_sIaMAF5sEe2uw6gVVg9dpQ	// kind: 'test' name: 'RXC_PG_72NEnvision_IoTSDK_application' path: '../TestCases/PG_AzureRTOS_IoTSDK_Application_Project/RXC_PG_72NEnvision_IoTSDK_application.test'
+_sIwKQF5sEe2uw6gVVg9dpQ	// kind: 'test' name: 'RXC_PG_CloudKit65N_IoTSDK_application' path: '../TestCases/PG_AzureRTOS_IoTSDK_Application_Project/RXC_PG_CloudKit65N_IoTSDK_application.test'
+_sJDsQF5sEe2uw6gVVg9dpQ	// kind: 'test' name: 'RXC_PG_NEWCK65N_IoTSDK_application' path: '../TestCases/PG_AzureRTOS_IoTSDK_Application_Project/RXC_PG_NEWCK65N_IoTSDK_application.test'
+_sJWnMF5sEe2uw6gVVg9dpQ	// kind: 'test' name: 'RXC_PG_RSK65N2MB_IoTSDK_application' path: '../TestCases/PG_AzureRTOS_IoTSDK_Application_Project/RXC_PG_RSK65N2MB_IoTSDK_application.test'
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--

@@ -1,0 +1,72 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _F24o4I17EemXsdvsbcJPYw,_F6ZP4I17EemXsdvsbcJPYw,_CbRv0IzaEemOC-jzSKPFQA
+Element-Name: 2 rows are duplicated values
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _QL-EAJJ2EemwUpCYQk_1vA
+Runtime-Version: 2.4.2.201905080442
+Save-Time: 2/17/20 2:00 PM
+Tags: Constrains
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+open_project [getProjectName]
+select_component [getProjectName] FreeRTOS_Object true
+clear_console
+
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-tab-folder | get-tab-item Tasks | click
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure] {
+	with [get-table] {
+		get-label | click
+		get-label -index 1 | click
+
+		with [get-editbox -index 7] {
+			set-text task_1
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		with [get-editbox] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+
+		with [get-editbox -index 8] {
+			set-text task_1
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		with [get-editbox -index 1] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+
+		with [get-editbox -index 2] {
+			set-text test
+		}
+		with [get-editbox -index 9] {
+			set-text test
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- The value must be a number\n"
+				| verify-true
+		}
+
+		with [get-editbox -index 2] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- The value must be a number\n"
+				| verify-true
+		}
+	}
+}
+check_console_contains_message "E04050007: This name exists. Please use another name"
+clear_console
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

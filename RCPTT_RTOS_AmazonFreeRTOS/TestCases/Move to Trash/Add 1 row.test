@@ -1,0 +1,29 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _QZrCUJP2EemibuIcIDpJqA,_CbRv0IzaEemOC-jzSKPFQA,_QSjtsJP2EemibuIcIDpJqA,_F0yXII17EemXsdvsbcJPYw,_QWFi0JP2EemibuIcIDpJqA
+Element-Name: Add 1 row
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _MFW0kJl0EemIvu5krXwrcg
+Runtime-Version: 2.5.1.202001221320
+Save-Time: 1/7/21, 1:28 PM
+Tags: Move_To_Trash
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+open_project [getProjectName]
+select_component [getProjectName] FreeRTOS_Object true
+// add new object
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-table | get-label | click
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-button "Generate Code" | click
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-button "Generate Code" | click
+
+get-file [concat "file:/" [get-workspace-location | invoke replace "\\" "/"] [concat "/" [getProjectName]]
+	"/application_code/renesas_code/frtos_skeleton/task_1.c"] | get exists | assert-true
+get-file [concat "file:/" [get-workspace-location | invoke replace "\\" "/"] [concat "/" [getProjectName]]
+	"/application_code/renesas_code/frtos_startup/freertos_object_init.c"] | get exists | assert-true
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

@@ -1,0 +1,39 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _5AaHQLBlEeqGiLHaD9JPUg,_CbRv0IzaEemOC-jzSKPFQA,_F24o4I17EemXsdvsbcJPYw,_F5kwgI17EemXsdvsbcJPYw,_F0yXII17EemXsdvsbcJPYw,_GAAIoI17EemXsdvsbcJPYw,_pni6YDgVEeqRHNaZE0iR2g,_4DBOsMd3EeuK3tpVI-s1HA
+Element-Name: Import_Configs
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _RU0FQDntEeugn_0wlaPScA
+Runtime-Version: 2.5.2.202109092356
+Save-Time: 7/15/22, 3:45 PM
+Tags: export
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+createFreeRTOSProject $PROJECT_Kernel "v3.02.00" $RTOSType $RSKRX65N_2MB $RTOSVersion
+
+open_project $PROJECT_Kernel
+
+check_property_value $PROJECT_Kernel $FRTOS_KERNEL "Maximum number of priorities to the application task" 7
+check_property_value $PROJECT_Kernel $FRTOS_KERNEL "Maximum number of priorities to the application co-routines" 2
+
+with [get-editor [concat $PROJECT_Kernel $SCFG_EXTENSION]] {
+    get-tab-folder | get-tab-item Components | click
+    get-button "Import Configuration" | click
+}
+set-dialog-result File "C:\\JenkinsSlave\\Workspace\\export_kernel.xml"
+with [get-window Import] {
+    get-button "Browse..." | click
+    get-button "Select All" | click
+    get-button "Next >" | click
+    get-button Finish | click
+}
+
+check_property_value $PROJECT_Kernel $FRTOS_KERNEL "Maximum number of priorities to the application task" 8
+check_property_value $PROJECT_Kernel $FRTOS_KERNEL "Maximum number of priorities to the application co-routines" 3
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

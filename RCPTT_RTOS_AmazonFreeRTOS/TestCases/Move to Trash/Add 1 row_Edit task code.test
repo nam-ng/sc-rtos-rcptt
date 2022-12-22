@@ -1,0 +1,44 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _QZrCUJP2EemibuIcIDpJqA,_CbRv0IzaEemOC-jzSKPFQA,_QSjtsJP2EemibuIcIDpJqA,_F0yXII17EemXsdvsbcJPYw,_QWFi0JP2EemibuIcIDpJqA
+Element-Name: Add 1 row_Edit task code
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _e4ffQJl7EemIvu5krXwrcg
+Runtime-Version: 2.4.2.201905080442
+Save-Time: 2/17/20 2:04 PM
+Tags: Move_To_Trash
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+open_project [getProjectName]
+select_component [getProjectName] FreeRTOS_Object true
+// add new object
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure] {
+	with [get-table] {
+		get-label | click
+		with [get-editbox] {
+			set-text AAA
+		}
+	}
+}
+
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-button "Generate Code" | click
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-button "Generate Code" | click
+
+//let [val foo [get-file [concat "file:/" [get-workspace-location | invoke replace "\\" "/"]
+//	"/amazon-freertos-v0.1.9/demos/renesas/rx65n-rsk/e2studio/ccrx/user_application/trash"]]] {
+//	getLatestFile [$foo]
+//}
+
+get-file [concat "file:/" [get-workspace-location | invoke replace "\\" "/"] "/" [getProjectName] "/application_code/renesas_code/frtos_skeleton/task_function.h"] | get exists | assert-true
+get-file [concat "file:/" [get-workspace-location | invoke replace "\\" "/"] "/" [getProjectName] "/application_code/renesas_code/frtos_skeleton/AAA.c"] | get exists | assert-true
+get-file [concat "file:/" [get-workspace-location | invoke replace "\\" "/"] "/" [getProjectName] "/application_code/renesas_code/frtos_startup/freertos_object_init.c"] | get exists
+	| assert-true
+	
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

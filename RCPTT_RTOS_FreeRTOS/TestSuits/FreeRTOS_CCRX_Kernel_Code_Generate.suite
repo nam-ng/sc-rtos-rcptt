@@ -1,0 +1,21 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Element-Name: FreeRTOS_CCRX_Kernel_Code_Generate
+Element-Type: testsuite
+Element-Version: 2.0
+Id: _Um_i0DhDEeqRHNaZE0iR2g
+Manually-Ordered: true
+Runtime-Version: 2.5.0.201911080224
+Save-Time: 3/4/20, 3:17 PM
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
+Content-Type: text/testcase
+Entry-Name: testcase-items
+
+_SSvMkDgUEeqRHNaZE0iR2g	//
+_oLxUkJJAEem_UZ4EQBrqaw	//
+_RlJ3kJJBEem_UZ4EQBrqaw	//
+_ab7rAJJBEem_UZ4EQBrqaw	//
+_60RrUJJBEem_UZ4EQBrqaw	//
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--

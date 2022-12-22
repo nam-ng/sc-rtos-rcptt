@@ -1,0 +1,30 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.parameters
+Element-Name: GeneratedFilesAndFolders
+Element-Type: context
+Element-Version: 2.0
+Id: _CdKmMIzaEemOC-jzSKPFQA
+Runtime-Version: 2.4.0.201812200022
+Save-Time: 7/2/19 3:39 PM
+
+------=_.parameters.context-2e023de5-3294-36a9-ac1d-6701f05a40ee
+Content-Type: text/properties
+Entry-Name: .parameters.context
+
+#Tue Jul 02 15:39:42 ICT 2019
+CONFIGURATION_FOLDER=/generate/configuration/
+GPIO_FILE=r_gpio_drv_sc_cfg.h
+PROJECTNAME=aws_demos
+SETTING_FOLDER=/.settings/smartconfigurator/
+DRIVER_FILE_POSFIX=_drv_sc_cfg.h
+GPIO_INCLUDE_FOLDER=/generate/drivers/r_gpio/inc/
+FREERTOS_OBJECT_INIT=/src/frtos_startup/freertos_object_init.c
+AFR_PJ_ROOT=\\amazon-freertos-v0.1.9\\demos\\renesas\\rx65n-rsk\\e2studio\\ccrx\\user_application
+SC_DRIVER_FOLDER=/generate/sc_drivers/
+TASK_SKELETON_FOLDER=/src/frtos_skeleton/
+MMU_INCLUDE_FOLDER=/generate/drivers/r_mmu/inc/
+WRAPPER_FILE=r_devlink_wrapper_cfg.h
+MMU_FILE=r_mmu_drv_sc_cfg.h
+
+------=_.parameters.context-2e023de5-3294-36a9-ac1d-6701f05a40ee--

@@ -1,0 +1,25 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.parameters
+Element-Name: Context_Azure_EWF_application
+Element-Type: context
+Element-Version: 2.0
+Id: _bnzw0HtSEe2SVN_q1eeMtw
+Runtime-Version: 2.5.4.202210020716
+Save-Time: 12/14/22, 10:18 AM
+
+------=_.parameters.context-2e023de5-3294-36a9-ac1d-6701f05a40ee
+Content-Type: text/properties
+Entry-Name: .parameters.context
+
+#Wed Dec 14 10:18:02 ICT 2022
+GNURX_EWF_SDK_PnP_CK65N=GNU_EWF_SDK_PnP_CK65N
+EWF_SDK_application=IoT Embedded SDK sample project with EWF library (Preliminary version)
+GNURX_EWF_SDK_CK65N=GNU_EWF_SDK_CK65N
+EWF_SDK_PnP_application=IoT Embedded SDK PNP sample project with EWF library (Preliminary version)
+GNURX_EWF_SDK_IoT_PnP_CK65N=GNU_EWF_SDK_IoT_PnP_CK65N
+RTOS_Version=6.2.0_rel-rx-1.0.0
+EWF_SDK_IoT_PnP_application=IoT Embedded SDK with IoT Plug and Play sample project with EWF library (Preliminary version)
+RTOS_Type=Azure RTOS
+
+------=_.parameters.context-2e023de5-3294-36a9-ac1d-6701f05a40ee--

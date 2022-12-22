@@ -1,0 +1,40 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _CbRv0IzaEemOC-jzSKPFQA,_QSjtsJP2EemibuIcIDpJqA,_F0yXII17EemXsdvsbcJPYw,_QVBL0JP2EemibuIcIDpJqA,_GAAIoI17EemXsdvsbcJPYw
+Element-Name: test_remove_AWS_libs
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _uQ_yYJG8Eemhi6P5UwjoNg
+Runtime-Version: 2.4.2.201905080442
+Save-Time: 2/17/20 2:03 PM
+Tags: TestGUIAFR
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+with [get-view "Project Explorer" | get-tree] {
+	select [concat [getProjectName] ".*"] | double-click
+	select [concat [getProjectName] ".*/" [getProjectName] $SCFG_EXTENSION] | double-click
+}
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION]] {
+	get-tab-folder | get-tab-item Components | click
+	select_component [getProjectName] $AWS_mqtt
+	get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section | get-button "Remove component" | get-property "isEnabled()"
+		| equals false | verify-true
+	select_component [getProjectName] $AWS_device_shadow
+	get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section | get-button "Remove component" | get-property "isEnabled()"
+		| equals false | verify-true
+	select_component [getProjectName] $AWS_tcp_ip
+	get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section | get-button "Remove component" | get-property "isEnabled()"
+		| equals false | verify-true
+	select_component [getProjectName] $AWS_ggd
+	get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section | get-button "Remove component" | get-property "isEnabled()"
+		| equals false | verify-true
+	select_component [getProjectName] $AWS_secure_socket
+	get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section | get-button "Remove component" | get-property "isEnabled()"
+		| equals false | verify-true
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

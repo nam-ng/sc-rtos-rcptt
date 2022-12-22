@@ -1,0 +1,255 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.ecl
+Element-Name: ConfigureSection
+Element-Type: context
+Element-Version: 2.0
+Id: _QVBL0JP2EemibuIcIDpJqA
+Runtime-Version: 2.4.0.201812200022
+Save-Time: 6/21/19 2:29 PM
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
+Content-Type: text/ecl
+Entry-Name: .ecl.context
+
+// assert-tables-match
+
+proc get_old_configuration_value [val projectName] [val configuration_name] {
+	select_component $projectName $configuration_name
+	global [val old_value ""] -override
+	get-editor [concat $projectName $SCFG_EXTENSION] | get-section Configure | get-tree | get-item "Configurations "
+		| get-items | foreach [val item] {
+		if [$item | get-property "values['Property']" | not-eq "Configurations "] {
+			if [$item | get-property "values['Value']" | not-eq ""] {
+				global [val old_value [concat [$old_value] [$item | get-property "getData().getCurrentValue()" -raw]]]
+					-override
+			}
+		}
+	}
+}
+
+proc get_new_configuration_value [val projectName] [val configuration_name] {
+	select_component $projectName $configuration_name
+	global [val new_value ""] -override
+	get-editor [concat $projectName $SCFG_EXTENSION] | get-section Configure | get-tree | get-item "Configurations "
+		| get-items | foreach [val item] {
+		if [$item | get-property "values['Property']" | not-eq "Configurations "] {
+			if [$item | get-property "values['Value']" | not-eq ""] {
+				global [val new_value [concat [$new_value] [$item | get-property "getData().getCurrentValue()" -raw]]]
+					-override
+			}
+		}
+	}
+}
+
+proc check_property_value [val projectName] [val configurationName] [val propertyName] [val expectedValue] {
+	select_component $projectName $configurationName
+	get-editor [concat $projectName $SCFG_EXTENSION] | get-section Configure | get-tree | get-item 
+    -path [concat "Configurations /" $propertyName " "] | get-property "getData().getDisplayValue()" -raw | equals $expectedValue | verify-true
+}
+
+proc enter_value [val projectName] [val configuration_name] [val property_name] [val value] {
+	select_component $projectName $configuration_name
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section Configure | get-tree] {
+		select [concat "Configurations /" $property_name " "] | activate-cell-edit -column 1 -type MouseClickSelection
+		get-editbox | set-text $value
+		apply-cell-edit -deactivate
+	}
+}
+
+proc select_combox_item [val projectName] [val configuration_name] [val property_name] [val value] {
+	select_component $projectName $configuration_name
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section Configure | get-tree] {
+		select [concat "Configurations /" $property_name " "] | activate-cell-edit -column 1 -type MouseClickSelection
+		get-combo | set-value $value
+		apply-cell-edit -deactivate
+	}
+}
+
+//click to checkbox
+proc click_checkbox [val projectName] [val configuration_name] [val property_name] {
+	select_component $projectName $configuration_name
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section Configure | get-tree] {
+		select [concat "Configurations /" $property_name " "] | activate-cell-edit -column 1 -type MouseClickSelection
+	}
+}
+
+//enable checkbox (have tick)
+proc enable_checkbox [val projectName] [val configuration_name] [val property_name] {
+	select_component $projectName $configuration_name
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section Configure | get-tree] {
+		if [get-item -path [concat "Configurations /" $property_name " "] | get-property "getData().getDisplayValue()" -raw | equals Disable]{
+			select [concat "Configurations /" $property_name " "] | activate-cell-edit -column 1 -type MouseClickSelection
+		}
+	}
+}
+
+//disable checkbox (have no tick)
+proc disable_checkbox [val projectName] [val configuration_name] [val property_name] {
+	select_component $projectName $configuration_name
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section Configure | get-tree] {
+		if [get-item -path [concat "Configurations /" $property_name " "] | get-property "getData().getDisplayValue()" -raw | equals Enable]{
+			select [concat "Configurations /" $property_name " "] | activate-cell-edit -column 1 -type MouseClickSelection
+		}
+	}
+}
+
+// TODO: make an abstract function for unuse_pin and use_pin
+proc use_pin [val projectName] [val configuration_name] [val resource_name] [val cur_resource] [val pin_name] {
+	select_component $projectName $configuration_name
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section Configure | get-tree] {
+		with [get-item -path [concat "Resources /" $resource_name " /" $cur_resource " "]] {
+			if [get-property "columns[1]" -raw | equals false] {
+				click
+				activate-cell-edit -column 1 -type MouseClickSelection
+			}
+		}
+
+		with [get-item -path [concat "Resources /" $resource_name " /" $cur_resource " /" $pin_name " Pin "]] {
+			if [get-property "columns[1]" -raw | equals Unused] {
+				click
+				activate-cell-edit -column 1 -type MouseClickSelection
+			}
+		}
+	}
+}
+
+// TODO: make an abstract function for unuse_pin and use_pin
+proc unuse_pin [val projectName] [val configuration_name] [val resource_name] [val cur_resource] [val pin_name] {
+	select_component $projectName $configuration_name
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section Configure | get-tree] {
+		with [get-item -path [concat "Resources /" $resource_name " /" $cur_resource " "]] {
+			if [get-property "columns[1]" -raw | equals false] {
+				click
+				activate-cell-edit -column 1 -type MouseClickSelection
+			}
+		}
+
+		with [get-item -path [concat "Resources /" $resource_name " /" $cur_resource " /" $pin_name " Pin "]] {
+			if [get-property "columns[1]" -raw | equals Used] {
+				click
+				activate-cell-edit -column 1 -type MouseClickSelection
+			}
+		}
+	}
+}
+
+proc unuse_channel [val projectName] [val configuration_name] [val resource_name] [val cur_resource] {
+	select_component $projectName $configuration_name
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section Configure | get-tree] {
+		with [get-item -path [concat "Resources /" $resource_name " /" $cur_resource " "]] {
+			if [get-property "columns[1]" -raw | equals true] {
+				click
+				activate-cell-edit -column 1 -type MouseClickSelection
+			}
+		}
+	}
+}
+
+proc check_pin_unused [val projectName] [val configuration_name] [val resource_name] [val cur_resource] [val pin_name] {
+	select_component $projectName $configuration_name
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section Configure | get-tree] {
+		with [get-item -path [concat "Resources /" $resource_name " /" $cur_resource " /" $pin_name " Pin "]] {
+			get-property "columns[1]" -raw | equals Unused | assert-true
+		}
+	}
+}
+
+proc check_pin_used [val projectName] [val configuration_name] [val resource_name] [val cur_resource] [val pin_name] {
+	select_component $projectName $configuration_name
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section Configure | get-tree] {
+		with [get-item -path [concat "Resources /" $resource_name " /" $cur_resource " /" $pin_name " Pin "]] {
+			get-property "columns[1]" -raw | equals Used | assert-true
+		}
+	}
+}
+
+proc check_no_configurable_items [val projectName] [val configuration_name] {
+	select_component $projectName $configuration_name
+
+	global [val hasError false] -override
+	try {
+		get-editor [concat $projectName $SCFG_EXTENSION] | get-section Configure | get-tree | get-item -path "There a" +
+			"re no configurable items. "
+	} -catch {
+		global [val hasError true] -override
+	}
+
+	not $hasError | assert-true -message [concat $configuration_name ": There are configurable items."]
+}
+
+proc check_empty_configure_view [val projectName] [val configuration_name] {
+	select_component $projectName $configuration_name
+
+	global [val isEmptyView false] -override
+	try {
+		get-editor [concat $projectName $SCFG_EXTENSION] | get-section Configure | get-tree
+	} -catch {
+		global [val isEmptyView true] -override
+	}
+
+	$isEmptyView | assert-true -message [concat $configuration_name ": Configure view is NOT empty"]
+}
+
+proc check_configure_view_has_items [val projectName] [val configuration_name] {
+	select_component $projectName $configuration_name
+
+	global [val hasConfig 1] -override
+	global [val hasResource 1] -override
+
+	try {
+		get-editor [concat $projectName $SCFG_EXTENSION] | get-section Configure | get-tree | get-item -path "Configu" +
+			"rations "
+	} -catch {
+		global [val hasConfig 0] -override
+	}
+
+	try {
+		get-editor [concat $projectName $SCFG_EXTENSION] | get-section Configure | get-tree | get-item -path "Resourc" +
+			"es "
+	} -catch {
+		global [val hasResource 0] -override
+	}
+
+	plus $hasConfig $hasResource | not-eq 0 | assert-true -message [concat $configuration_name
+		": Configure view has no item"]
+}
+
+proc check_property_not_available [val projectName] [val configuration_name] [val property_name] {
+	select_component $projectName $configuration_name
+
+	global [val isAvailable true] -override
+	try {
+		get-editor [concat $projectName $SCFG_EXTENSION] | get-section Configure | get-tree | get-item -path [concat
+			"Configurations /" $property_name " "]
+	} -catch {
+		global [val isAvailable false] -override
+	}
+
+	$isAvailable | eq false | assert-true -message [concat $property_name "is available"]
+}
+
+// enter value to property and check error
+proc check_property_have_error_with_value [val projectName] [val component] [val property] [val value]{
+	enter_value $projectName $component $property $value
+	with [get-editor [concat $projectName ".*scfg"] |get-section Configure | get-tree] {
+		get-item -path [concat "Configurations /" $property " "] | get-property "cells[1].image.path" -raw| contains "error.png" | verify-true
+		get-item -path [concat "Configurations /" $property " "] | get-property "columnsForegroundColor[1].red" -raw | equals "255" |verify-true
+		get-item -path [concat "Configurations /" $property " "] | get-property "columnsForegroundColor[1].blue" -raw | equals "0" |verify-true
+		get-item -path [concat "Configurations /" $property " "] | get-property "columnsForegroundColor[1].green" -raw | equals "0" |verify-true
+	}
+}
+
+// enter value to property and check error
+proc check_property_have_no_error_with_value [val projectName] [val component] [val property] [val value]{
+	enter_value $projectName $component $property $value
+	verify-error {get-editor [concat $projectName ".*scfg"] |get-section Configure | get-tree | get-item 
+	-path [concat "Configurations /" $property " "] | get-property "cells[1].image.path" -raw}
+	with [get-editor [concat $projectName ".*scfg"] |get-section Configure | get-tree] {
+		verify-error {get-item -path [concat "Configurations /" $property " "] | get-property "cells[1].image.path" -raw}
+		get-item -path [concat "Configurations /" $property " "] | get-property "columnsForegroundColor[1].red" -raw | equals "0" |verify-true
+		get-item -path [concat "Configurations /" $property " "] | get-property "columnsForegroundColor[1].blue" -raw | equals "0" |verify-true
+		get-item -path [concat "Configurations /" $property " "] | get-property "columnsForegroundColor[1].green" -raw | equals "0" |verify-true
+	}
+}
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--

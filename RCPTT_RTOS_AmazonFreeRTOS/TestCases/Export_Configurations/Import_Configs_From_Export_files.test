@@ -1,0 +1,40 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _CbRv0IzaEemOC-jzSKPFQA,_QSjtsJP2EemibuIcIDpJqA,_QVBL0JP2EemibuIcIDpJqA,_F0yXII17EemXsdvsbcJPYw,_GAAIoI17EemXsdvsbcJPYw,_uixO0BvoEeq9Ssnuxnbu8A
+Element-Name: Import_Configs_From_Export_files
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _lm6wsDnmEeugn_0wlaPScA
+Runtime-Version: 2.5.4.202210020716
+Save-Time: 11/24/22, 1:54 PM
+Tags: export
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+createAFRGCCProject $PROJECT_AFR_NAME "8.3.0.202102" $RTOSType $RSKRX65N_2MB $RTOSVersion ""
+
+open_project $PROJECT_AFR_NAME
+
+check_property_value $PROJECT_AFR_NAME $AWS_device_shadow "Number of jsmn tokens" 64
+check_property_value $PROJECT_AFR_NAME $FreeRTOS_Kernel "Maximum number of priorities to the application task" 7
+
+with [get-editor [concat $PROJECT_AFR_NAME $SCFG_EXTENSION]] {
+	get-tab-folder | get-tab-item Components | click
+	get-button "Import Configuration" | click
+}
+set-dialog-result File "C:\\JenkinsSlave\\Workspace\\export_iot.xml"
+with [get-window Import] {
+	get-button "Browse..." | click
+	get-button "Select All" | click
+	get-button "Next >" | click
+	get-button Finish | click
+}
+
+check_property_value $PROJECT_AFR_NAME $AWS_device_shadow "Number of jsmn tokens" 128
+check_property_value $PROJECT_AFR_NAME $FreeRTOS_Kernel "Maximum number of priorities to the application task" 8
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

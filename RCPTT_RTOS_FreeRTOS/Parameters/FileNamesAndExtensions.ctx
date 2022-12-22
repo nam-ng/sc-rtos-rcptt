@@ -1,0 +1,29 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.parameters
+Element-Name: FileNamesAndExtensions
+Element-Type: context
+Element-Version: 2.0
+Id: _CbRv0IzaEemOC-jzSKPFQA
+Runtime-Version: 2.5.1.202001221320
+Save-Time: 12/16/20, 3:37 PM
+
+------=_.parameters.context-2e023de5-3294-36a9-ac1d-6701f05a40ee
+Content-Type: text/properties
+Entry-Name: .parameters.context
+
+#Wed Dec 16 15:37:35 ICT 2020
+PROJECT_1_NAME=project1
+STRING0x0a=0x0a
+STRING0000=0000
+PROJECT_AFR_NAME=aws_demos
+FREERTOS_OBJECT=FreeRTOS_Object
+FRTOS_KERNEL=FreeRTOS_Kernel
+SCFG_EXTENSION=.scfg
+STRING0x0aa=0x0aa
+PROJECT_Kernel=Kernel
+PROJECT_3_NAME=project3
+STRING0xGH=0xGH
+RTOS_APPLICATION=FreeRTOS_Application 
+
+------=_.parameters.context-2e023de5-3294-36a9-ac1d-6701f05a40ee--

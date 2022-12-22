@@ -1,0 +1,83 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.ecl
+Element-Name: Internal_Preferences
+Element-Type: context
+Element-Version: 2.0
+Id: _Ws9Q4LSwEeiOS9TtyPeEWg
+Runtime-Version: 2.4.0.201812200022
+Save-Time: 12/27/18 3:45 PM
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
+Content-Type: text/ecl
+Entry-Name: .ecl.context
+
+proc open_preferences_window {
+	get-preferences-menu | click
+	with [get-window Preferences] {
+		with [get-tree] {
+			select "C\\/C\\+\\+" | double-click
+			select "C\\/C\\+\\+/Renesas" | double-click
+			select "C\\/C\\+\\+/Renesas/Smart Configurator" | double-click
+			select "C\\/C\\+\\+/Renesas/Smart Configurator/Component" | double-click
+		}
+	}
+}
+
+proc set_do_nothing {
+	get-window Preferences | get-group "Code generation settings" | get-combo -after [get-label "Generating code:"]
+		| select "Do nothing if component exists"
+}
+
+proc set_overwrite_existing_component {
+	get-window Preferences | get-group "Code generation settings" | get-combo -after [get-label "Generating code:"]
+		| select "Overwrite existing component"
+}
+
+proc set_add_dependent_component_1st_level {
+	get-window Preferences | get-group "Dependency settings" | get-combo -after [get-label "Adding dependency:"]
+		| select "Add dependent component (1st level)"
+}
+
+proc set_do_not_add_dependent_component {
+	get-window Preferences | get-group "Dependency settings" | get-combo -after [get-label "Adding dependency:"]
+		| select "Do not add dependent component"
+}
+
+proc set_ignore_if_dependent_component_is_newer {
+	get-window Preferences | get-group "Dependency settings" | get-combo -after [get-label "Checking dependency:"]
+		| select "Ignore if dependent component is newer"
+}
+
+proc set_strict_check_for_dependent_component {
+	get-window Preferences | get-group "Dependency settings" | get-combo -after [get-label "Checking dependency:"]
+		| select "Strict check for dependent component"
+}
+
+proc set_do_not_check_for_dependent_component {
+	get-window Preferences | get-group "Dependency settings" | get-combo -after [get-label "Checking dependency:"]
+		| select "Do not check for dependent component"
+}
+
+proc set_fit_repository_empty {
+	write-lines -uri "workspace:/Empty/file.txt"
+	set_fit_repository_for_RZ "/Empty"
+	set_fit_repository_for_RX "/Empty"
+}
+
+proc set_fit_repository_for_RZ [val path] {
+	set-dialog-result Folder [concat [get-workspace-location | invoke replace "\\" "/"] "/" $path]
+	get-window Preferences | get-group "Location settings" | get-button "Browse..." -after [get-link "<a>Location (RZ):</a>"] | click
+	get-window Preferences | get-group "Blocked list settings" | get-button "Allow blocked FIT modules to be displayed" | check
+}
+
+proc set_fit_repository_for_RX [val path] {
+	set-dialog-result Folder [concat [get-workspace-location | invoke replace "\\" "/"] "/" $path]
+	get-window Preferences | get-group "Location settings" | get-button "Browse..." -after [get-link "<a>Location (RX):</a>"] | click
+	get-window Preferences | get-group "Blocked list settings" | get-button "Allow blocked FIT modules to be displayed" | check
+}
+
+proc apply_and_close {
+	get-window Preferences | get-button "Apply and Close" | click
+}
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--

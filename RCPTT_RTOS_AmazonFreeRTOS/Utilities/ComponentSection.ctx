@@ -1,0 +1,357 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.ecl
+Element-Name: ComponentSection
+Element-Type: context
+Element-Version: 2.0
+Id: _QSjtsJP2EemibuIcIDpJqA
+Runtime-Version: 2.4.0.201812200022
+Save-Time: 6/21/19 2:29 PM
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
+Content-Type: text/ecl
+Entry-Name: .ecl.context
+
+proc click_component_page [val projectName] {
+	with [get-editor [concat $projectName $SCFG_EXTENSION]] {
+		get-tab-folder | get-tab-item Components | click
+	}
+	
+	with [get-section | get-button "Expand All"] {
+		if [is-disabled | not ] {
+			click
+		}
+	}
+}
+
+proc click_add_component [val projectName] {
+	with [get-editor [concat $projectName $SCFG_EXTENSION]] {
+		get-tab-folder | get-tab-item Components | click
+		get-section | get-button "Add component" | click
+	}
+}
+
+proc add_component [val projectName] [val component_name] {
+	click_add_component $projectName
+	with [get-window "New Component"] {
+		get-table | select $component_name
+		get-button Finish | click
+	}
+}
+
+proc add_component_with_version [val projectName] [val component_name] [val version] {
+	click_add_component $projectName
+	with [get-window "New Component"] {
+		get-button "Show only latest version" | uncheck
+		get-editbox -after [get-label Filter] | type-text $component_name
+		get-table | select $version -column Version
+		get-button Finish | click
+	}
+}
+
+proc add_component_with_name [val projectName] [val name] [val component_name] [val version] {
+	click_add_component $projectName
+	with [get-window "New Component"] {
+		get-editbox -after [get-label Filter] | type-text $component_name
+		get-button "Show only latest version" | uncheck
+		get-table | select $version -column Version
+		get-button "Next >" | click
+		get-group $component_name | get-editbox -after [get-label "Configuration name:"] | set-text ""
+		get-group $component_name | get-editbox -after [get-label "Configuration name:"] | type-text $name
+		get-button Finish | click
+	}
+}
+
+proc add_component_with_resource [val projectName] [val name] [val component_name] [val version] [val resource] {
+	click_add_component $projectName
+	with [get-window "New Component"] {
+		get-editbox -after [get-label Filter] | type-text $component_name
+		get-button "Show only latest version" | uncheck
+		get-table | select $version -column Version
+		get-button "Next >" | click
+		get-group $component_name | get-editbox -after [get-label "Configuration name:"] | set-text ""
+		get-group $component_name | get-editbox -after [get-label "Configuration name:"] | type-text $name
+		get-group $component_name | get-combo -after [get-label "Resource:"] | select $resource
+		get-button Finish | click
+	}
+}
+
+proc remove_component [val projectName] [val configurationName] {
+	click_component_page $projectName
+	
+	global [val isFound false] -override
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section] {
+		get-tree | get-items | foreach [val item] {
+			if [$item | get-property caption -raw | eq $configurationName] {
+				$item | select-item
+				global [val isFound true] -override
+			}
+		}
+		get-button "Remove component" | click
+	}
+	get-window Question | get-button Yes | click
+	
+	$isFound | eq true | assert-true -message [concat "cannot find " $configurationName]
+}
+
+proc remove_all_component [val projectName] {
+	click_component_page $projectName
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section] {
+		get-tree | get-items | foreach [val item] {
+			if [$item | get-property childCount -raw | eq 0] {
+				$item | select-item
+				try {
+					get-button "Remove component" | click
+					get-window Question | get-button Yes | click
+				} -catch {}
+			}
+		}
+	}
+}
+
+proc reset_to_default [val projectName] [val name] {
+	click_component_page $projectName
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section] {
+		get-tree | get-items | foreach [val item] {
+			if [$item | get-property caption -raw | eq $name] {
+				$item | select-item | mouse down -button Right
+				$item | select-item | get-menu -path "Reset to default" | click
+			}
+		}
+	}
+}
+
+proc rename_configuration [val projectName] [val name] [val new_name] {
+	click_component_page $projectName
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section] {
+		get-tree | get-items | foreach [val item] {
+			if [$item | get-property caption -raw | eq $name] {
+				$item | select-item | mouse down -button Right
+				$item | select-item | get-menu -path "Rename..." | click
+				with [get-window "Rename Configuration"] {
+					get-editbox -after [get-label "New name:"] | set-text ""
+					get-editbox -after [get-label "New name:"] | type-text $new_name
+					get-button OK | click
+				}
+			}
+		}
+	}
+}
+
+proc duplicate_configuration [val projectName] [val name] [val new_name] {
+	click_component_page $projectName
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section] {
+		get-tree | get-items | foreach [val item] {
+			if [$item | get-property caption -raw | eq $name] {
+				$item | select-item | mouse down -button Right
+				$item | select-item | get-menu -path "Duplicate..." | click
+				with [get-window "Duplicate Configuration"] {
+					get-editbox -after [get-label "New name:"] | set-text ""
+					get-editbox -after [get-label "New name:"] | type-text $new_name
+					get-button OK | click
+				}
+			}
+		}
+	}
+}
+
+proc change_resource [val projectName] [val name] [val new_resource] [val isDefaultSetting true] {
+	click_component_page $projectName
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section] {
+		get-tree | get-items | foreach [val item] {
+			if [$item | get-property caption -raw | eq $name] {
+				$item | select-item | mouse down -button Right
+				$item | select-item | get-menu -path "Change resource..." | click
+				with [get-window "Change Resource"] {
+					get-combo -after [get-label "Resource:"] | select $new_resource
+					
+					try {
+						get-button "Next >" | click
+						if $isDefaultSetting {
+							get-button "Use default setting" | click
+						} -else {
+							get-button "Use current setting" | click
+						}
+					} -catch {}
+
+					get-button Finish | click
+				}
+			}
+		}
+	}
+}
+
+proc change_version [val projectName] [val config_name] [val version_number] {
+	select_action_item $projectName $config_name "Change version"
+	
+	with [get-window "Change Version"] {
+		get-combo -after [get-label "Available versions:"] | select $version_number
+		get-button "Next >" | click
+	}
+	
+	get-window -class WizardDialog | get-button Finish | click
+	get-window -class MessageDialog | get-button Yes | click
+	
+	try {
+		get-window "Code Generating" | get-button Yes | click
+	} -catch {}
+	
+	//waiting for code generation by checking Configure view
+	loop {
+		try {
+			get-editor [concat $projectName $SCFG_EXTENSION] | get-section Configure | get-tree | get-item -path "Configurations " | get-property caption 
+			    | equals Configurations | verify-true
+		} -catch {
+			recur
+		}
+	}
+}
+
+proc select_action_item [val projectName] [val configurationName] [val actionName] {
+	click_component_page $projectName
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section] {
+		get-tree | get-items | foreach [val item] {
+			try {
+				if [$item | get-property caption -raw | eq $configurationName] {
+					$item | select-item | mouse down -button Right
+					$item | select-item | get-menu -path [concat $actionName ".*"] | click
+				}
+			} -catch {}
+		}
+	}
+}
+
+proc check_menu_item_unavailable [val projectName] [val name] [val menu_item] {
+	global [val isNotAvailable false] -override
+	click_component_page $projectName
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section] {
+		get-tree | get-items | foreach [val item] {
+			if [$item | get-property caption -raw | eq $name] {
+				$item | select-item | mouse down -button Right
+				try {
+					$item | get-menu -path $menu_item
+				} -catch {
+					global [val isNotAvailable true] -override
+				}
+			}
+		}
+	}
+	$isNotAvailable | assert-true -message [concat $menu_item " is available"]
+}
+
+proc check_menu_item_disabled [val projectName] [val name] [val menu_item] {
+	try {
+		check_menu_item_enabled $projectName $name $menu_item
+		global [val isDisabled false] -override
+	} -catch {
+		global [val isDisabled true] -override
+	}
+	
+	$isDisabled | eq true | assert-true -message [concat $menu_item " is not disabled"]
+}
+
+proc check_menu_item_enabled [val projectName] [val name] [val menu_item] {
+	click_component_page $projectName
+	global [val isFound false] -override
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section] {
+		get-tree | get-items | foreach [val item] {
+			if [$item | get-property caption -raw | eq $name] {
+				global [val isFound true] -override
+				$item | select-item | mouse down -button Right
+				$item | get-menu -path [concat $menu_item ".*"] | get-property enablement | equals true | verify-true
+			}
+		}
+	}
+	
+	$isFound | eq true | assert-true -message [concat $name " is not found"]
+}
+
+proc select_component [val projectName] [val name] [val isSelectable true] {
+	global [val isAvailable false] -override
+	click_component_page $projectName
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section] {
+		get-tree | get-items | foreach [val item] {
+			try {
+				if [$item | get-property caption -raw | eq $name] {
+					$item | select-item
+					global [val isAvailable true] -override
+				}
+			}-catch{}
+		}
+	}
+	
+	if [$isSelectable | eq true] {
+		$isAvailable | assert-true -message [concat $name " is not available"]
+	}-else{
+		not $isAvailable | assert-true -message [concat $name " is available"]
+	}
+}
+
+proc check_component_no_error_icon_without_checking_parents [val projectName] [val componentHierarchy] {
+	global [val hasErrorIcon true] -override
+
+	try {
+		get-editor [concat $projectName $SCFG_EXTENSION] | get-section | get-tree | get-item -path $componentHierarchy 
+		| get-property "image.decorations[0].path" | equals "com.renesas.smc.tools.swcomponent.ui/icons/error.png" 
+		| verify-true
+	}-catch {
+		global [val hasErrorIcon false] -override
+	}
+	
+	not $hasErrorIcon | assert-true -message [concat "component has error icon"]
+}
+
+proc check_component_has_error_icon_without_checking_parents [val projectName] [val componentHierarchy] {
+	get-editor [concat $projectName $SCFG_EXTENSION] | get-section | get-tree | get-item -path $componentHierarchy 
+	| get-property "image.decorations[0].path" | equals "com.renesas.smc.tools.swcomponent.ui/icons/error.png" 
+	| verify-true
+}
+
+proc check_component_has_error_icon [val projectName] [val componentHierarchy] {
+	click_component_page $projectName
+	global [val hierarchy ""] -override
+
+    $componentHierarchy | split -sep "/" -trimResults | foreach [val item] {
+    	global [val hierarchy [concat $hierarchy $item]] -override
+    	
+		get-editor [concat $projectName $SCFG_EXTENSION] | get-section | get-tree | get-item -path $hierarchy 
+		| get-property "image.decorations[0].path" | equals "com.renesas.smc.tools.swcomponent.ui/icons/error.png" 
+		| verify-true
+		
+		global [val hierarchy [concat $hierarchy "/"]] -override
+    }
+}
+
+proc check_component_no_error_icon [val projectName] [val componentHierarchy] {
+	global [val hasError false] -override
+	global [val hierarchy ""] -override
+ 	$componentHierarchy | split -sep "/" -trimResults | foreach [val item] {
+ 		global [val hierarchy [concat $hierarchy $item]] -override
+ 		
+ 		try {
+			get-editor [concat $projectName $SCFG_EXTENSION] | get-section | get-tree | get-item -path $hierarchy 
+			| get-property "image.decorations[0].path" | equals "com.renesas.smc.tools.swcomponent.ui/icons/error.png" 
+			| verify-true
+			global [val hasError true] -override
+		}-catch {
+			global [val hierarchy [concat $hierarchy "/"]] -override
+		}
+ 	}
+	
+	not $hasError | assert-true -message [concat "component has error icon"]
+}
+
+proc check_configuration_disable [val projectName] [val name] {
+	click_component_page $projectName
+	get-editor [concat $projectName $SCFG_EXTENSION] | get-section | get-tree | get-item -path $name 
+    | get-property "image.path" 
+    | contains "Unsupported.png" | verify-true
+}
+
+proc check_configuration_enable [val projectName] [val name] {
+	click_component_page $projectName
+	get-editor [concat $projectName $SCFG_EXTENSION] | get-section | get-tree | get-item -path $name 
+    | get-property "image.path" 
+    | contains "Unsupported.png" | verify-false
+}
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--

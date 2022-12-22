@@ -1,0 +1,28 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.parameters
+Element-Name: Context rza2m
+Element-Type: context
+Element-Version: 2.0
+Id: _xYD4MKu3EeqGiLHaD9JPUg
+Runtime-Version: 2.5.1.202001221320
+Save-Time: 3/13/21, 10:02 AM
+
+------=_.parameters.context-2e023de5-3294-36a9-ac1d-6701f05a40ee
+Content-Type: text/properties
+Entry-Name: .parameters.context
+
+#Sat Mar 13 10:02:33 ICT 2021
+DeviceRZA2M=RZ\\\\/A/RZ\\\\/A2M/RZ\\\\/A2M - 176pin/R7S921040
+AFR_Skeleton_Folder=/application_code/renesas_code/frtos_skeleton
+AFR_Config_Path=/config_files/
+RTOSType=FreeRTOS (with IoT libraries)
+ProjectName=RZA2M
+RTOSVersion=v201908.00-rza2m-0.1.0
+AFR_Project_Root=/afr-v201908.00-rza2m-0.1.0/projects/renesas/rx65n-rsk/e2studio/aws_demos
+Create_Flag=True
+AFR_Startup_Folder=/application_code/renesas_code/frtos_startup
+AFR_SKELETON_ROOT=/application_code/renesas_code/frtos_skeleton
+Package_AFR=afr-v201908.00-rza2m-0.1.0
+
+------=_.parameters.context-2e023de5-3294-36a9-ac1d-6701f05a40ee--

@@ -1,0 +1,22 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Element-Name: FreeRTOS_CCRX_Configure_GUI_and_check_Constrains
+Element-Type: testsuite
+Element-Version: 2.0
+Id: _iV-_MDg_EeqRHNaZE0iR2g
+Manually-Ordered: true
+Runtime-Version: 2.5.0.201911080224
+Save-Time: 3/4/20, 3:17 PM
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
+Content-Type: text/testcase
+Entry-Name: testcase-items
+
+_SSvMkDgUEeqRHNaZE0iR2g	//
+_QL-EAJJ2EemwUpCYQk_1vA	//
+_zRmWYJF4EemQg8nAseZ0_Q	//
+_gM32gJGfEemQg8nAseZ0_Q	//
+_Hn4rUJF_EemQg8nAseZ0_Q	//
+_iPvbAJJAEempa8MxsW2mDQ	//
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--

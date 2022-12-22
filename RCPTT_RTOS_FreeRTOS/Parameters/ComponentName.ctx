@@ -1,0 +1,24 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.parameters
+Element-Name: ComponentName
+Element-Type: context
+Element-Version: 2.0
+Id: _8ZZJ8JDLEemjjfRe1CZFNw
+Runtime-Version: 2.4.0.201812200022
+Save-Time: 6/18/19 4:14 PM
+
+------=_.parameters.context-2e023de5-3294-36a9-ac1d-6701f05a40ee
+Content-Type: text/properties
+Entry-Name: .parameters.context
+
+#Tue Jun 18 16:14:27 ICT 2019
+AWS_device_shadow=AWS_device_shadow
+AWS_mqtt=AWS_mqtt
+FreeRTOS_Kernel=FreeRTOS_Kernel
+AWS_ggd=AWS_ggd
+AWS_tcp_ip=AWS_tcp_ip
+AWS_secure_socket=AWS_secure_socket
+FreeRTOS_Object=FreeRTOS_Object
+
+------=_.parameters.context-2e023de5-3294-36a9-ac1d-6701f05a40ee--

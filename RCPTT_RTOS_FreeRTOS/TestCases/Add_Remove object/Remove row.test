@@ -1,0 +1,33 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _5X_KYIzZEemOC-jzSKPFQA,_F24o4I17EemXsdvsbcJPYw,_CbRv0IzaEemOC-jzSKPFQA
+Element-Name: Remove row
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _UIKSEJDcEemLyJ1NFY_1pA
+Runtime-Version: 2.4.2.201905080442
+Save-Time: 2/17/20 2:00 PM
+Tags: add_remove
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+createFreeRTOSProject $PROJECT_2_NAME
+select_component $PROJECT_2_NAME FreeRTOS_Object true
+
+get-editor "project2.scfg" | get-section Configure | get-tab-folder | get-tab-item Tasks | click
+// Hit Add button
+get-editor "project2.scfg" | get-section Configure | get-table | get-label | click
+get-editor "project2.scfg" | get-section Configure | get-table | get-label -index 1 | click
+get-editor "project2.scfg" | get-section Configure | get-table | get-label -index 2 | click
+// Hit delete button
+get-editor "project2.scfg" | get-section Configure | get-table | get-label  | click
+
+with [get-editor "project2.scfg" | get-section Configure | get-table] {
+    get-editbox | get-property text | equals "task_1" | verify-false
+    get-editbox -index 6 | get-property text | equals "task_1" | verify-false
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

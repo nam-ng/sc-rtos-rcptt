@@ -1,0 +1,11 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Element-Name: Interrupt_priority_checking
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _Wp3twDpEEe2BcIcAs79bvA
+Runtime-Version: 2.5.2.202109092356
+Save-Time: 9/22/22, 2:01 PM
+Testcase-Type: ecl
+

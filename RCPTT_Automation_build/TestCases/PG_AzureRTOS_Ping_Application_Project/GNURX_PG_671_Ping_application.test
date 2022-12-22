@@ -1,0 +1,30 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _fQNMsFwKEe2uw6gVVg9dpQ
+Element-Name: GNURX_PG_671_Ping_application
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _3DULcF5NEe2uw6gVVg9dpQ
+Runtime-Version: 2.5.4.202210020716
+Save-Time: 12/14/22, 9:52 AM
+Tags: ping
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+try {
+	get-file -uri "D:/JenkinsSlave/context.xml" | delete-file
+} -catch {
+}
+
+global [val createContext [newContext 6 $RSKRX671 $GNURX_Ping_671 $RTO_SVersion $RTOS_Type $Azure_Ping_Application]]
+
+global [val tree [tree-node Contexts $createContext]]
+
+$tree | write-xml-file -uri "D:/JenkinsSlave/context.xml"
+
+createGCCRTOSProject [getProjectName] $GCC_Toolchain_version [getRTOSType] [getRTOSVersion] [getDevice] [getApplication]
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

@@ -1,0 +1,21 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Element-Name: Check_RTOS_Aplication_Component
+Element-Type: testsuite
+Element-Version: 2.0
+Id: _36pvwEDWEeuHIt0KAYVVfw
+Manually-Ordered: true
+Runtime-Version: 2.5.2.202109092356
+Save-Time: 6/21/22, 2:35 PM
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
+Content-Type: text/testcase
+Entry-Name: testcase-items
+
+_qGk0YE49EeqaCIqEVkHFuw	// kind: 'test' name: 'PG_RX_RX700_Family' path: '../TestCases/Initialize class/PG_RX_RX700_Family.test'
+_hoZdsD9tEeuTTJSxAMgGiQ	// kind: 'test' name: 'CheckRTOSApplicationComponent' path: '../TestCases/Application/CheckRTOSApplicationComponent.test'
+_0EDNwD96EeuTTJSxAMgGiQ	// kind: 'test' name: 'ChangeConfiguraValue' path: '../TestCases/Application/ChangeConfiguraValue.test'
+_53RJUEAZEeu2SMuWs0Xvmg	// kind: 'test' name: 'CheckReverseConfigurationW_E' path: '../TestCases/Application/CheckReverseConfigurationW_E.test'
+_SAniIEDOEeuHIt0KAYVVfw	// kind: 'test' name: 'NoChangeWithNoOptionSelectWifi' path: '../TestCases/Application/NoChangeWithNoOptionSelectWifi.test'
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--

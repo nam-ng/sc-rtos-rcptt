@@ -1,0 +1,284 @@
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+.failure th, .failure td {
+	border-color: red;
+}
+
+.skipped th, .skipped td {
+	border-color: grey;
+}
+
+.passed th, .passed td {
+	border-color: green;
+}
+
+hr {
+	margin-bottom: 50px;
+}
+
+h1.failure, h2.failure, h3.failure, h4.failure, h5.failure {
+	color: red;
+}
+
+h1.passed, h2.passed, h3.passed, h4.passed, h5.passed {
+	color: green;
+}
+
+h1.skipped, h2.skipped, h3.skipped, h4.skipped, h5.skipped {
+	color: grey;
+}
+
+table.failure th,
+table.passed th,
+table#summary th
+{
+	vertical-align: top;
+	text-align: right;
+	width: 150px;
+}
+
+/*To keep header on details icon level */
+summary h1,
+summary h2,
+summary h3,
+summary h4,
+summary h5,
+summary h6
+{
+	display: inline-block;
+}
+
+.childNode {
+	padding-left: 10px;
+}
+
+table {
+	border-collapse:collapse;
+	width: 100%;
+}
+
+table td, table th {
+	border:1px solid;
+	padding: 2px;
+}
+
+summary {
+	cursor:pointer;
+	display: block;
+}
+
+/* Imitation of details element
+ * http://www.w3.org/wiki/HTML/Elements/details
+ */   
+
+.notwebkit details.closed .detailsContent {
+  display:none;
+}
+
+.notwebkit details.closed summary h1:before,
+.notwebkit details.closed summary h2:before,
+.notwebkit details.closed summary h3:before,
+.notwebkit details.closed summary h4:before,
+.notwebkit details.closed summary h5:before,
+.notwebkit details.closed summary h6:before
+{
+  content: "+ ";
+}
+
+.notwebkit details summary h1:before,
+.notwebkit details summary h2:before,
+.notwebkit details summary h3:before,
+.notwebkit details summary h4:before,
+.notwebkit details summary h5:before,
+.notwebkit details summary h6:before
+{
+  content: "- ";
+}
+
+</style>
+<script type="text/javascript">
+function installDetailsWorkaround() {
+	var nodes = document.getElementsByTagName("details")
+  	for (var i=0; i<nodes.length; i++) {
+    //console.log(i, nodes[i]);
+		installCollapse(nodes[i]);
+	}
+}
+
+function getContent(detailsNode) {
+	var children = detailsNode.children;
+	for (var i=0; i<children.length; i++) {
+		if (children[i].tagName == 'SUMMARY')
+			continue;
+		return children[i];		
+	}     
+	return null;
+}
+
+function hasClass( elem, name ) {
+	return ( " " + elem.className + " " ).indexOf( " " + name + " " ) >= 0;
+}
+
+function addClass( elem, name ) {
+	if ( !hasClass( elem, name ) ) {
+		elem.className += ( elem.className ? " " : "" ) + name;
+	}
+}
+
+function toggleClass( elem, name ) {
+	if ( hasClass( elem, name ) ) {
+		removeClass( elem, name );
+	} else {
+		addClass( elem, name );
+	}
+}
+
+function removeClass( elem, name ) {
+	var set = " " + elem.className + " ";
+
+	// Class name may appear multiple times
+	while ( set.indexOf( " " + name + " " ) >= 0 ) {
+		set = set.replace( " " + name + " ", " " );
+	}
+
+	// trim for prettiness
+	elem.className = typeof set.trim === "function" ? set.trim() : set.replace( /^\s+|\s+$/g, "" );
+}
+
+function toggleDetails(detailsNode) {
+	toggleClass(detailsNode, "closed");
+}
+
+function installCollapse(detailsNode) {
+	var children = detailsNode.children;
+	for (var i=0; i<children.length; i++) {     
+		var child = children[i];
+		if (child.tagName != 'SUMMARY')
+			continue;
+		child.addEventListener('click', function() {
+			toggleDetails(detailsNode);
+		});
+		break;
+	}
+}
+
+if(navigator.userAgent.indexOf('AppleWebKit') == -1){
+    addClass(document.getElementsByTagName("html")[0], "notwebkit");
+}
+
+</script>
+</head>
+<body onload="installDetailsWorkaround()">
+<table  id="summary">
+ <tr>
+  <th>Total Tests</th>
+  <td>82</td>
+ </tr>
+
+ <tr>
+  <th>Failed Tests</th>
+  <td>0 (0%)</td>
+ </tr>
+
+ <tr>
+  <th>Skipped Tests</th>
+  <td>0 (0%)</td>
+ </tr>
+
+ <tr>
+  <th>Execution Time</th>
+  <td>3,362.2 s</td>
+ </tr>
+</table>
+<h1 class="failure">Failed Tests (0)</h1>
+<h1 class="skipped">Skipped Tests (0)</h1>
+<table class="skipped">
+</table>
+<details class="closed"><summary><h1 class="passed">Passed Tests (82)</h1></summary>
+<table class="passed detailsContent">
+<tr><td>PG_FreeRTOS_RX700</td><td>64.4 s</td></tr>
+<tr><td>Change RTOS Location</td><td>32.5 s</td></tr>
+<tr><td>Change to None RTOS Location</td><td>24.7 s</td></tr>
+<tr><td>RTOS reload after Change Location</td><td>41.3 s</td></tr>
+<tr><td>PG_FreeRTOS_RX600</td><td>66.2 s</td></tr>
+<tr><td>Export_configs</td><td>31.8 s</td></tr>
+<tr><td>Import_Configs</td><td>74.2 s</td></tr>
+<tr><td>PG_FreeRTOS_RX600</td><td>65.1 s</td></tr>
+<tr><td>Add and Remove rows</td><td>26.2 s</td></tr>
+<tr><td>Add new Task object and chek default values</td><td>21.5 s</td></tr>
+<tr><td>Check default value of the second row</td><td>23.7 s</td></tr>
+<tr><td>Check default values of the third row</td><td>24.4 s</td></tr>
+<tr><td>PG_FreeRTOS_RX600</td><td>68.0 s</td></tr>
+<tr><td>2 rows are duplicated values</td><td>41.0 s</td></tr>
+<tr><td>Empty error</td><td>31.0 s</td></tr>
+<tr><td>Must be a number</td><td>73.6 s</td></tr>
+<tr><td>Must not be a number</td><td>28.2 s</td></tr>
+<tr><td>Out of size</td><td>49.8 s</td></tr>
+<tr><td>PG_FreeRTOS_RX600</td><td>59.7 s</td></tr>
+<tr><td>Check code generate after click generate button</td><td>40.4 s</td></tr>
+<tr><td>Check name of output file</td><td>72.6 s</td></tr>
+<tr><td>Check path of output file</td><td>65.0 s</td></tr>
+<tr><td>Check Delete output file then generate</td><td>89.7 s</td></tr>
+<tr><td>PG_FreeRTOS_RX600</td><td>76.1 s</td></tr>
+<tr><td>check-component-view-is-loaded-with-data</td><td>53.6 s</td></tr>
+<tr><td>check-data-link-between-other-property</td><td>138.7 s</td></tr>
+<tr><td>check-disable-property</td><td>50.3 s</td></tr>
+<tr><td>check-remove-Kernel-component</td><td>17.7 s</td></tr>
+<tr><td>PG_FreeRTOS_RX600</td><td>60.9 s</td></tr>
+<tr><td>generate_default</td><td>38.7 s</td></tr>
+<tr><td>generate_task_initial_kernel_start</td><td>34.8 s</td></tr>
+<tr><td>generate_task_initial_manual</td><td>60.9 s</td></tr>
+<tr><td>generate_again_with_user_code_protected</td><td>70.9 s</td></tr>
+<tr><td>PG_FreeRTOS_RX600</td><td>65.1 s</td></tr>
+<tr><td>Check 8 Tabs is displayed</td><td>15.7 s</td></tr>
+<tr><td>Switch components and check the UI</td><td>21.8 s</td></tr>
+<tr><td>Check Heap GUI</td><td>17.3 s</td></tr>
+<tr><td>Check Task UI</td><td>17.3 s</td></tr>
+<tr><td>Check Event Group UI</td><td>16.2 s</td></tr>
+<tr><td>Check MsgBuffer UI</td><td>16.1 s</td></tr>
+<tr><td>Check Queues UI</td><td>16.7 s</td></tr>
+<tr><td>Check SWTimer UI</td><td>17.7 s</td></tr>
+<tr><td>Check Semaphores UI</td><td>17.9 s</td></tr>
+<tr><td>Check Stream Buffer UI</td><td>19.7 s</td></tr>
+<tr><td>C++_FreeRTOS</td><td>46.6 s</td></tr>
+<tr><td>PG_GCC_FREERTOS_RX600</td><td>59.8 s</td></tr>
+<tr><td>Add and Remove rows</td><td>27.0 s</td></tr>
+<tr><td>Add new Task object and chek default values</td><td>17.3 s</td></tr>
+<tr><td>Check default value of the second row</td><td>21.6 s</td></tr>
+<tr><td>Check default values of the third row</td><td>26.2 s</td></tr>
+<tr><td>PG_GCC_FREERTOS_RX600</td><td>63.8 s</td></tr>
+<tr><td>2 rows are duplicated values</td><td>31.6 s</td></tr>
+<tr><td>Empty error</td><td>19.6 s</td></tr>
+<tr><td>Must be a number</td><td>63.1 s</td></tr>
+<tr><td>Must not be a number</td><td>27.5 s</td></tr>
+<tr><td>Out of size</td><td>49.2 s</td></tr>
+<tr><td>PG_GCC_FREERTOS_RX600</td><td>57.3 s</td></tr>
+<tr><td>Check code generate after click generate button</td><td>39.4 s</td></tr>
+<tr><td>Check name of output file</td><td>35.1 s</td></tr>
+<tr><td>Check path of output file</td><td>35.1 s</td></tr>
+<tr><td>Check Delete output file then generate</td><td>37.6 s</td></tr>
+<tr><td>PG_GCC_FREERTOS_RX600</td><td>69.1 s</td></tr>
+<tr><td>check-component-view-is-loaded-with-data</td><td>39.3 s</td></tr>
+<tr><td>check-data-link-between-other-property</td><td>93.1 s</td></tr>
+<tr><td>check-disable-property</td><td>38.8 s</td></tr>
+<tr><td>check-remove-Kernel-component</td><td>17.7 s</td></tr>
+<tr><td>PG_GCC_FREERTOS_RX600</td><td>57.8 s</td></tr>
+<tr><td>generate_default</td><td>33.4 s</td></tr>
+<tr><td>generate_task_initial_kernel_start</td><td>25.2 s</td></tr>
+<tr><td>generate_task_initial_manual</td><td>57.0 s</td></tr>
+<tr><td>generate_again_with_user_code_protected</td><td>68.5 s</td></tr>
+<tr><td>PG_GCC_FREERTOS_RX600</td><td>59.7 s</td></tr>
+<tr><td>Check 8 Tabs is displayed</td><td>17.2 s</td></tr>
+<tr><td>Switch components and check the UI</td><td>23.7 s</td></tr>
+<tr><td>Check Heap GUI</td><td>18.2 s</td></tr>
+<tr><td>Check Task UI</td><td>19.0 s</td></tr>
+<tr><td>Check Event Group UI</td><td>17.6 s</td></tr>
+<tr><td>Check MsgBuffer UI</td><td>17.9 s</td></tr>
+<tr><td>Check Queues UI</td><td>17.4 s</td></tr>
+<tr><td>Check SWTimer UI</td><td>18.9 s</td></tr>
+<tr><td>Check Semaphores UI</td><td>17.7 s</td></tr>
+<tr><td>Check Stream Buffer UI</td><td>17.9 s</td></tr>
+</table>
+</body></html>

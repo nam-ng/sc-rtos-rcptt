@@ -1,0 +1,40 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _F24o4I17EemXsdvsbcJPYw,_CbRv0IzaEemOC-jzSKPFQA
+Element-Name: Check Heap GUI
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _EPbKIDjVEeqRHNaZE0iR2g
+Runtime-Version: 2.4.2.201905080442
+Save-Time: 2/17/20 2:01 PM
+Tags: ObjectGUI
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+open_project [getProjectName]
+select_component [getProjectName] FreeRTOS_Object true
+
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-tab-folder | get-tab-item "Heap Estimation" | click
+
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-group "Total Amount Heap Usage"] {
+	get-label "Total For Heap Usage" | get-property "getText()" | equals "Total For Heap Usage" | verify-true
+	get-label "Total For Task(s)" | get-property "getText()" | equals "Total For Task(s)" | verify-true
+	get-label "Total For Queue(s)" | get-property "getText()" | equals "Total For Queue(s)" | verify-true
+	get-label "Total For Semaphore(s)" | get-property "getText()" | equals "Total For Semaphore(s)" | verify-true
+	get-label "Total For Software Timer(s)" | get-property "getText()" | equals "Total For Software Timer(s)" | verify-true
+	get-label "Total For Event Group(s)" | get-property "getText()" | equals "Total For Event Group(s)" | verify-true
+	get-label "Total For Message Buffer(s)" | get-property "getText()" | equals "Total For Message Buffer(s)" | verify-true
+	get-label "Total For Stream Buffer(s)" | get-property "getText()" | equals "Total For Stream Buffer(s)" | verify-true
+}
+
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-group "Kernel Predefined Objects"] {
+	get-label "Main Task" | get-property "getText()" | equals "Main Task" | verify-true
+	get-label "IDLE Task" | get-property "getText()" | equals "IDLE Task" | verify-true
+	get-label "Timer Service Task" | get-property "getText()" | equals "Timer Service Task" | verify-true
+	get-label "Timer Queue" | get-property "getText()" | equals "Timer Queue" | verify-true
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

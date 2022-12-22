@@ -1,0 +1,132 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.ecl
+Element-Name: PinNumberChecker
+Element-Type: context
+Element-Version: 2.0
+Id: _F-UtoI17EemXsdvsbcJPYw
+Runtime-Version: 2.4.0.201812200022
+Save-Time: 6/13/19 8:32 AM
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
+Content-Type: text/ecl
+Entry-Name: .ecl.context
+
+global [val currentSelectedPin ""] -override
+
+proc get_current_selected_pin {
+	$currentSelectedPin
+}
+
+proc click_pin_number_tab [val projectName] {
+	with [get-editor [concat $projectName $SCFG_EXTENSION]] {
+	    get-tab-folder | get-tab-item Pins | click
+	    get-tab-folder | get-tab-item "Pin Number" | click
+	}
+}
+
+proc assign_function_on_specific_pin [val projectName] [val pinName] [val functionName] {
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section "Pin Number" | get-tree] {
+	    select $pinName | activate-cell-edit -column 2 -type MouseClickSelection
+	    get-window -from "TableCombo.createPopup()" | get-table | select $functionName
+	}
+	
+	try {
+		global [val currentSelectedPin $pinName] -override
+	} -catch {}
+}
+
+proc assign_function_on_any_pin [val projectName] [val functionName] {
+	assign_function_on_specific_pin $projectName [get_all_pins_of_function $projectName $functionName | get 0] $functionName
+}
+
+proc get_all_pins_of_function [val projectName] [val functionName] {
+	global [val currentSelectedPinList [list]] -override
+	
+	click_pin_number_tab $projectName
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section "Pin Number"] {
+	    get-editbox | set-text $functionName
+	    get-tree | get-items | foreach [val item] {
+	    	global [val currentSelectedPinList [$currentSelectedPinList | append [$item | get-text]]] -override
+	    }
+	}
+	
+	$currentSelectedPinList
+}
+
+proc release_function_on_pin_number [val projectName] [val pinNumber] {
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section "Pin Number" | get-tree] {
+	    apply-cell-edit -deactivate
+	    select $pinNumber | activate-cell-edit -column 2 -type MouseClickSelection
+	}
+	get-window -from "TableCombo.createPopup()" | get-table | select "Not assigned"
+}
+
+proc set_function [val projectName] [val functionName] {
+	click_pin_number_tab $projectName
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section "Pin Number" | get-tree] {
+	    select $currentSelectedPin | activate-cell-edit -column 2 -type MouseClickSelection
+	    get-window -from "TableCombo.createPopup()" | get-table | select $functionName
+	}
+}
+
+proc set_direction [val projectName] [val directionValue] {
+	click_pin_number_tab $projectName
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section "Pin Number" | get-tree] {
+	    select $currentSelectedPin | activate-cell-edit -column 3 -type MouseClickSelection
+	    get-window -from "TableCombo.createPopup()" | get-table | select $directionValue
+	}
+}
+
+proc set_level [val projectName] [val levelValue] {
+	click_pin_number_tab $projectName
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section "Pin Number" | get-tree] {
+	    select $currentSelectedPin | activate-cell-edit -column 4 -type MouseClickSelection
+	    get-window -from "TableCombo.createPopup()" | get-table | select $levelValue
+	}
+}
+
+proc set_interrupt [val projectName] [val interruptValue] {
+	click_pin_number_tab $projectName
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section "Pin Number" | get-tree] {
+	    select $currentSelectedPin | activate-cell-edit -column 5 -type MouseClickSelection
+	    get-window -from "TableCombo.createPopup()" | get-table | select $interruptValue
+	}
+}
+
+proc set_drive_control [val projectName] [val driveControlValue] {
+	click_pin_number_tab $projectName
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section "Pin Number" | get-tree] {
+	    select $currentSelectedPin | activate-cell-edit -column 6 -type MouseClickSelection
+	    get-window -from "TableCombo.createPopup()" | get-table | select $driveControlValue
+	}
+}
+
+proc set_initialize [val projectName] [val initValue] {
+	click_pin_number_tab $projectName
+	with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section "Pin Number" | get-tree] {
+	    select $currentSelectedPin | activate-cell-edit -column 7 -type MouseClickSelection
+	    get-window -from "TableCombo.createPopup()" | get-table | select $initValue
+	}
+}
+
+proc check_direction_disabled [val projectName] {
+	get-editor [concat $projectName $SCFG_EXTENSION] | get-section "Pin Number" | get-tree | get-item -path $currentSelectedPin 
+    | get-property "getData().getPinDirectionsValues().size()" | equals 1 | verify-true
+}
+
+proc check_initSource_equals_value [val projectName] [val functionName] [val initValue] {
+	global [val isByDriver false] -override
+	get_all_pins_of_function $projectName $functionName | each [val pinNum] {
+		try {
+			with [get-editor [concat $projectName $SCFG_EXTENSION] | get-section "Pin Number" | get-tree] {
+				get-item -path $pinNum | get-property "values['Initialize']" | equals $initValue | verify-true
+			}
+			global [val isByDriver true] -override
+		} -catch {}
+	}
+	$isByDriver | eq true | assert-true [concat $functionName " is not initialized by " $initValue]
+}
+
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--

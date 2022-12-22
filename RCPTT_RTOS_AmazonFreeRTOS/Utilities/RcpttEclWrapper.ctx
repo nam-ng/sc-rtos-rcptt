@@ -1,0 +1,36 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.ecl
+Element-Name: RcpttEclWrapper
+Element-Type: context
+Element-Version: 2.0
+Id: _Qa-p4JP2EemibuIcIDpJqA
+Runtime-Version: 2.4.0.201812200022
+Save-Time: 6/21/19 2:29 PM
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
+Content-Type: text/ecl
+Entry-Name: .ecl.context
+
+//proc copy_sample_code_to_workspace [val projectName $PROJECT_1_NAME] {
+//	delete-file [concat [get-workspace-location | invoke replace "\\" "/"] "/" $projectName "/generate/configuration/r_devlink_wrapper_cfg.h" ]
+//	copy-file -source [concat [get-workspace-location | invoke replace "\\" "/"] "/" "Sample_code/" "r_devlink_wrapper_cfg.h"]
+//		-destination [concat [get-workspace-location | invoke replace "\\" "/"] "/" $projectName "/generate/configuration/" ] -name "r_devlink_wrapper_cfg.h"
+//}
+
+// TODO: investigate why it's not working if restart-aut is put in an ecl
+proc restart_aut_and_restore_view {
+	save_all_projects
+	restart-aut
+	wait-until-eclipse-is-ready
+	get-menu "Help/Welcome" | click
+	get-view Welcome | close
+}
+
+proc expand_tree_item {
+	try -times 2 -command {
+		double-click
+		get-property "getExpanded()" | equals true | verify-true
+	} -catch {}
+}
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--

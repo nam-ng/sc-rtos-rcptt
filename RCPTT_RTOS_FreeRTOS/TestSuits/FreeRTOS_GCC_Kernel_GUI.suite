@@ -1,0 +1,20 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Element-Name: FreeRTOS_GCC_Kernel_GUI
+Element-Type: testsuite
+Element-Version: 2.0
+Id: _FGnk4Gp6Eeq2r-b0s2HpSw
+Runtime-Version: 2.5.0.202001211718
+Save-Time: 3/20/20 2:12 PM
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
+Content-Type: text/testcase
+Entry-Name: testcase-items
+
+_Ch7BsJMtEemelMhEHTTyTQ	// kind: 'test' name: 'check-component-view-is-loaded-with-data' path: '../TestCases/KernelGUI/check-component-view-is-loaded-with-data.test'
+_KzbRsJPZEemelMhEHTTyTQ	// kind: 'test' name: 'check-data-link-between-other-property' path: '../TestCases/KernelGUI/check-data-link-between-other-property.test'
+_C7IEgJMwEemelMhEHTTyTQ	// kind: 'test' name: 'check-disable-property' path: '../TestCases/KernelGUI/check-disable-property.test'
+_zmNQUJMsEemelMhEHTTyTQ	// kind: 'test' name: 'check-remove-Kernel-component' path: '../TestCases/KernelGUI/check-remove-Kernel-component.test'
+_My3csGprEeq2r-b0s2HpSw	// kind: 'test' name: 'PG_GCC_FREERTOS_RX600' path: '../InitializeClass/PG_GCC_FREERTOS_RX600.test'
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--

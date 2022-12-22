@@ -1,0 +1,47 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.ecl
+Element-Name: JavaMethod
+Element-Type: context
+Element-Version: 2.0
+Id: _F9iDcI17EemXsdvsbcJPYw
+Runtime-Version: 2.4.0.201812200022
+Save-Time: 6/28/19 4:29 PM
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
+Content-Type: text/ecl
+Entry-Name: .ecl.context
+
+proc equalsIgnoreCase [val s1 -input] [val s2] {
+	$s1 | invoke equalsIgnoreCase $s2 | bool
+}
+
+proc startsWithIgnoreCase [val s1 -input] [val s2] {
+	let [val s1size [$s1 | invoke length]]
+	    [val s2size [$s2 | invoke length]] {
+		if [$s2size | plus 1 | lt $s1size] {
+			$s1 | invoke substring 0 $s2size | invoke equalsIgnoreCase $s2 | bool
+		} -else {
+			bool false
+		}
+	}
+}
+
+proc getResourceIndex {
+	$resourceName | split "_" | invoke replaceAll ".*\D" ""
+}
+
+proc getLatestFile [val s1 -input] {
+	global [val result ""] -override
+	$s1 | get children | foreach [val item] {
+		if [$result | equals ""] {
+			global [val result $item] -override
+		}
+		if [$result | not-eq $item] {
+			if [$item | uri-from-path | invoke compareTo [$result | uri-from-path] | int | gt 0] {
+				global [val result $item] -override
+			}
+		}
+	}
+}
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--

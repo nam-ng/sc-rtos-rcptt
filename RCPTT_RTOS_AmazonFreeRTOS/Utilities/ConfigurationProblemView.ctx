@@ -1,0 +1,79 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.ecl
+Element-Name: ConfigurationProblemView
+Element-Type: context
+Element-Version: 2.0
+Id: _QUDigJP2EemibuIcIDpJqA
+Runtime-Version: 2.4.0.201812200022
+Save-Time: 6/21/19 2:29 PM
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
+Content-Type: text/ecl
+Entry-Name: .ecl.context
+
+proc check_dependency_error [val projectName] [val componentHierarchy] [val message] [val message2 "*&%$"] {
+	global [val hasError false] -override
+	with [get-view "Configuration Problems" | get-tree | get-item -path "Dependency.*"] {
+		expand_tree_item
+		get-view "Configuration Problems" | get-tree | get-column-header | get-object | invoke pack 
+		get-items | foreach [val item] {
+			if [$item | get-property "values['Description']" -raw | contains $message] {
+				global [val hasError true] -override
+			}
+		}
+	}
+	
+	get-editor [concat $projectName $SCFG_EXTENSION] | get-section | get-tree | get-item -path $componentHierarchy 
+    | get-property "image.decorations[0].path" | equals "org.eclipse.ui/icons/full/ovr16/error_ovr.png"
+    | verify-true
+	
+	$hasError | verify-true
+}
+
+check_dependency_error -message "clock, pin"
+
+proc check_dependency_warning [val projectName] [val componentHierarchy] [val message] {
+	global [val hasError false] -override
+	get-view "Configuration Problems" | get-tree | get-object | invoke pack
+	with [get-view "Configuration Problems" | get-tree | get-item -path "Dependency.*"] {
+		expand_tree_item
+		
+		get-items | foreach [val item] {
+			if [$item | get-property "values['Description']" -raw | contains $message] {
+				global [val hasError true] -override
+			}
+		}
+	}
+	
+	get-editor [concat $projectName $SCFG_EXTENSION] | get-section | get-tree | get-item -path $componentHierarchy 
+    | get-property "image.decorations[0].path" | equals "org.eclipse.ui/icons/full/ovr16/warning_ovr.png"
+    | verify-true
+	
+	$hasError | verify-true
+}
+
+proc check_no_dependency_warning [val projectName] [val componentHierarchy] [val message] {
+	try {
+		check_dependency_warning $projectName $componentHierarchy $message
+		global [val hasWarning true] -override
+	} -catch {
+		global [val hasWarning false] -override
+	}
+	
+	$hasWarning | not | verify-true
+}
+
+proc check_no_error [val message] {
+	global [val hasError false] -override
+	get-view "Configuration Problems" | get-tree | get-items | foreach [val item] {
+		if [$item | get-property "values['Type']" -raw | eq Dependency] {
+			if [$item | get-property "values['Description']" -raw | contains $message] {
+				global [val hasError true] -override
+			}
+		}
+	}
+	
+	$hasError | verify-false
+}
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--

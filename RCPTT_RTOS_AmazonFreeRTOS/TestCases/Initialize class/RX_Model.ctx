@@ -1,0 +1,173 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.ecl
+Element-Name: RX_Model
+Element-Type: context
+Element-Version: 2.0
+Id: _SCNDMByqEeq6n90hKnBGOA
+Runtime-Version: 2.5.2.202109092356
+Save-Time: 9/22/22, 5:11 PM
+Tags: PG
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
+Content-Type: text/ecl
+Entry-Name: .ecl.context
+
+global [val AFRConfigPath ""]
+global [val AFRDevice ""]
+//global [val CreateFlag ""]
+global [val AFRSkeletonFolder ""]
+global [val AFRProjectName ""]
+global [val AFRRTOSVersion ""]
+global [val PackageAFR ""]
+global [val AFRRTOSType ""]
+global [val AFRStartupFolder ""]
+global [val AFRProjectRoot ""]
+
+proc getContext [val context] {
+	// if [$context | has-attr "id"] {
+	// [$context | get-attr "id"]
+	// }
+	global [val AFRConfigPath [$context | get-nodes AFR_Config_Path | get text]] -override
+	global [val AFRDevice [$context | get-nodes Device | get text]] -override
+	//global [val CreateFlag [$context | get-nodes Create_Flag | get text]] -override
+	global [val AFRSkeletonFolder [$context | get-nodes AFR_Skeleton_Folder | get text]] -override
+	global [val AFRProjectName [$context | get-nodes ProjectName | get text]] -override
+	global [val AFRRTOSVersion [$context | get-nodes RTOSVersion | get text]] -override
+	global [val PackageAFR [$context | get-nodes Package_AFR | get text]] -override
+	global [val AFRRTOSType [$context | get-nodes RTOSType | get text]] -override
+	global [val AFRStartupFolder [$context | get-nodes AFR_Startup_Folder | get text]] -override
+	global [val AFRProjectRoot [$context | get-nodes AFR_Project_Root | get text]] -override
+}
+proc constructor {
+	global [val getContext [read-xml-file -uri "C:/JenkinsSlave/workspace/devices.xml" | get-nodes Context | to-list]]
+
+	$getContext | each [val context] {
+		getContext $context
+	}
+}
+
+// AFR_Config_Path
+proc setAFR_Config_Path [val AFRConfigPath] {
+	global [val AFRConfigPath $AFR_Config_Path] -override
+}
+proc getAFR_Config_Path {
+	if [$AFRConfigPath | eq ""] {
+		constructor
+	}
+	$AFRConfigPath
+}
+// Device
+proc setDevice [val AFRDevice] {
+	global [val AFRDevice $Device] -override
+}
+proc getDevice {
+	if [$AFRDevice | eq ""] {
+		constructor
+	}
+	$AFRDevice
+}
+// Create_Flag
+proc setCreate_Flag [val CreateFlag] {
+	global [val CreateFlag $Create_Flag] -override
+}
+proc getCreate_Flag {
+	if [$CreateFlag | eq ""] {
+		constructor
+	}
+	$CreateFlag
+}
+// AFR_Skeleton_Folder
+proc setAFR_Skeleton_Folder [val AFRSkeletonFolder] {
+	global [val AFRSkeletonFolder $AFR_Skeleton_Folder] -override
+}
+proc getAFR_Skeleton_Folder {
+	if [$AFRSkeletonFolder | eq ""] {
+		constructor
+	}
+	$AFRSkeletonFolder
+}
+// ProjectName
+proc setProjectName [val AFRProjectName] {
+	global [val AFRProjectName $ProjectName] -override
+}
+proc getProjectName {
+	if [$AFRProjectName | eq ""] {
+		constructor
+	}
+	$AFRProjectName
+}
+// RTOSVersion
+proc setRTOSVersion [val AFRRTOSVersion] {
+	global [val AFRRTOSVersion $RTOSVersion] -override
+}
+proc getRTOSVersion {
+	if [$AFRRTOSVersion | eq ""] {
+		constructor
+	}
+	$AFRRTOSVersion
+}
+// Package_AFR
+proc setPackage_AFR [val PackageAFR] {
+	global [val PackageAFR $Package_AFR] -override
+}
+proc getPackage_AFR {
+if [$PackageAFR | eq ""] {
+		constructor
+	}
+	$PackageAFR
+}
+// RTOSType
+proc setRTOSType [val AFRRTOSType] {
+	global [val AFRRTOSType $RTOSType] -override
+}
+proc getRTOSType {
+if [$AFRRTOSType | eq ""] {
+		constructor
+	}
+	$AFRRTOSType
+}
+// AFR_Startup_Folder
+proc setAFR_Startup_Folder [val AFRStartupFolder] {
+	global [val AFRStartupFolder $AFR_Startup_Folder] -override
+}
+proc getAFR_Startup_Folder {
+if [$AFRStartupFolder | eq ""] {
+		constructor
+	}
+	$AFRStartupFolder
+}
+// AFR_Project_Root
+proc setAFR_Project_Root [val AFRProjectRoot] {
+	global [val AFRProjectRoot $AFR_Project_Root] -override
+}
+proc getAFR_Project_Root {
+if [$AFRProjectRoot | eq ""] {
+		constructor
+	}
+	$AFRProjectRoot
+}
+
+proc newContext [val id]
+                [val AFR_Config_Path]
+                [val Device]
+                [val AFR_Skeleton_Folder]
+                [val ProjectName]
+                [val RTOSVersion]
+                [val Package_AFR]
+                [val RTOSType]
+                [val AFR_Startup_Folder]
+                [val AFR_Project_Root] {
+        tree-node "Context"
+        [map [entry "id" $id]]
+        [tree-node -name "AFR_Config_Path" -text $AFR_Config_Path]
+        [tree-node -name "Device" -text $Device]
+        [tree-node -name "AFR_Skeleton_Folder" -text $AFR_Skeleton_Folder]
+        [tree-node -name "ProjectName" -text $ProjectName]
+        [tree-node -name "RTOSVersion" -text $RTOSVersion]
+        [tree-node -name "Package_AFR" -text $Package_AFR]
+        [tree-node -name "RTOSType" -text $RTOSType]
+        [tree-node -name "AFR_Startup_Folder" -text $AFR_Startup_Folder]
+        [tree-node -name "AFR_Project_Root" -text $AFR_Project_Root]
+}
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--

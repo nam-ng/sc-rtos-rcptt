@@ -1,0 +1,29 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.parameters
+Element-Name: Context_common_setting
+Element-Type: context
+Element-Version: 2.0
+Id: _xOWs8FwNEe2uw6gVVg9dpQ
+Runtime-Version: 2.5.2.202109092356
+Save-Time: 11/7/22, 10:37 AM
+
+------=_.parameters.context-2e023de5-3294-36a9-ac1d-6701f05a40ee
+Content-Type: text/properties
+Entry-Name: .parameters.context
+
+#Mon Nov 07 10:37:38 ICT 2022
+Envision72N=RX72NEnvisionKit
+CCRX_Toolchain_version=v3.03.00
+NEW_CK=CK-RX65N
+RSKRX66T=RSKRX66T
+TBRX130=TargetBoardRX130
+RSKRX671=RSKRX671
+RSKRX660=RSKRX660
+RSKRX140=RSKRX140
+GCC_Toolchain_version=8.3.0.202102
+CloudKit=RX65NCloudKit
+RSKRX65N_2MB=RSKRX65N-2MB
+Custom_board=RX600/RX65N/RX65N - 176pin/R5F565NCDxBG
+
+------=_.parameters.context-2e023de5-3294-36a9-ac1d-6701f05a40ee--

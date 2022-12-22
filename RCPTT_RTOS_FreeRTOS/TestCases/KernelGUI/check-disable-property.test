@@ -1,0 +1,30 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _vwE3QLb5EeiYtvNGSLBIjg,_CbRv0IzaEemOC-jzSKPFQA,_F24o4I17EemXsdvsbcJPYw,_F5kwgI17EemXsdvsbcJPYw,_F799MI17EemXsdvsbcJPYw
+Element-Name: check-disable-property
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _C7IEgJMwEemelMhEHTTyTQ
+Runtime-Version: 2.5.1.202001221320
+Save-Time: 6/15/20, 9:41 AM
+Tags: KernelGUI
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+open_project [getProjectName]
+select_component [getProjectName] $FRTOS_KERNEL
+
+verify-error {enter_value [getProjectName] $FRTOS_KERNEL "The frequency of the CPU clock" ""}
+verify-error {enter_value [getProjectName] $FRTOS_KERNEL "The frequency of the PERIPHERAL clock" ""}
+verify-error {enter_value [getProjectName] $FRTOS_KERNEL "The stack depth allocated to the software.*" ""}
+verify-error {enter_value [getProjectName] $FRTOS_KERNEL "Define to trap errors during development" ""}
+verify-error {enter_value [getProjectName] $FRTOS_KERNEL "bktPRIMARY_PRIORITY" ""}
+verify-error {enter_value [getProjectName] $FRTOS_KERNEL "bktSECONDARY_PRIORITY" ""}
+verify-error {enter_value [getProjectName] $FRTOS_KERNEL "intqHIGHER_PRIORITY" ""}
+
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

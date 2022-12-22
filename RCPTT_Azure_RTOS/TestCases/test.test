@@ -1,0 +1,33 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Element-Name: test
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _Dcj44MROEeu4Z9fZ-EbEpw
+Runtime-Version: 2.5.2.202109092356
+Save-Time: 6/14/22, 1:44 PM
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-menu -path "File/New/C\\/C++ Project" | click
+with [get-window "New C/C++ Project"] {
+    get-list | select "Renesas RX"
+    get-table | select [get-item -path "" -index 2] | click -default
+}
+with [get-window -class WizardDialog] {
+    get-editbox -after [get-label "Project name:"] | set-text az
+    get-button "Next >" | click
+    get-group "Toolchain Settings" | get-combo -after [get-label "RTOS:"] | select "Azure RTOS"
+    get-group "Device Settings" | get-combo -after [get-label "Target Board:"] | select "RSKRX65N-2MB"
+    with [get-button "Next >"] {
+        click
+        click
+    }
+}
+
+get-window -class WizardDialog | get-group "Select application:" | get-label "FileX RAM Disk sample project" | click
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

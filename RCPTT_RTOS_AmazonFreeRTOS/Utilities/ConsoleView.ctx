@@ -1,0 +1,54 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.ecl
+Element-Name: ConsoleView
+Element-Type: context
+Element-Version: 2.0
+Id: _QWFi0JP2EemibuIcIDpJqA
+Runtime-Version: 2.4.0.201812200022
+Save-Time: 6/21/19 2:29 PM
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
+Content-Type: text/ecl
+Entry-Name: .ecl.context
+
+proc clear_console {
+	clear_any_console
+	
+	try {
+		get-view Console | get-button "Display Selected Console" | click -arrow
+		get-menu -path "1 Smart Configurator Output" | click
+		clear_any_console
+	} -catch{}
+	
+	try {
+		get-view Console | get-button "Display Selected Console" | click -arrow
+		get-menu -path "2 CDT Global Build Console" | click
+		clear_any_console
+	} -catch{}
+	
+	try {
+		get-view Console | get-button "Display Selected Console" | click -arrow
+		get-menu -path "3 CDT Build Console.*" | click
+		clear_any_console
+	} -catch{}
+}
+
+proc check_console_contains_message [val message] {
+	get-view Console | get-text-viewer | get-property text | contains $message | verify-true
+}
+
+proc check_console_not_contains_message [val message] {
+	get-view Console | get-text-viewer | get-property text | contains $message | verify-false
+}
+
+proc clear_any_console {
+	try {
+		if [get-view Console | get-button "Clear Console" | get-property enablement -raw | equals true] {
+			with [get-view Console] {
+					get-button "Clear Console" | click
+			}
+		}
+	}-catch{}
+}
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--

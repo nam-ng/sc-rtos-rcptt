@@ -1,0 +1,41 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _F24o4I17EemXsdvsbcJPYw,_F0yXII17EemXsdvsbcJPYw,_CbRv0IzaEemOC-jzSKPFQA,_F5kwgI17EemXsdvsbcJPYw
+Element-Name: Ping_Application_connection_ETHER_TO_WIFI
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _k6LlkOu_EeyJ0M9bbKuYOQ
+Runtime-Version: 2.5.2.202109092356
+Save-Time: 6/20/22, 4:52 PM
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+open_SC_editor [getProjectName]
+select_component [getProjectName] azure_application true
+
+select_combox_item [getProjectName] azure_application "The connection type" WIFI
+
+
+
+
+get-window "Change Configurations" | get-button Yes | click
+
+get-button "Generate Code" | click
+
+try {
+	with [get-window "Code Generating"] {
+		get-button "Always save and generate without asking?" | check
+		get-button Proceed | click
+	}
+	with [get-window "Code Generating"] {
+		get-button "Always ignore and generate without asking?" | check
+		get-button Proceed | click
+	}
+} -catch {
+}
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

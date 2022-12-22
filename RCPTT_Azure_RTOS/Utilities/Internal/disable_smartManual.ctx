@@ -1,0 +1,22 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.ecl
+Element-Name: disable_smartManual
+Element-Type: context
+Element-Version: 2.0
+Id: _5AaHQLBlEeqGiLHaD9JPUg
+Runtime-Version: 2.5.1.202001221320
+Save-Time: 6/17/20, 1:43 PM
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
+Content-Type: text/ecl
+Entry-Name: .ecl.context
+
+get-preferences-menu | click
+with [get-window Preferences] {
+    get-tree | select "Renesas/Smart Manual/Discovery"
+    get-button "Notify me when new Smart Manuals are available" | click
+    get-button "Automatically search for available Smart Manuals" | uncheck
+    get-button "Apply and Close" | click
+}
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--
