@@ -1,0 +1,68 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _CbRv0IzaEemOC-jzSKPFQA,_QSjtsJP2EemibuIcIDpJqA,_QVBL0JP2EemibuIcIDpJqA,_F0yXII17EemXsdvsbcJPYw,_GAAIoI17EemXsdvsbcJPYw
+Element-Name: test_save_configuration_of_AWS_libs
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _ZNtJUJG9Eemhi6P5UwjoNg
+Runtime-Version: 2.4.2.201905080442
+Save-Time: 2/17/20 2:03 PM
+Tags: TestGUIAFR
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+open_SC_editor [getProjectName]
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION]] {
+	select_combox_item [getProjectName] $AWS_mqtt "Report usage metrics to the AWS IoT broker" Disable
+	get-eclipse-window | key-type "M1+w"
+	get-window "Save Resource" | get-button Cancel | click
+	key-type "M1+s"
+
+	enter_value [getProjectName] $AWS_device_shadow "Number of jsmn tokens" 128
+	get-eclipse-window | key-type "M1+w"
+	get-window "Save Resource" | get-button Cancel | click
+	key-type "M1+s"
+
+	enter_value [getProjectName] $AWS_ggd "Size of the array for tokens" 256
+	get-eclipse-window | key-type "M1+w"
+	get-window "Save Resource" | get-button Cancel | click
+	key-type "M1+s"
+
+	enter_value [getProjectName] $AWS_secure_socket "Default socket receive timeout" 20000
+	get-eclipse-window | key-type "M1+w"
+	get-window "Save Resource" | get-button Cancel | click
+	key-type "M1+s"
+
+	select_combox_item [getProjectName] $AWS_tcp_ip "Byte order of the target MCU" pdFREERTOS_BIG_ENDIAN
+	get-eclipse-window | key-type "M1+w"
+	get-window "Save Resource" | get-button Cancel | click
+	key-type "M1+s"
+
+	key-type "M1+w"
+}
+
+open_SC_editor [getProjectName]
+
+// check reloaded data
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION]] {
+	check_property_value [getProjectName] $AWS_mqtt "Report usage metrics to the AWS IoT broker" Disable
+	check_property_value [getProjectName] $AWS_device_shadow "Number of jsmn tokens" 128
+	check_property_value [getProjectName] $AWS_ggd "Size of the array for tokens" 256
+	check_property_value [getProjectName] $AWS_secure_socket "Default socket receive timeout" 20000
+	check_property_value [getProjectName] $AWS_tcp_ip "Byte order of the target MCU" pdFREERTOS_BIG_ENDIAN
+}
+
+// Reset value
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION]] {
+	select_combox_item [getProjectName] $AWS_mqtt "Report usage metrics to the AWS IoT broker" "Enable "
+	enter_value [getProjectName] $AWS_device_shadow "Number of jsmn tokens" 64
+	enter_value [getProjectName] $AWS_ggd "Size of the array for tokens" 128
+	enter_value [getProjectName] $AWS_secure_socket "Default socket receive timeout" 10000
+	select_combox_item [getProjectName] $AWS_tcp_ip "Byte order of the target MCU" "pdFREERTOS_LITTLE_ENDIAN "
+	key-type "M1+s"
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

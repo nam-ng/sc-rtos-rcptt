@@ -1,0 +1,41 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _F0yXII17EemXsdvsbcJPYw,_QSjtsJP2EemibuIcIDpJqA,_QVBL0JP2EemibuIcIDpJqA,_GAAIoI17EemXsdvsbcJPYw
+Element-Name: Check data after config and close SC editor without save
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _Bp9t4Iv5Eem849LnqO16XQ
+Runtime-Version: 2.4.2.201905080442
+Save-Time: 2/17/20 2:03 PM
+Tags: TestGUIAFR
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+
+	get-view "Project Explorer" | get-tree | select [concat [getProjectName] ".*/" [getProjectName] $SCFG_EXTENSION] | double-click
+	with [get-editor [concat [getProjectName] $SCFG_EXTENSION]] {
+		get-tab-folder | get-tab-item Components | click
+		get-section | get-tree | get-item -path "RTOS/RTOS Kernel/FreeRTOS_Kernel" | click
+		with [get-section Configure | get-tree] {
+			select "Configurations /RTOS scheduler " | activate-cell-edit -column 1 -type MouseClickSelection
+			get-combo | select Cooperative
+			apply-cell-edit -deactivate
+			select "Configurations /Maximum number of priorities to the application task " | activate-cell-edit
+				-column 1 -type MouseClickSelection
+			get-editbox | set-text 6
+		}
+	}
+	get-view "Project Explorer" | click
+	get-editor [concat [getProjectName] $SCFG_EXTENSION] | close
+	get-window "Save Resource" | get-button "Don't Save" | click
+	get-view "Project Explorer" | get-tree | select [concat [getProjectName] ".*/" [getProjectName] $SCFG_EXTENSION] | double-click
+	with [get-editor [concat [getProjectName] $SCFG_EXTENSION]] {
+		get-tab-folder | get-tab-item Components | click
+		get-section | get-tree | get-item -path "RTOS/RTOS Kernel/FreeRTOS_Kernel" | click
+	}
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

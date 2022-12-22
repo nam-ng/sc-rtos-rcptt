@@ -1,0 +1,16 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Element-Name: Download_missing_package
+Element-Type: testsuite
+Element-Version: 2.0
+Id: _Ys1ZMAY9Ee24UcFVVIP9Jw
+Runtime-Version: 2.5.2.202109092356
+Save-Time: 7/18/22, 9:00 AM
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
+Content-Type: text/testcase
+Entry-Name: testcase-items
+
+_og0PwO1ZEeyKPq_U2ssT-Q	// kind: 'test' name: 'Download_missing_package' path: '../TestCases/Download_missing_IoT_package/Download_missing_package.test'
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--

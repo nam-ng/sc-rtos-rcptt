@@ -1,0 +1,21 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Element-Name: FreeRTOS_GCC_Kernel_Code_Generate
+Element-Type: testsuite
+Element-Version: 2.0
+Id: _AClqUGp6Eeq2r-b0s2HpSw
+Manually-Ordered: true
+Runtime-Version: 2.5.0.202001211718
+Save-Time: 3/20/20 2:16 PM
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
+Content-Type: text/testcase
+Entry-Name: testcase-items
+
+_My3csGprEeq2r-b0s2HpSw	// kind: 'test' name: 'PG_GCC_FREERTOS_RX600' path: '../InitializeClass/PG_GCC_FREERTOS_RX600.test'
+_oLxUkJJAEem_UZ4EQBrqaw	// kind: 'test' name: 'Check code generate after click generate button' path: '../TestCases/Kernel_gen_FreeRTOS/Check code generate after click generate button.test'
+_RlJ3kJJBEem_UZ4EQBrqaw	// kind: 'test' name: 'Check name of output file' path: '../TestCases/Kernel_gen_FreeRTOS/Check name of output file.test'
+_ab7rAJJBEem_UZ4EQBrqaw	// kind: 'test' name: 'Check path of output file' path: '../TestCases/Kernel_gen_FreeRTOS/Check path of output file.test'
+_60RrUJJBEem_UZ4EQBrqaw	// kind: 'test' name: 'Check Delete output file then generate' path: '../TestCases/Kernel_gen_FreeRTOS/Check Delete output file then generate.test'
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--

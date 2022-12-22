@@ -1,0 +1,35 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.parameters
+Element-Name: Context IoT
+Element-Type: context
+Element-Version: 2.0
+Id: _uixO0BvoEeq9Ssnuxnbu8A
+Runtime-Version: 2.5.4.202210020716
+Save-Time: 11/23/22, 5:04 PM
+
+------=_.parameters.context-2e023de5-3294-36a9-ac1d-6701f05a40ee
+Content-Type: text/properties
+Entry-Name: .parameters.context
+
+#Wed Nov 23 17:04:37 ICT 2022
+AFR_Skeleton_Folder=/application_code/renesas_code/frtos_skeleton
+ProjectName=FreeRTOS_IoT
+Create_Flag=True
+AFR_SKELETON_ROOT=/application_code/renesas_code/frtos_skeleton
+RSKRX72N=RSKRX72N
+AWS_qualification=AWS demo sample project (guideline)
+Package_AFR=v202107.00-rx-1.0.1
+RSKRX65N=RSKRX65N
+AFR_Config_Path=/config_files/
+AWS_demo=AWS demo sample project (legacy)
+RTOSType=FreeRTOS (with IoT libraries)
+RTOSVersion=v202107.00-rx-1.0.1
+AFR_Project_Root=/afr-v2021072.00-rx-1.0.1/projects/renesas/rx65n-rsk/e2studio/aws_demos
+AFR_Startup_Folder=/application_code/renesas_code/frtos_startup
+Toolchain_version=8.3.0.202102
+Toolchain_rxc=v3.03.00
+RSKRX65N_2MB=RSKRX65N-2MB
+Location=C\:/Users/giangchau/Desktop/SWpackage/afr-v2021072.00-rx-1.0.1/projects/renesas/qualification-rx65n/e2studio
+
+------=_.parameters.context-2e023de5-3294-36a9-ac1d-6701f05a40ee--

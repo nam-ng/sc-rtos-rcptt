@@ -1,0 +1,41 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.parameters
+Element-Name: Context_Azure_ADU_bootloader_application
+Element-Type: context
+Element-Version: 2.0
+Id: _sw1r4G-tEe2aY95Y4UZw9w
+Runtime-Version: 2.5.4.202210020716
+Save-Time: 11/30/22, 2:01 PM
+
+------=_.parameters.context-2e023de5-3294-36a9-ac1d-6701f05a40ee
+Content-Type: text/properties
+Entry-Name: .parameters.context
+
+#Wed Nov 30 14:01:44 ICT 2022
+GNURX_ADU_65N2MB=GNU_ADU_65N2MB
+RXC_ADU_72NEnvisionkit=RXC_ADU_72NEnvisionKit
+RTOS_Type=Azure RTOS
+GNURX_secureboot_CK65N=GNU_Secure_bootloader_CK65N
+RXC_ADU_RSKRX671=RXC_ADU_RSKRX671
+RXC_secureboot_72NEnvisionkit=RXC_Secure_bootloader_72NEnvisionKit
+RXC_secureboot_CK65N=RXC_Secure_bootloader_CK65N
+ADU_application=Azure Device Update (ADU) sample project
+Secure_bootloader=Secure bootloader sample project
+RXC_secureboot_65N2MB=RXC_Secure_bootloader_65N2MB
+RTOS_Version=6.2.0_rel-rx-1.0.0
+GNURX_secureboot_Cloudkit65N=GNU_Secure_bootloader_CloudKit65N
+GNURX_ADU_72NEnvisionkit=GNU_ADU_72NEnvisionKit
+RXC_secureboot_Cloudkit65N=RXC_Secure_bootloader_CloudKit65N
+GNURX_ADU_Cloudkit65N=GNU_ADU_CloudKit65N
+GNURX_secureboot_RSKRX671=GNU_Secure_bootloader_RSKRX671
+GNURX_ADU_RSKRX671=GNU_ADU_RSKRX671
+GNURX_ADU_CK65N=GNU_ADU_CK65N
+RXC_ADU_65N2MB=RXC_ADU_65N2MB
+RXC_ADU_CK65N=RXC_ADU_CK65N
+RXC_ADU_Cloudkit65N=RXC_ADU_CloudKit65N
+GNURX_secureboot_65N2MB=GNU_Secure_bootloader_65N2MB
+GNURX_secureboot_72NEnvisionkit=GNU_Secure_bootloader_72NEnvisionKit
+RXC_secureboot_RSKRX671=RXC_Secure_bootloader_RSKRX671
+
+------=_.parameters.context-2e023de5-3294-36a9-ac1d-6701f05a40ee--

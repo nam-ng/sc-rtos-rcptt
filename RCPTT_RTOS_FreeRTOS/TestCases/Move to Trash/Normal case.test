@@ -1,0 +1,30 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _F24o4I17EemXsdvsbcJPYw,_CbRv0IzaEemOC-jzSKPFQA,_F9iDcI17EemXsdvsbcJPYw
+Element-Name: Normal case
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _eS88gJb6EemyXLI3m-RE8w
+Runtime-Version: 2.4.2.201905080442
+Save-Time: 2/17/20 2:01 PM
+Tags: Move_To_Trash
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+delete_project PROJECT_2_NAME
+createFreeRTOSProject $PROJECT_2_NAME
+select_component $PROJECT_2_NAME FreeRTOS_Object true
+
+get-editor "project2.scfg" | get-button "Generate Code" | click
+
+let [val foo [get-file [concat "file:/" [get-workspace-location | invoke replace "\\" "/"] "/project2/trash"]]] {
+	getLatestFile [$foo]
+}
+
+get-file [concat $result "/src/frtos_skeleton/task_function.h"] | get exists | assert-true
+get-file [concat $result "/src/frtos_startup/freertos_object_init.c"] | get exists | assert-true
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

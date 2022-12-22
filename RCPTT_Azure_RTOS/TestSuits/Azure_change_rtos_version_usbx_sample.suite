@@ -1,0 +1,18 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Element-Name: Azure_change_rtos_version_usbx_sample
+Element-Type: testsuite
+Element-Version: 2.0
+Id: _WI49gO4aEeyDs4v0Cb9emw
+Manually-Ordered: true
+Runtime-Version: 2.5.2.202109092356
+Save-Time: 6/20/22, 5:30 PM
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
+Content-Type: text/testcase
+Entry-Name: testcase-items
+
+_ygRhcOu3EeyJ0M9bbKuYOQ	// kind: 'test' name: 'PG_Azure_RTOS_CK65N_CCRX_USBX_sample' path: '../InitializeClass/PG_Azure_RTOS_CK65N_CCRX_USBX_sample.test'
+_c1-OsO1YEeyKPq_U2ssT-Q	// kind: 'test' name: 'Change_rtos_version_for_usbx_sample_project' path: '../TestCases/Change_RTOS_Version/Change_rtos_version_for_usbx_sample_project.test'
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--

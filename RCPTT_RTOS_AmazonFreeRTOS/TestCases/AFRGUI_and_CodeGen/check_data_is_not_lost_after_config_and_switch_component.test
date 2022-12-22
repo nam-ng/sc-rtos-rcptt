@@ -1,0 +1,44 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _QSjtsJP2EemibuIcIDpJqA,_QVBL0JP2EemibuIcIDpJqA,_F0yXII17EemXsdvsbcJPYw,_GAAIoI17EemXsdvsbcJPYw
+Element-Name: check_data_is_not_lost_after_config_and_switch_component
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _Bqi8sIv5Eem849LnqO16XQ
+Runtime-Version: 2.4.2.201905080442
+Save-Time: 2/17/20 2:03 PM
+Tags: TestGUIAFR
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+//with [get-view "Project Explorer" | get-tree] {
+//	select [concat [getProjectName] ".*"] | double-click
+//	select [concat [getProjectName] ".*/" [getProjectName] $SCFG_EXTENSION] | double-click
+//}
+
+open_project [getProjectName]
+
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION]] {
+	get-tab-folder | get-tab-item Components | click
+	get-section | get-tree | get-item -path "RTOS/RTOS Kernel/FreeRTOS_Kernel" | click
+	with [get-section Configure | get-tree] {
+		select "Configurations /RTOS scheduler " | activate-cell-edit -column 1 -type MouseClickSelection
+		get-combo | select Cooperative
+		apply-cell-edit -deactivate
+		select "Configurations /Maximum number of priorities to the application task " | activate-cell-edit -column 1
+			-type MouseClickSelection
+		get-editbox | set-text 6
+		apply-cell-edit -deactivate
+	}
+	with [get-section | get-tree] {
+		get-item -path "RTOS/RTOS Object/FreeRTOS_Object" | click
+		get-item -path "RTOS/RTOS Kernel/FreeRTOS_Kernel" | click
+	}
+}
+check_property_value [getProjectName] $FRTOS_KERNEL "RTOS scheduler" Cooperative
+check_property_value [getProjectName] $FRTOS_KERNEL "Maximum number of priorities to the application task" 6
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

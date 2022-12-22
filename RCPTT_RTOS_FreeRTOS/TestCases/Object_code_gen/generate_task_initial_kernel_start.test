@@ -1,0 +1,37 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _8ZZJ8JDLEemjjfRe1CZFNw,_CbRv0IzaEemOC-jzSKPFQA,_CdKmMIzaEemOC-jzSKPFQA,_F24o4I17EemXsdvsbcJPYw,_vwE3QLb5EeiYtvNGSLBIjg,_F799MI17EemXsdvsbcJPYw
+Element-Name: generate_task_initial_kernel_start
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _Os3oQJiWEemhi6P5UwjoNg
+Runtime-Version: 2.5.1.202001221320
+Save-Time: 9/1/21, 8:35 AM
+Tags: Object_Generate
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+open_project [getProjectName]
+select_component [getProjectName] FreeRTOS_Object
+
+
+// Configure initialize to manual
+get-editor [concat [getProjectName] $SCFG_EXTENSION]
+
+with [get-section Configure] {
+	get-tab-folder | get-tab-item Tasks | click
+	get-table | get-combo | select "kernel start"
+}
+
+generate_code [getProjectName]
+
+global [val task_init_kernel
+	"void Kernel_Object_init (void)\r\n{\r\n    /************** task creation ****************************/\r\n\r\n    ret = xTaskCreate(task_1, \"task_1\", 512, NULL, 1, NULL);\r\n    if (pdPASS != ret)\r\n    {\r\n        while (1)\r\n        {\r\n            /* Failed! Task can not be created. */\r\n        }\r\n    }"]
+	-override
+
+check_c_file_contain_text [getProjectName] $task_init_kernel $FREERTOS_OBJECT_INIT FreeRTOS
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

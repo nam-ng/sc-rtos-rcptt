@@ -1,0 +1,40 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _vwE3QLb5EeiYtvNGSLBIjg,_CbRv0IzaEemOC-jzSKPFQA,_F24o4I17EemXsdvsbcJPYw,_F5kwgI17EemXsdvsbcJPYw,_F799MI17EemXsdvsbcJPYw
+Element-Name: check-data-link-between-other-property
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _KzbRsJPZEemelMhEHTTyTQ
+Runtime-Version: 2.4.2.201905080442
+Save-Time: 2/17/20 2:01 PM
+Tags: KernelGUI
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+open_project [getProjectName]
+select_component [getProjectName] $FRTOS_KERNEL true 
+
+enter_value [getProjectName] $FRTOS_KERNEL "Maximum syscall interrupt priority" 5
+
+check_property_have_error_with_value [getProjectName] $FRTOS_KERNEL "Kernel interrupt priority" "-1"
+check_property_have_no_error_with_value [getProjectName] $FRTOS_KERNEL "Kernel interrupt priority" 0
+check_property_have_no_error_with_value [getProjectName] $FRTOS_KERNEL "Kernel interrupt priority" 1
+check_property_have_no_error_with_value [getProjectName] $FRTOS_KERNEL "Kernel interrupt priority" 3 // Property "Maximum syscall interrupt priority" -2
+check_property_have_no_error_with_value [getProjectName] $FRTOS_KERNEL "Kernel interrupt priority" 4 // Property "Maximum syscall interrupt priority" -1
+check_property_have_error_with_value [getProjectName] $FRTOS_KERNEL "Kernel interrupt priority" 5 // Property "Maximum syscall interrupt priority"
+
+enter_value [getProjectName] $FRTOS_KERNEL "Kernel interrupt priority" 2
+enter_value [getProjectName] $FRTOS_KERNEL "Maximum number of priorities to the application task" 8
+
+check_property_have_error_with_value [getProjectName] $FRTOS_KERNEL "Maximum syscall interrupt priority" 2 // Property "Kernel interrupt priority"
+check_property_have_no_error_with_value [getProjectName] $FRTOS_KERNEL "Maximum syscall interrupt priority" 3 // Property "Kernel interrupt priority" +1
+check_property_have_no_error_with_value [getProjectName] $FRTOS_KERNEL "Maximum syscall interrupt priority" 4 // Property "Kernel interrupt priority" +2
+check_property_have_no_error_with_value [getProjectName] $FRTOS_KERNEL "Maximum syscall interrupt priority" 6 // Property "Maximum number of priorities to the application task" -2
+check_property_have_no_error_with_value [getProjectName] $FRTOS_KERNEL "Maximum syscall interrupt priority" 7 // Property "Maximum number of priorities to the application task" -1
+check_property_have_error_with_value [getProjectName] $FRTOS_KERNEL "Maximum syscall interrupt priority" 8 // Property "Maximum number of priorities to the application task"
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

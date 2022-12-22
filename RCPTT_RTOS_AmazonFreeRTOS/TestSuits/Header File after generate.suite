@@ -1,0 +1,26 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Element-Name: Header File after generate
+Element-Type: testsuite
+Element-Version: 2.0
+Id: _WeAIEJDcEemDiuOTQTE3CQ
+Manually-Ordered: true
+Runtime-Version: 2.5.2.202109092356
+Save-Time: 9/22/22, 4:00 PM
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
+Content-Type: text/testcase
+Entry-Name: testcase-items
+
+_TALscEfuEeqecdXLPfJCNQ	// kind: 'test' name: 'PG_RX_RX600_Family' path: '../TestCases/Initialize class/PG_RX_RX600_Family.test'
+_Bp9t4Iv5Eem849LnqO16XQ	// kind: 'test' name: 'Check data after config and close SC editor without save' path: '../TestCases/AFRGUI_and_CodeGen/Check data after config and close SC editor without save.test'
+_uQ_yYJG8Eemhi6P5UwjoNg	// kind: 'test' name: 'test_remove_AWS_libs' path: '../TestCases/AFRGUI_and_CodeGen/test_remove_AWS_libs.test'
+_L9JeoI5OEemDiuOTQTE3CQ	// kind: 'test' name: 'test remove kernel component' path: '../TestCases/AFRGUI_and_CodeGen/test remove kernel component.test'
+_wFvZQJDGEemDiuOTQTE3CQ	// kind: 'test' name: 'Check switch to other view/component/tab, then generate code' path: '../TestCases/AFRGUI_and_CodeGen/Check switch to other view_component_tab, then generate code.test'
+_BrL14Iv5Eem849LnqO16XQ	// kind: 'test' name: 'Open_And Check_Component' path: '../TestCases/AFRGUI_and_CodeGen/Open_And Check_Component.test'
+_Fz0pwIv6Eem849LnqO16XQ	// kind: 'test' name: 'Check output header file has the same configured values as on the UI' path: '../TestCases/AFRGUI_and_CodeGen/Check output header file has the same configured values as on the UI.test'
+_ZNtJUJG9Eemhi6P5UwjoNg	// kind: 'test' name: 'test_save_configuration_of_AWS_libs' path: '../TestCases/AFRGUI_and_CodeGen/test_save_configuration_of_AWS_libs.test'
+_Bqi8sIv5Eem849LnqO16XQ	// kind: 'test' name: 'check_data_is_not_lost_after_config_and_switch_component' path: '../TestCases/AFRGUI_and_CodeGen/check_data_is_not_lost_after_config_and_switch_component.test'
+_COSxcJF0Eem_UZ4EQBrqaw	// kind: 'test' name: 'Check Header File generate into correct path' path: '../TestCases/AFRGUI_and_CodeGen/Check Header File generate into correct path.test'
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--

@@ -1,0 +1,90 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _CbRv0IzaEemOC-jzSKPFQA,_QSjtsJP2EemibuIcIDpJqA,_F0yXII17EemXsdvsbcJPYw,_QWFi0JP2EemibuIcIDpJqA
+Element-Name: Switch multiple tabs
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _0ejOsJQKEemUl60Z_2AvQw
+Runtime-Version: 2.4.2.201905080442
+Save-Time: 2/17/20 2:03 PM
+Tags: Constrains
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+open_project [getProjectName]
+select_component [getProjectName] "FreeRTOS_Object"
+
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-tab-folder | get-tab-item Tasks | click
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure] {
+	with [get-table] {
+		get-label | click
+		get-label -index 1 | click
+
+		with [get-editbox -index 6] {
+			set-text task_1
+		}
+
+		with [get-editbox -index 7] {
+			set-text task_1
+		}
+
+		with [get-editbox -index 3] {
+			set-text test
+		}
+		with [get-editbox -index 9] {
+			set-text test
+		}
+	}
+}
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure] {
+	get-tab-folder | get-tab-item Semaphores | click
+	with [get-table] {
+		get-label | click
+		get-label -index 1 | click
+		get-editbox -index 1 | set-text semaphore_handle_1
+	}
+}
+
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-tab-folder | get-tab-item Tasks | click
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure] {
+	with [get-table] {
+		with [get-editbox -index 6] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		with [get-editbox] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+
+		with [get-editbox -index 7] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		with [get-editbox -index 1] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		with [get-editbox -index 9] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+
+		with [get-editbox -index 3] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+	}
+}
+check_console_contains_message "E04050007: This name exists. Please use another name"
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

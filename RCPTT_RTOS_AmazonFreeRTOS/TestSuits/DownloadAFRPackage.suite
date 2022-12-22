@@ -1,0 +1,16 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Element-Name: DownloadAFRPackage
+Element-Type: testsuite
+Element-Version: 2.0
+Id: _RhXXYEclEeqi8bfYiuj3xA
+Runtime-Version: 2.4.0.201812200022
+Save-Time: 2/4/20 3:07 PM
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
+Content-Type: text/testcase
+Entry-Name: testcase-items
+
+_Ru_SkEb3Eeqi8bfYiuj3xA	// kind: 'test' name: 'Download_AFR_Package' path: '../TestCases/Dowload_AFR/Download_AFR_Package.test'
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--

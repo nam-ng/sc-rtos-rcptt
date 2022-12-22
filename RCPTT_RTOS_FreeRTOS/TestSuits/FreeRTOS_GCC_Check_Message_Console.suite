@@ -1,0 +1,19 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Element-Name: FreeRTOS_GCC_Check_Message_Console
+Element-Type: testsuite
+Element-Version: 2.0
+Id: _rstWUGp5Eeq2r-b0s2HpSw
+Manually-Ordered: true
+Runtime-Version: 2.5.0.202001211718
+Save-Time: 3/20/20 2:10 PM
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
+Content-Type: text/testcase
+Entry-Name: testcase-items
+
+_My3csGprEeq2r-b0s2HpSw	// kind: 'test' name: 'PG_GCC_FREERTOS_RX600' path: '../InitializeClass/PG_GCC_FREERTOS_RX600.test'
+_D8hP0JixEemO2rcRkRXcbw	// kind: 'test' name: 'Check console after create freertos project' path: '../TestCases/FreeRTOS_Message_Console/Check console after create freertos project.test'
+_Nyz_gJixEemO2rcRkRXcbw	// kind: 'test' name: 'Check console after create freertos project with out task added' path: '../TestCases/FreeRTOS_Message_Console/Check console after create freertos project with out task added.test'
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--

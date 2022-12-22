@@ -1,0 +1,23 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Element-Name: Code generation
+Element-Type: testsuite
+Element-Version: 2.0
+Id: _xDEMMJ4DEemooNIe-ejkvg
+Manually-Ordered: true
+Runtime-Version: 2.5.2.202109092356
+Save-Time: 9/22/22, 4:30 PM
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
+Content-Type: text/testcase
+Entry-Name: testcase-items
+
+_TALscEfuEeqecdXLPfJCNQ	// kind: 'test' name: 'PG_RX_RX600_Family' path: '../TestCases/Initialize class/PG_RX_RX600_Family.test'
+_SjZo8J38EemooNIe-ejkvg	// kind: 'test' name: 'generate_default' path: '../TestCases/Object_code_gen/generate_default.test'
+_SfZ5wJ38EemooNIe-ejkvg	// kind: 'test' name: 'generate_task_initial_kernel_start' path: '../TestCases/Object_code_gen/generate_task_initial_kernel_start.test'
+_Sh07oJ38EemooNIe-ejkvg	// kind: 'test' name: 'generate_task_initial_manual' path: '../TestCases/Object_code_gen/generate_task_initial_manual.test'
+_SiUD0J38EemooNIe-ejkvg	// kind: 'test' name: 'generate_again_with_user_code_protected' path: '../TestCases/Object_code_gen/generate_again_with_user_code_protected.test'
+_Si4rkJ38EemooNIe-ejkvg	// kind: 'test' name: 'generate_again_rename_with_user_code_protected' path: '../TestCases/Object_code_gen/generate_again_rename_with_user_code_protected.test'
+_ShVzcJ38EemooNIe-ejkvg	// kind: 'test' name: 'generate_again_after_delete' path: '../TestCases/Object_code_gen/generate_again_after_delete.test'
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--

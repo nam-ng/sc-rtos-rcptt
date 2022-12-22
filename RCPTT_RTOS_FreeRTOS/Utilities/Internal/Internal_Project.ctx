@@ -1,0 +1,446 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.ecl
+Element-Name: Internal_Project
+Element-Type: context
+Element-Version: 2.0
+Id: _Fc04wLSjEeiOS9TtyPeEWg
+Runtime-Version: 2.5.2.202109092356
+Save-Time: 3/14/22, 3:48 PM
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
+Content-Type: text/ecl
+Entry-Name: .ecl.context
+
+proc createProject [val name] [val groupName] [val deviceName] [val pinCount] {
+	delete_project $name
+	get-menu -path "File/New/C\\/C++ Project" | click
+	with [get-window "New C/C++ Project"] {
+		get-list | select "Renesas RX"
+		get-table | select [get-item -path "" -index 2]
+		get-button "Next >" | click
+	}
+	with [get-window -class WizardDialog] {
+		get-editbox -after [get-label "Project name:"] | set-text $name
+		get-button "Next >" | click
+		with [get-group "Device Settings" | get-button "..."] {
+			click
+			get-menu -path [format "%s/%s/%s - %s/.*" $groupName $deviceName $deviceName $pinCount] | click
+		}
+		get-button "Next >" | click
+		get-button "Smart Configurator" | click
+
+		loop {
+			try {
+				get-button "Next >" | click
+				get-button Finish | click
+				wait 2000
+				recur
+			} -catch {
+			}
+		}
+	}
+}
+
+proc createFreeRTOSProject [val ProjectName] [val toolchain] [val RTOSType] [val Device] [val RTOSVersion] {
+	try {
+		delete_project $ProjectName
+	} -catch {
+	}
+	try {
+		get-menu -path "File/New/C\\/C++ Project" | click
+	} -catch {
+		close_confirm_dialog
+		close_install_dialog
+
+		get-menu -path "File/New/C\\/C++ Project" | click
+	}
+	try {
+		with [get-window "New C/C++ Project"] {
+			get-list | select "Renesas RX"
+			get-table | select [get-item -path "" -index 2]
+			get-button "Next >" | click
+		}
+	} -catch {
+		close_confirm_dialog
+		close_install_dialog
+
+		with [get-window "New C/C++ Project"] {
+			get-list | select "Renesas RX"
+			get-table | select [get-item -path "" -index 2]
+			get-button "Next >" | click
+		}
+	}
+	try {
+		with [get-window -class WizardDialog] {
+			get-editbox -after [get-label "Project name:"] | set-text $ProjectName
+			get-button "Next >" | click
+			try {
+				get-group "Toolchain Settings" | get-combo -after [get-label "Toolchain Version:"] | select $toolchain
+			} -catch {
+			}
+			get-group "Toolchain Settings" | get-combo -after [get-label "RTOS:"] | select $RTOSType
+			get-group "Toolchain Settings" | get-combo -after [get-label "RTOS Version:"] | select $RTOSVersion
+		}
+	} -catch {
+		close_confirm_dialog
+		close_install_dialog
+	}
+
+	with [get-window -class WizardDialog] {
+		get-group "Device Settings" | get-combo -after [get-label "Target Board:"] | select $Device
+	}
+	with [get-window -class WizardDialog] {
+		try {
+			get-group "RTOS version setting" | get-combo -after [get-label "Version:"] | select $RTOSVersion
+		} -catch {
+			recur
+		}
+		get-button "Next >" | click
+		get-button Finish | click
+	}
+}
+
+proc createGCCFreeRTOSProject [val ProjectName] [val toolchain] [val RTOSType] [val Device] [val RTOSVersion] {
+	try {
+		delete_project $ProjectName
+	} -catch {
+	}
+	try {
+		get-menu -path "File/New/C\\/C++ Project" | click
+	} -catch {
+		close_confirm_dialog
+		close_install_dialog
+
+		get-menu -path "File/New/C\\/C++ Project" | click
+	}
+	try {
+		with [get-window "New C/C++ Project"] {
+			get-list | select "Renesas RX"
+			get-table | select [get-item -path "" -index 0]
+			get-button "Next >" | click
+		}
+	} -catch {
+		close_confirm_dialog
+		close_install_dialog
+
+		with [get-window "New C/C++ Project"] {
+			get-list | select "Renesas RX"
+			get-table | select [get-item -path "" -index 0]
+			get-button "Next >" | click
+		}
+	}
+	with [get-window -class WizardDialog] {
+		get-editbox -after [get-label "Project name:"] | set-text $ProjectName
+		get-button "Next >" | click
+		try {
+			get-group "Toolchain Settings" | get-combo -after [get-label "Toolchain Version:"] | select $toolchain
+		} -catch {
+		}
+		get-group "Toolchain Settings" | get-combo -after [get-label "RTOS:"] | select $RTOSType
+		get-group "Toolchain Settings" | get-combo -after [get-label "RTOS Version:"] | select $RTOSVersion
+	}
+	with [get-window -class WizardDialog] {
+		get-group "Device Settings" | get-combo -after [get-label "Target Board:"] | select $Device
+	}
+	with [get-window -class WizardDialog] {
+		try {
+			get-group "RTOS version setting" | get-combo -after [get-label "Version:"] | select $RTOSVersion
+		} -catch {
+			recur
+		}
+		try {
+			get-button "Next >" | click
+			get-button Finish | click
+		} -catch {
+			recur
+		}
+	}
+}
+
+proc downloadFreeRTOSModuleAndChangeRTOSLocation [val project] [val Device]{
+	try {
+		delete_project $project
+	} -catch {
+	}
+	try {
+		get-menu -path "File/New/C\\/C++ Project" | click
+	} -catch {
+		close_confirm_dialog
+		close_install_dialog
+
+		get-menu -path "File/New/C\\/C++ Project" | click
+	}
+	try {
+		with [get-window "New C/C++ Project"] {
+			get-list | select "Renesas RX"
+			get-table | select [get-item -path "" -index 2]
+			get-button "Next >" | click
+		}
+	} -catch {
+		close_confirm_dialog
+		close_install_dialog
+
+		with [get-window "New C/C++ Project"] {
+			get-list | select "Renesas RX"
+			get-table | select [get-item -path "" -index 2]
+			get-button "Next >" | click
+		}
+	}
+	with [get-window -class WizardDialog] {
+		get-editbox -after [get-label "Project name:"] | set-text $project
+		get-button "Next >" | click
+		get-group "Toolchain Settings" | get-combo -after [get-label "RTOS:"] | select $RTOSType
+		get-link "<a>Manage RTOS Versions...</a>" | click-link
+		try {
+			with [get-window "Region Setting"] {
+				get-combo -after [get-label "Select your region."] | select "Singapore/South &Southeast Asia/Oceania"
+				get-button OK | click
+			}
+		} -catch {
+		}
+		try {
+			with [get-window -class MyRenesasDialog] {
+				with [get-editbox -after [get-label "Email address:"]] {
+					set-text "giang.chau.nx@renesas.com"
+					key-type TRAVERSE_TAB_NEXT
+				}
+				get-editbox -after [get-label "Password:"] | set-text [decrypt "AWEkvD0tU+cVRsfNZqHHNQ=="]
+				get-button Login | click
+			}
+		} -catch {
+		}
+	}
+	try {
+		get-window "Secure Storage - Password Hint Needed" | get-button No | click
+	} -catch {
+	}
+	set-dialog-result Folder "C:\\Users\\jenkin_common\\RTOS"
+	with [get-window -class WizardDialog | get-window -class RtosDownloadDialog] {
+		with [get-table] {
+			try {
+				get-item -path "RX Family Renesas FreeRTOS" -column Title -index 0 | check
+			} -catch {
+			}
+		}
+		get-group "Module Folder Path:" | get-button "Browse..." | click
+		get-button Download | click
+		get-window "End User License Agreement(Sample Code)" | get-button Agree | click
+	}
+	with [get-window -class WizardDialog] {
+		get-group "Device Settings" | get-combo -after [get-label "Target Board:"] | select $Device
+	}
+}
+
+proc delete_project [val name] {
+	try {
+		get-eclipse-window | key-type "M1+M2+s"
+		get-view "Project Explorer" | get-button "Collapse All.*" | click
+
+		with [get-view "Project Explorer" | get-tree] {
+			with [get-item -path [concat $name ".*"]] {
+				click
+				get-menu -path "Close Project" | click
+			}
+			key-type Del
+		}
+
+		with [get-window "Delete Resources"] {
+			get-button "Delete project contents on disk (cannot be undone)" | check
+			get-button OK | click
+		}
+	} -catch {
+	}
+}
+
+proc delete_AFR_project [val name] {
+	try {
+		get-eclipse-window | key-type "M1+M2+s"
+		get-view "Project Explorer" | get-button "Collapse All.*" | click
+
+		with [get-view "Project Explorer" | get-tree] {
+			with [get-item -path [concat $name ".*"]] {
+				click
+				try {
+					get-menu -path "Close Project" | click
+				} -catch {
+				}
+			}
+			key-type Del
+		}
+
+		with [get-window "Delete Resources"] {
+			// get-button "Delete project contents on disk (cannot be undone)" | check
+			get-button OK | click
+		}
+	} -catch {
+	}
+}
+
+proc build_project_without_checking_console [val name] {
+	with [get-view "Project Explorer" | get-tree] {
+		with [get-item -path [concat $name ".*"]] {
+			click
+			get-eclipse-window | key-type "M1+B"
+		}
+	}
+}
+
+proc build_project_with_fail_result [val name] {
+	build_project_without_checking_console $name
+
+	loop {
+		try {
+			check_console_not_contains_message "Build Failed"
+			wait 1000
+			recur
+		} -catch {
+		}
+	}
+}
+
+proc build_project [val name] {
+	build_project_without_checking_console $name
+
+	loop {
+		try {
+			check_console_not_contains_message "Build Finished"
+			wait 1000
+			recur
+		} -catch {
+		}
+	}
+}
+
+proc reload_project [val projectName] {
+	close_project $projectName
+	open_project $projectName
+}
+
+proc close_project [val projectName] {
+	get-eclipse-window | key-type "M1+M2+s"
+	try {
+		get-editor [concat $projectName $SCFG_EXTENSION] | close
+	} -catch {
+	}
+}
+
+proc close_all_projects [val projectName] {
+	get-eclipse-window | key-type "M1+M2+s"
+
+	loop {
+		try {
+			get-editor [concat ".*" $SCFG_EXTENSION] | close
+			recur
+		} -catch {
+		}
+	}
+}
+
+proc open_project [val projectName] {
+	loop {
+		with [get-view "Project Explorer" | get-tree | get-item -path [concat $projectName ".*"]] {
+			try {
+				double-click
+				try {
+					get-window "Code Generator Registration" | get-button OK | click
+				} -catch {
+				}
+				try {
+					get-window Confirm | get-button OK | click
+				} -catch {
+				}
+				try {
+					get-window Confirm | get-button OK | click
+				} -catch {
+				}
+				get-item [concat ".*" $SCFG_EXTENSION] | double-click
+			} -catch {
+				recur
+			}
+		}
+	}
+}
+
+proc save_all_projects {
+	get-eclipse-window | key-type "M1+M2+s"
+}
+
+proc import_project [val projectName] [val location] {
+	try {
+		delete_project $projectName
+	} -catch {
+	}
+
+	get-menu -path "File/Import..." | click
+	with [get-window Import] {
+		get-editbox -after [get-label "Select an import wizard:"] | set-text "rename & import"
+		get-button "Next >" | click
+	}
+
+	with [get-window Import] {
+		get-editbox -after [get-label "Project name:"] | set-text $projectName
+		with [get-group "Import from:"] {
+			get-button "Select archive file:" | click
+			set-dialog-result File $location
+			get-button "Browse..." -index 1 | click
+		}
+		get-tree | select [concat [$location | split -sep "\\" -trimResults | to-list | get [$location | invoke
+			"lastIndexOf" "\\"] ".*"]]
+		get-button Finish | click
+	}
+}
+
+proc open_SC_editor [val projectName] {
+	with [get-view "Project Explorer" | get-tree] {
+		select [concat $projectName ".*"] | double-click
+		select [concat $projectName ".*/" $projectName $SCFG_EXTENSION] | double-click
+	}
+}
+proc close_confirm_dialog {
+	try {
+		get-window "Code Generator Registration" | get-button OK | click
+	} -catch {
+	}
+	try {
+		get-window Confirm | get-button OK | click
+	} -catch {
+	}
+	try {
+		get-window Confirm | get-button OK | click
+	} -catch {
+	}
+}
+
+proc close_dialog {
+	close_confirm_dialog
+	close_confirm_dialog
+	close_confirm_dialog
+}
+
+proc close_install_dialog {
+	try {
+		get-window Install | get-button OK | click
+	} -catch {
+		close_confirm_dialog
+	}
+	try {
+		get-window Install | get-button OK | click
+	} -catch {
+		close_confirm_dialog
+	}
+}
+
+proc close_gitHub_denite_dialog {
+	try {
+		get-window "Problem Occurred" | get-button OK | click
+	} -catch {
+		close_confirm_dialog
+	}
+	try {
+		get-window "Problem Occurred" | get-button OK | click
+	} -catch {
+		close_confirm_dialog
+	}
+}
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--

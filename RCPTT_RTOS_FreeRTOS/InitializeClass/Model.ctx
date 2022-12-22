@@ -1,0 +1,124 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.ecl
+Element-Name: Model
+Element-Type: context
+Element-Version: 2.0
+Id: _eCmCwDgQEeqRHNaZE0iR2g
+Runtime-Version: 2.5.1.202001221320
+Save-Time: 6/3/21, 2:39 PM
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
+Content-Type: text/ecl
+Entry-Name: .ecl.context
+
+global [val FreeRTOSDevice ""]
+global [val FreeRTOSSkeletonFolder ""]
+global [val FreeRTOSProjectName ""]
+global [val FreeRTOSVersion ""]
+global [val FreeRTOSType ""]
+global [val FreeRTOSStartupFolder ""]
+global [val -name userHomeLoc -value [get-java-property "user.home"| str ]]-override
+
+proc getContext [val context] {
+	global [val FreeRTOSDevice [$context | get-nodes Device | get text]] -override
+	global [val FreeRTOSSkeletonFolder [$context | get-nodes FreeRTOS_Skeleton_Folder | get text]] -override
+	global [val FreeRTOSProjectName [$context | get-nodes ProjectName | get text]] -override
+	global [val FreeRTOSVersion [$context | get-nodes RTOSVersion | get text]] -override
+	global [val FreeRTOSType [$context | get-nodes RTOSType | get text]] -override
+	global [val FreeRTOSStartupFolder [$context | get-nodes FreeRTOS_Startup_Folder | get text]] -override
+}
+//C:/JenkinsSlave/workspace/devices.xml
+proc constructor {
+	if [get-file -uri "K:/JenkinsSlave/workspace/devices.xml" | get exists] {
+		global [val getContext [read-xml-file -uri "K:/JenkinsSlave/workspace/devices.xml" | get-nodes Context
+			| to-list]]
+	} -else {
+		global [val getContext [read-xml-file -uri [format "%s/contextData.xml" [get-workspace-location]] | get-nodes
+			"Context" | to-list]]
+	}
+	$getContext | each [val context] {
+		getContext $context
+	}
+}
+
+//Device
+proc setDevice [val FreeRTOSDevice] {
+	global [val FreeRTOSDevice $Device] -override
+}
+proc getDevice {
+	if [$FreeRTOSDevice | eq ""] {
+		constructor
+	}
+	$FreeRTOSDevice
+}
+
+// FreeRTOSSkeletonFolder
+proc setFreeRTOS_Skeleton_Folder [val FreeRTOSSkeletonFolder] {
+	global [val FreeRTOSSkeletonFolder $FreeRTOS_Skeleton_Folder] -override
+}
+proc getFreeRTOS_Skeleton_Folder {
+	if [$FreeRTOSSkeletonFolder | eq ""] {
+		constructor
+	}
+	$FreeRTOSSkeletonFolder
+}
+// ProjectName
+proc setProjectName [val FreeRTOSProjectName] {
+	global [val FreeRTOSProjectName $ProjectName] -override
+}
+proc getProjectName {
+	if [$FreeRTOSProjectName | eq ""] {
+		constructor
+	}
+	$FreeRTOSProjectName
+}
+// RTOSVersion
+proc setRTOSVersion [val FreeRTOSVersion] {
+	global [val FreeRTOSVersion $RTOSVersion] -override
+}
+proc getRTOSVersion {
+	if [$FreeRTOSVersion | eq ""] {
+		constructor
+	}
+	$FreeRTOSVersion
+}
+
+// RTOSType
+proc setRTOSType [val FreeRTOSType] {
+	global [val FreeRTOSType $RTOSType] -override
+}
+proc getRTOSType {
+if [$FreeRTOSType | eq ""] {
+		constructor
+	}
+	$FreeRTOSType
+}
+// AFR_Startup_Folder
+proc setFreeRTOS_Startup_Folder [val FreeRTOSStartupFolder] {
+	global [val FreeRTOSStartupFolder $FreeRTOS_Startup_Folder] -override
+}
+proc getFreeRTOS_Startup_Folder {
+if [$FreeRTOSStartupFolder | eq ""] {
+		constructor
+	}
+	$FreeRTOSStartupFolder
+}
+
+proc newContext [val id]
+                [val Device]
+                [val AFR_Skeleton_Folder]
+                [val ProjectName]
+                [val RTOSVersion]
+                [val RTOSType]
+                [val AFR_Startup_Folder]{
+        tree-node "Context"
+        [map [entry "id" $id]]
+        [tree-node -name "Device" -text $Device]
+        [tree-node -name "FreeRTOS_Skeleton_Folder" -text $FreeRTOS_Skeleton_Folder]
+        [tree-node -name "ProjectName" -text $ProjectName]
+        [tree-node -name "RTOSVersion" -text $RTOSVersion]
+        [tree-node -name "RTOSType" -text $RTOSType]
+        [tree-node -name "FreeRTOS_Startup_Folder" -text $FreeRTOS_Startup_Folder]
+}
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--

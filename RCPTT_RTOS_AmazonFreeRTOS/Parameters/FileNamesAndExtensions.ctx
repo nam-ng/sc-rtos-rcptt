@@ -1,0 +1,32 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.parameters
+Element-Name: FileNamesAndExtensions
+Element-Type: context
+Element-Version: 2.0
+Id: _CbRv0IzaEemOC-jzSKPFQA
+Runtime-Version: 2.5.2.202109092356
+Save-Time: 3/14/22, 4:24 PM
+
+------=_.parameters.context-2e023de5-3294-36a9-ac1d-6701f05a40ee
+Content-Type: text/properties
+Entry-Name: .parameters.context
+
+#Mon Mar 14 16:24:03 ICT 2022
+LINK_PATH=/vendors/renesas/rx_mcu_boards/amazon_freertos_common/network_support/onchip_rx_ether
+PROJECT_1_NAME=project1
+R_WIFI_SX=r_wifi_sx_ulpgn
+AWS_MQTT=AWS_mqtt
+STRING0x0a=0x0a
+PROJECT_2_NAME=project2
+STRING0000=0000
+PROJECT_AFR_NAME=aws_demos
+LINK=FreeRTOS_IoT/config_files
+FRTOS_KERNEL=FreeRTOS_Kernel
+SCFG_EXTENSION=.scfg
+STRING0x0aa=0x0aa
+PROJECT_3_NAME=project3
+STRING0xGH=0xGH
+RTOS_APPLICATION=FreeRTOS_Application
+
+------=_.parameters.context-2e023de5-3294-36a9-ac1d-6701f05a40ee--

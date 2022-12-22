@@ -1,0 +1,19 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Element-Name: PG_RZA2M Kernel_GUI_Configure
+Element-Type: testsuite
+Element-Version: 2.0
+Id: _RHAzIF0dEeqZQ9Urx8KFoQ
+Manually-Ordered: true
+Runtime-Version: 2.5.0.201911080224
+Save-Time: 3/3/20, 2:06 PM
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
+Content-Type: text/testcase
+Entry-Name: testcase-items
+
+_nrdTAFFBEeqem5BjMui7Jw	// kind: 'test' name: 'PG_RZ' path: '../TestCases/Initialize class/PG_RZ.test'
+_ZNtJUJG9Eemhi6P5UwjoNg	// kind: 'test' name: 'test_save_configuration_of_AWS_libs' path: '../TestCases/AFRGUI_and_CodeGen/test_save_configuration_of_AWS_libs.test'
+_uQ_yYJG8Eemhi6P5UwjoNg	// kind: 'test' name: 'test_remove_AWS_libs' path: '../TestCases/AFRGUI_and_CodeGen/test_remove_AWS_libs.test'
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--

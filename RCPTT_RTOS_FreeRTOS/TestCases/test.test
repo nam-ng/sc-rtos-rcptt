@@ -1,0 +1,21 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _CbRv0IzaEemOC-jzSKPFQA
+Element-Name: test
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _Kp6gQK7UEeqGiLHaD9JPUg
+Runtime-Version: 2.5.2.202109092356
+Save-Time: 12/15/21, 1:50 PM
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+open_SC_editor "Ramdisk"
+get-editor "Ramdisk.scfg" | get-section Configure | get-tab-folder | get-tab-item Thread | click
+		// Hit Add button
+		get-editor "Ramdisk.scfg" | get-section Configure | get-table | get-label | click
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

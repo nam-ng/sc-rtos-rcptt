@@ -1,0 +1,326 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _CbRv0IzaEemOC-jzSKPFQA,_QSjtsJP2EemibuIcIDpJqA,_F0yXII17EemXsdvsbcJPYw,_QWFi0JP2EemibuIcIDpJqA
+Element-Name: Remove 2 rows has duplicated values
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _0cGXoJQKEemUl60Z_2AvQw
+Runtime-Version: 2.4.2.201905080442
+Save-Time: 2/17/20 2:03 PM
+Tags: Constrains
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+// 3 rows are duplicated values
+open_project [getProjectName]
+select_component [getProjectName] "FreeRTOS_Object"
+clear_console
+
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-tab-folder | get-tab-item Tasks | click
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure] {
+	with [get-table] {
+		get-label | click
+		get-label -index 1 | click
+		get-label -index 2 | click
+
+		with [get-editbox -index 6] {
+			set-text task_1
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		with [get-editbox] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+
+		with [get-editbox -index 12] {
+			set-text task_1
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+
+		with [get-editbox -index 7] {
+			set-text task_1
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		with [get-editbox -index 1] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+
+		with [get-editbox -index 13] {
+			set-text task_1
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+
+		with [get-editbox -index 3] {
+			set-text test
+		}
+		with [get-editbox -index 9] {
+			set-text test
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+
+		with [get-editbox -index 3] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+
+		with [get-editbox -index 15] {
+			set-text test
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+
+		// 
+		get-label | click
+		get-label -index 1 | click
+
+		with [get-editbox] {
+			get-property "decorators[0].visible" | equals false | verify-true
+		}
+
+		with [get-editbox -index 1] {
+			set-text task_1
+			get-property "decorators[0].visible" | equals false | verify-true
+		}
+		with [get-editbox -index 3] {
+			get-property "decorators[0].visible" | equals false | verify-true
+		}
+	}
+}
+
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure] {
+	get-tab-folder | get-tab-item Semaphores | click
+	with [get-table] {
+		get-label | click
+		get-label -index 1 | click
+		get-label -index 2 | click
+
+		get-editbox -index 1 | set-text semaphore_handle_1
+		get-editbox -index 2 | set-text semaphore_handle_1
+
+		with [get-editbox] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		with [get-editbox -index 1] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		// 
+		get-label | click
+		get-label -index 1 | click
+		with [get-editbox] {
+			get-property "decorators[0].visible" | equals false | verify-true
+		}
+	}
+}
+
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure] {
+	get-tab-folder | get-tab-item Queues | click
+	with [get-table] {
+		get-label | click
+		get-label -index 1 | click
+		get-label -index 2 | click
+		with [get-editbox -index 3] {
+			set-text queue_handle_1
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		with [get-editbox -index 6] {
+			set-text queue_handle_1
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+
+		with [get-editbox] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		// 
+		get-label | click
+		get-label -index 1 | click
+		with [get-editbox] {
+			get-property "decorators[0].visible" | equals false | verify-true
+		}
+	}
+}
+
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure] {
+	get-tab-folder | get-tab-item "Software Timers" | click
+	with [get-table] {
+		get-label | click
+		get-label -index 1 | click
+		get-label -index 2 | click
+
+		get-editbox -index 5 | set-text swt_handle_1
+		get-editbox -index 6 | set-text Timer_1
+		get-editbox -index 10 | set-text swt_handle_1
+		get-editbox -index 11 | set-text Timer_1
+
+		with [get-editbox] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		with [get-editbox -index 1] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		with [get-editbox -index 5] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		with [get-editbox -index 6] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		with [get-editbox -index 10] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		with [get-editbox -index 11] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		// 
+		get-label | click
+		get-label -index 1 | click
+		with [get-editbox] {
+			get-property "decorators[0].visible" | equals false | verify-true
+		}
+		with [get-editbox -index 1] {
+			get-property "decorators[0].visible" | equals false | verify-true
+		}
+	}
+}
+
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure] {
+	get-tab-folder | get-tab-item "Event Groups" | click
+	with [get-table] {
+		get-label | click
+		get-label -index 1 | click
+		get-label -index 2 | click
+
+		get-editbox -index 1 | set-text event_grp_handle_1
+		get-editbox -index 2 | set-text event_grp_handle_1
+
+		with [get-editbox] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		with [get-editbox -index 1] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		with [get-editbox -index 2] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		// 
+		get-label | click
+		get-label -index 1 | click
+		with [get-editbox] {
+			get-property "decorators[0].visible" | equals false | verify-true
+		}
+	}
+}
+
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure] {
+	get-tab-folder | get-tab-item "Stream Buffers" | click
+	with [get-table] {
+		get-label | click
+		get-label -index 1 | click
+		get-label -index 2 | click
+		get-editbox -index 3 | set-text stream_bff_handle_1
+		get-editbox -index 6 | set-text stream_bff_handle_1
+
+		with [get-editbox] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		with [get-editbox -index 3] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		with [get-editbox -index 6] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		// 
+		get-label | click
+		get-label -index 1 | click
+		with [get-editbox] {
+			get-property "decorators[0].visible" | equals false | verify-true
+		}
+	}
+}
+
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure] {
+	get-tab-folder | get-tab-item "Message Buffers" | click
+	with [get-table] {
+		get-label | click
+		get-label -index 1 | click
+		get-label -index 2 | click
+
+		get-editbox -index 2 | set-text msg_bff_handle_1
+		get-editbox -index 4 | set-text msg_bff_handle_1
+
+		with [get-editbox] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		with [get-editbox -index 2] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		with [get-editbox -index 4] {
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- This name exists. Please use another name\n"
+				| verify-true
+		}
+		// 
+		get-label | click
+		get-label -index 1 | click
+		with [get-editbox] {
+			get-property "decorators[0].visible" | equals false | verify-true
+		}
+	}
+}
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

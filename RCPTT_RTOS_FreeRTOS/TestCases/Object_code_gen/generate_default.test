@@ -1,0 +1,61 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _8ZZJ8JDLEemjjfRe1CZFNw,_CbRv0IzaEemOC-jzSKPFQA,_CdKmMIzaEemOC-jzSKPFQA,_F24o4I17EemXsdvsbcJPYw,_vwE3QLb5EeiYtvNGSLBIjg,_F799MI17EemXsdvsbcJPYw
+Element-Name: generate_default
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _N4FgEJZLEemhi6P5UwjoNg
+Runtime-Version: 2.5.1.202001221320
+Save-Time: 9/1/21, 8:35 AM
+Tags: Object_Generate
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+open_project [getProjectName]
+select_component [getProjectName] FreeRTOS_Object
+
+//generate_code freeRTOS//
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-tab-folder | get-tab-item Tasks | click
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-table | get-label | click
+
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-tab-folder | get-tab-item Semaphores | click
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-table | get-label | click
+
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-tab-folder | get-tab-item Queues | click
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-table | get-label | click
+
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-tab-folder | get-tab-item "Software Timers" | click
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-table | get-label | click
+
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-tab-folder | get-tab-item "Event Groups" | click
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-table | get-label | click
+
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-tab-folder | get-tab-item "Stream Buffers" | click
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-table | get-label | click
+
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-tab-folder | get-tab-item "Message Buffers" | click
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-table | get-label | click
+
+generate_code [getProjectName]
+
+global [val task "ret = xTaskCreate(task_1, \"task_1\", 512, NULL, 1, NULL)"] -override
+global [val semaphore "semaphore_handle_1 = xSemaphoreCreateBinary()"] -override
+global [val queue "queue_handle_1 = xQueueCreate(100, sizeof(uint32_t))"] -override
+global [val swtimer "swt_handle_1 = xTimerCreate(\"Timer_1\", 100, pdFALSE, 0, NULL)"] -override
+global [val evtgrp "event_grp_handle_1 = xEventGroupCreate()"] -override
+global [val strbuffer "stream_bff_handle_1 = xStreamBufferCreate(100, 10)"] -override
+global [val megbuffer "msg_bff_handle_1 = xMessageBufferCreate(100)"] -override
+
+check_c_file_contain_text [getProjectName] $task $FREERTOS_OBJECT_INIT "FreeRTOS"
+check_c_file_contain_text [getProjectName] $semaphore $FREERTOS_OBJECT_INIT "FreeRTOS"
+check_c_file_contain_text [getProjectName] $queue $FREERTOS_OBJECT_INIT "FreeRTOS"
+check_c_file_contain_text [getProjectName] $swtimer $FREERTOS_OBJECT_INIT "FreeRTOS"
+check_c_file_contain_text [getProjectName] $evtgrp $FREERTOS_OBJECT_INIT "FreeRTOS"
+check_c_file_contain_text [getProjectName] $strbuffer $FREERTOS_OBJECT_INIT "FreeRTOS"
+check_c_file_contain_text [getProjectName] $megbuffer $FREERTOS_OBJECT_INIT "FreeRTOS"
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

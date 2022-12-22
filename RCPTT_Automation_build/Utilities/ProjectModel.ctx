@@ -1,0 +1,111 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.ecl
+Element-Name: ProjectModel
+Element-Type: context
+Element-Version: 2.0
+Id: _DbG4oFwLEe2uw6gVVg9dpQ
+Runtime-Version: 2.5.4.202210020716
+Save-Time: 12/14/22, 9:52 AM
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
+Content-Type: text/ecl
+Entry-Name: .ecl.context
+
+global [val Device ""]
+global [val ProjectName ""]
+global [val RTOSVersion ""]
+global [val RTOSType ""]
+global [val Application ""]
+global [val -name userHomeLoc -value [get-java-property "user.home"| str ]]-override
+
+proc getContext [val context] {
+	global [val Device [$context | get-nodes Device | get text]] -override
+	global [val ProjectName [$context | get-nodes ProjectName | get text]] -override
+	global [val RTOSVersion [$context | get-nodes RTOSVersion | get text]] -override
+	global [val RTOSType [$context | get-nodes RTOSType | get text]] -override
+	global [val Application [$context | get-nodes Application | get text]] -override
+}
+//C:/JenkinsSlave/workspace/devices.xml
+proc constructor {
+	if [get-file -uri "D:/JenkinsSlave/context.xml" | get exists] {
+		global [val getContext [read-xml-file -uri "D:/JenkinsSlave/context.xml" | get-nodes Context
+			| to-list]]
+	} -else {
+		global [val getContext [read-xml-file -uri [format "%s/contextData.xml" [get-workspace-location]] | get-nodes
+			"Context" | to-list]]
+	}
+	$getContext | each [val context] {
+		getContext $context
+	}
+}
+
+//Device
+proc setDevice [val Device] {
+	global [val Device $Device] -override
+}
+proc getDevice {
+	if [$Device | eq ""] {
+		constructor
+	}
+	$Device
+}
+
+// ProjectName
+proc setProjectName [val ProjectName] {
+	global [val ProjectName $ProjectName] -override
+}
+proc getProjectName {
+	if [$ProjectName | eq ""] {
+		constructor
+	}
+	$ProjectName
+}
+// RTOSVersion
+proc setRTOSVersion [val RTOSVersion] {
+	global [val RTOSVersion $RTOSVersion] -override
+}
+proc getRTOSVersion {
+	if [$RTOSVersion | eq ""] {
+		constructor
+	}
+	$RTOSVersion
+}
+
+// RTOSType
+proc setRTOSType [val RTOSType] {
+	global [val RTOSType $RTOSType] -override
+}
+proc getRTOSType {
+if [$RTOSType | eq ""] {
+		constructor
+	}
+	$RTOSType
+}
+
+// Application
+proc setApplication [val Application] {
+	global [val Application $Application] -override
+}
+proc getApplication {
+if [$Application | eq ""] {
+		constructor
+	}
+	$Application
+}
+
+proc newContext [val id]
+                [val Device]
+                [val ProjectName]
+                [val RTOSVersion]
+                [val RTOSType]
+                [val Application]{
+        tree-node "Context"
+        [map [entry "id" $id]]
+        [tree-node -name "Device" -text $Device]
+        [tree-node -name "ProjectName" -text $ProjectName]
+        [tree-node -name "RTOSVersion" -text $RTOSVersion]
+        [tree-node -name "RTOSType" -text $RTOSType]
+        [tree-node -name "Application" -text $Application]
+}
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--

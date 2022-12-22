@@ -1,0 +1,155 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.ecl
+Element-Name: ControlSettings
+Element-Type: context
+Element-Version: 2.0
+Id: _QW1wwJP2EemibuIcIDpJqA
+Runtime-Version: 2.4.0.201812200022
+Save-Time: 6/21/19 2:29 PM
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
+Content-Type: text/ecl
+Entry-Name: .ecl.context
+
+proc isEnabled [val control] {
+	$control | get-property enablement -raw | bool | eq true
+}
+
+proc setCheckboxValue [val section] [val group] [val control] [val status] {
+    global [val enabledButton [getGUIControlInGroup Button $section $group $control]] -override
+	
+	if [or [$status | equalsIgnoreCase "Check"]
+           [$status | equalsIgnoreCase "Checked"]
+           [$status | equalsIgnoreCase "Enabled & Checked"]
+           [$status | equalsIgnoreCase "Enabled and Checked"]
+           [$status | equalsIgnoreCase "Checked and Enabled"]] {
+		try {
+			if [isEnabled $enabledButton] {
+				$enabledButton | check
+			}
+		} -error [val errorInfo] -catch {
+			reportError [format "Error while checking '%s' checkbox: %s" $control [$errorInfo | get-status-message]] $rowIndex
+		}
+	}
+	
+	if [or [$status | equalsIgnoreCase "Uncheck"]
+           [$status | equalsIgnoreCase "Unchecked"]] {
+		try {
+			if [isEnabled $enabledButton] {
+				$enabledButton | uncheck
+			}
+		} -error [val errorInfo] -catch {
+			reportError [format "Error while unchecking '%s' checkbox: %s" $control [$errorInfo | get-status-message]] $rowIndex
+		}
+	}
+}
+
+proc setRadioValue [val section] [val group] [val control] [val status] {
+	global [val enabledButton [getGUIControlInGroup Button $section $group $control]] -override
+	
+	if [or [$status | equalsIgnoreCase "Check"]
+           [$status | equalsIgnoreCase "Checked"]
+           [$status | equalsIgnoreCase "Enabled & Checked"]
+           [$status | equalsIgnoreCase "Enabled and Checked"]
+           [$status | equalsIgnoreCase "Checked and Enabled"]] {
+		try {
+			if [isEnabled $enabledButton] {
+				$enabledButton | click
+			}
+		} -error [val errorInfo] -catch {
+			reportError [format "Error while checking '%s' radio button: %s" $control [$errorInfo | get-status-message]] $rowIndex
+		}
+	}
+}
+
+proc setComboboxValue [val section] [val group] [val control] [val status] {
+	global [val enabledCombo [getGUIControlInGroup ComboBox $section $group $control]]
+	       [val enabledComboStatus $status]
+	       -override
+	
+	if [$enabledComboStatus | invoke startsWith "≠ "] {
+		let [val ignoredItem [$enabledComboStatus | invoke substring 2]]
+		    [val items [$enabledCombo | get-combo-items | to-list]]
+		    [val count [$enabledCombo | get-combo-items | length]] {
+			if [$count | gt 0] {
+				if [$items | get 0 | not-eq $ignoredItem] {
+					global [val enabledComboStatus [$items | get 0]] -override
+				} -else {
+					if [$count | gt 1] {
+						global [val enabledComboStatus [$items | get 1]] -override
+					}
+				}
+			}
+		}
+	}
+	try {
+		if [isEnabled $enabledCombo] {
+			$enabledCombo | select $enabledComboStatus
+		}
+	} -error [val errorInfo] -catch {
+		reportError [format "Error while setting '%s' combobox value: %s" $control [$errorInfo | get-status-message]] $rowIndex
+	}
+}
+
+proc setTextboxValue [val section] [val group] [val control] [val status] {
+	global [val enabledButton [getGUIControlInGroup TextBox $section $group $control]] -override
+	
+	try {
+		if [isEnabled $enabledButton] {
+			$enabledButton | set-text $status
+		}
+	} -error [val errorInfo] -catch {
+		reportError [format "Error while setting '%s' textbox value: %s" $control [$errorInfo | get message]] $rowIndex
+	}
+}
+
+proc setEnabledControlValue [val enabledSection] [val enabledGroup] [val enabledType] [val enabledControl] [val enabledStatus] {
+	if [and [$enabledStatus | not-eq ""]
+            [$enabledStatus | not-eq "-"]
+            [$enabledStatus | equalsIgnoreCase "Always enable" | not]] {
+            
+	    if [$enabledType | equalsIgnoreCase "CheckBox"] {
+		    	setCheckboxValue $enabledSection $enabledGroup $enabledControl $enabledStatus
+	    }
+
+	    if [$enabledType | equalsIgnoreCase "Radio Button"] {
+		    	setRadioValue $enabledSection $enabledGroup $enabledControl $enabledStatus
+	    }
+
+	    if [$enabledType | equalsIgnoreCase "ComboBox"] {
+		    	setComboboxValue $enabledSection $enabledGroup $enabledControl $enabledStatus
+	    }
+
+	    if [$enabledType | equalsIgnoreCase "TextBox"] {
+		    	setTextboxValue $enabledSection $enabledGroup $enabledControl $enabledStatus
+	    }
+
+	    if [$enabledType | startsWithIgnoreCase "Repeating CheckBox"] {
+	    		setRepeatingCheckboxValue $enabledSection $enabledGroup $enabledType [$testdata | get-table-cells [concat $enabledControlColumn $rowIndex]] $enabledStatus
+	    }
+
+		if [$enabledType | equalsIgnoreCase "SC Clocks Radio Button"] {
+			try {
+				get-editor $editorName | get-tab-folder | get-tab-item Clocks | click
+				get-editor $editorName | get-canvas -after [get-label "Clocks configuration"] -index 2 
+				    | sc-clocks-click-radio -pane $enabledControl -number $enabledStatus
+			} -finally {
+				get-editor $editorName | get-tab-folder | get-tab-item Components | click
+			}
+		}
+
+		if [$enabledType | equalsIgnoreCase "SC Clocks CheckBox"] {
+			if [$enabledStatus | equalsIgnoreCase "Checked"] {
+				try {
+					get-editor $editorName | get-tab-folder | get-tab-item Clocks | click
+					get-editor $editorName | get-canvas -after [get-label "Clocks configuration"] -index 2 
+					    | sc-clocks-check-checkbox -pane $enabledControl
+				} -finally {
+					get-editor $editorName | get-tab-folder | get-tab-item Components | click
+				}
+			}
+		}		
+	}
+}
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--

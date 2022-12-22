@@ -1,0 +1,25 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Element-Name: PG_AzureRTOS_USBX_HMSC_Application_Project
+Element-Type: testsuite
+Element-Version: 2.0
+Id: _Ll_5gHEfEe2-uLmUpKPN3w
+Runtime-Version: 2.5.4.202210020716
+Save-Time: 12/1/22, 10:23 AM
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
+Content-Type: text/testcase
+Entry-Name: testcase-items
+
+_WULI4HEeEe2-uLmUpKPN3w	// kind: 'test' name: 'RXC_PG_RSKRX671_USBX_HMSC_application' path: '../TestCases/PG_AzureRTOS_USBX_HMSC_Application_Project/RXC_PG_RSKRX671_USBX_HMSC_application.test'
+_AmZ04HEeEe2-uLmUpKPN3w	// kind: 'test' name: 'RXC_PG_NewCK65N_USBX_HMSC_application' path: '../TestCases/PG_AzureRTOS_USBX_HMSC_Application_Project/RXC_PG_NewCK65N_USBX_HMSC_application.test'
+_AmNAkHEeEe2-uLmUpKPN3w	// kind: 'test' name: 'RXC_PG_CloudKit65N_USBX_HMSC_application' path: '../TestCases/PG_AzureRTOS_USBX_HMSC_Application_Project/RXC_PG_CloudKit65N_USBX_HMSC_application.test'
+_MLdzgHEeEe2-uLmUpKPN3w	// kind: 'test' name: 'RXC_PG_72NEnvisionKit_USBX_HMSC_application' path: '../TestCases/PG_AzureRTOS_USBX_HMSC_Application_Project/RXC_PG_72NEnvisionKit_USBX_HMSC_application.test'
+_AmAMQHEeEe2-uLmUpKPN3w	// kind: 'test' name: 'RXC_PG_65N2MB_USBX_HMSC_application' path: '../TestCases/PG_AzureRTOS_USBX_HMSC_Application_Project/RXC_PG_65N2MB_USBX_HMSC_application.test'
+_c9XqcHEeEe2-uLmUpKPN3w	// kind: 'test' name: 'GNURX_PG_RSKRX671_USBX_HMSC_application' path: '../TestCases/PG_AzureRTOS_USBX_HMSC_Application_Project/GNURX_PG_RSKRX671_USBX_HMSC_application.test'
+_7wyw0HEdEe2-uLmUpKPN3w	// kind: 'test' name: 'GNURX_PG_NewCK65N_USBX_HMSC_application' path: '../TestCases/PG_AzureRTOS_USBX_HMSC_Application_Project/GNURX_PG_NewCK65N_USBX_HMSC_application.test'
+_1SM8wHEdEe2-uLmUpKPN3w	// kind: 'test' name: 'GNURX_PG_CloudKit65N_USBX_HMSC_application' path: '../TestCases/PG_AzureRTOS_USBX_HMSC_Application_Project/GNURX_PG_CloudKit65N_USBX_HMSC_application.test'
+_irJsoHEeEe2-uLmUpKPN3w	// kind: 'test' name: 'GNURX_PG_72NEnvisionKit_USBX_HMSC_application' path: '../TestCases/PG_AzureRTOS_USBX_HMSC_Application_Project/GNURX_PG_72NEnvisionKit_USBX_HMSC_application.test'
+_v4FdcHEdEe2-uLmUpKPN3w	// kind: 'test' name: 'GNURX_PG_65N2MB_USBX_HMSC_application' path: '../TestCases/PG_AzureRTOS_USBX_HMSC_Application_Project/GNURX_PG_65N2MB_USBX_HMSC_application.test'
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--

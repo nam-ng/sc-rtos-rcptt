@@ -1,0 +1,21 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Element-Name: PG_AzureRTOS_USBX_PCDC_Application_Project
+Element-Type: testsuite
+Element-Version: 2.0
+Id: _JpUxcHEfEe2-uLmUpKPN3w
+Runtime-Version: 2.5.4.202210020716
+Save-Time: 12/1/22, 10:23 AM
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
+Content-Type: text/testcase
+Entry-Name: testcase-items
+
+_tyiisHEcEe2-uLmUpKPN3w	// kind: 'test' name: 'GNURX_PG_65N2MB_USBX_PCDC_application' path: '../TestCases/PG_AzureRTOS_USBX_PCDC_Application_Project/GNURX_PG_65N2MB_USBX_PCDC_application.test'
+_l1qWQHEdEe2-uLmUpKPN3w	// kind: 'test' name: 'RXC_PG_NewCK65N_USBX_PCDC_application' path: '../TestCases/PG_AzureRTOS_USBX_PCDC_Application_Project/RXC_PG_NewCK65N_USBX_PCDC_application.test'
+_hs04oHEdEe2-uLmUpKPN3w	// kind: 'test' name: 'RXC_PG_CloudKit65N_USBX_PCDC_application' path: '../TestCases/PG_AzureRTOS_USBX_PCDC_Application_Project/RXC_PG_CloudKit65N_USBX_PCDC_application.test'
+_YpNjEHEdEe2-uLmUpKPN3w	// kind: 'test' name: 'RXC_PG_65N2MB_USBX_PCDC_application' path: '../TestCases/PG_AzureRTOS_USBX_PCDC_Application_Project/RXC_PG_65N2MB_USBX_PCDC_application.test'
+_TUGfkHEdEe2-uLmUpKPN3w	// kind: 'test' name: 'GNURX_PG_NewCK65N_USBX_PCDC_application' path: '../TestCases/PG_AzureRTOS_USBX_PCDC_Application_Project/GNURX_PG_NewCK65N_USBX_PCDC_application.test'
+_JpD9oHEdEe2-uLmUpKPN3w	// kind: 'test' name: 'GNURX_PG_CloudKit65N_USBX_PCDC_application' path: '../TestCases/PG_AzureRTOS_USBX_PCDC_Application_Project/GNURX_PG_CloudKit65N_USBX_PCDC_application.test'
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--

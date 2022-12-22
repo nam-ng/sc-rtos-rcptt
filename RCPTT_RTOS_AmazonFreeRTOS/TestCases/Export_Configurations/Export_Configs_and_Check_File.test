@@ -1,0 +1,49 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _CbRv0IzaEemOC-jzSKPFQA,_QSjtsJP2EemibuIcIDpJqA,_QVBL0JP2EemibuIcIDpJqA,_F0yXII17EemXsdvsbcJPYw,_GAAIoI17EemXsdvsbcJPYw
+Element-Name: Export_Configs_and_Check_File
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _gvxbkDnmEeugn_0wlaPScA
+Runtime-Version: 2.5.2.202109092356
+Save-Time: 11/23/21, 6:24 PM
+Tags: export
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+open_project [getProjectName]
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION]] {
+	get-tab-folder | get-tab-item Components | click
+	enter_value [getProjectName] $AWS_device_shadow "Number of jsmn tokens" 128
+	enter_value [getProjectName] $FreeRTOS_Kernel "Maximum number of priorities to the application task" 8
+}
+select_component [getProjectName] $FreeRTOS_Object
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-tab-folder | get-tab-item Tasks
+	| click
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-table | get-label -index 0 | click
+
+// Configure initialize to manual
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-table | get-combo -index 0 | select
+	"kernel start"
+
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION]] {
+	get-button "Export Configuration" | click
+}
+
+try {
+	if [get-file "file:/C:/JenkinsSlave/Workspace/export_iot.xml" | get exists | eq true] {
+		delete-file "file:/C:/JenkinsSlave/Workspace/export_iot.xml"
+	}
+} -catch {}
+set-dialog-result File "C:\\JenkinsSlave\\Workspace\\export_iot.xml"
+with [get-window Export] {
+	get-button "Browse..." | click
+	get-button Finish | click
+}
+
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

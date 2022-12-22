@@ -1,0 +1,89 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _F24o4I17EemXsdvsbcJPYw,_F6ZP4I17EemXsdvsbcJPYw,_CbRv0IzaEemOC-jzSKPFQA
+Element-Name: Out of size
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _iPvbAJJAEempa8MxsW2mDQ
+Runtime-Version: 2.4.2.201905080442
+Save-Time: 2/17/20 2:00 PM
+Tags: Constrains
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+// input : case out of size (1 to 2^32-1) (Queue Length, Timer Period, Trigger level, Stream Buffer Size,Message Buffer Size) // case out of size (0 to 2^32-1) TimerID
+open_project [getProjectName]
+select_component [getProjectName] FreeRTOS_Object true
+clear_console
+
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure] {
+	get-tab-folder | get-tab-item Queues | click
+	get-table | get-label | click
+	with [get-table | get-editbox -index 1] {
+		set-text 4294967296
+		get-property "decorators[0].visible" | equals true | verify-true
+		get-property "decorators[0].description" | equals "Error: \n- E04050006: The value must be from 1 to 4294967295"
+			| verify-true
+	}
+}
+check_console_contains_message "E04050006: The value must be from 1 to 4294967295"
+clear_console
+
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure] {
+	get-tab-folder | get-tab-item "Software Timers" | click
+	get-table | get-label | click
+	with [get-table] {
+		with [get-editbox -index 2] {
+			set-text 4294967296
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- E04050006: The value must be from 1 to 4294" +
+				"967295" | verify-true
+		}
+		with [get-editbox -index 3] {
+			set-text 4294967296
+			get-property "decorators[0].visible" | equals true | verify-true
+			get-property "decorators[0].description" | equals "Error: \n- E04050006: The value must be from 0 to 4294" +
+				"967295" | verify-true
+		}
+	}
+}
+check_console_contains_message "E04050006: The value must be from 1 to 4294967295"
+check_console_contains_message "E04050006: The value must be from 0 to 4294967295"
+clear_console
+
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure] {
+	get-tab-folder | get-tab-item "Stream Buffers" | click
+	get-table | get-label | click
+	with [get-table | get-editbox -index 1] {
+		set-text 4294967296
+		get-property "decorators[0].visible" | equals true | verify-true
+		get-property "decorators[0].description" | equals "Error: \n- E04050006: The value must be from 1 to 4294967295"
+			| verify-true
+	}
+	with [get-table | get-editbox -index 2] {
+		set-text 4294967296
+		get-property "decorators[0].visible" | equals true | verify-true
+		get-property "decorators[0].description" | equals "Error: \n- E04050006: The value must be from 1 to 4294967295"
+			| verify-true
+	}
+}
+check_console_contains_message "E04050006: The value must be from 1 to 4294967295"
+clear_console
+
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure] {
+	get-tab-folder | get-tab-item "Message Buffers" | click
+	get-table | get-label | click
+	with [get-table | get-editbox -index 1] {
+		set-text 4294967296
+		get-property "decorators[0].visible" | equals true | verify-true
+		get-property "decorators[0].description" | equals "Error: \n- E04050006: The value must be from 1 to 4294967295"
+			| verify-true
+	}
+}
+check_console_contains_message "E04050006: The value must be from 1 to 4294967295"
+clear_console
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

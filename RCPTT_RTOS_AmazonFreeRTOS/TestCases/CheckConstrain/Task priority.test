@@ -1,0 +1,36 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _CbRv0IzaEemOC-jzSKPFQA,_QSjtsJP2EemibuIcIDpJqA,_F0yXII17EemXsdvsbcJPYw,_QWFi0JP2EemibuIcIDpJqA
+Element-Name: Task priority
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _0fVR0JQKEemUl60Z_2AvQw
+Runtime-Version: 2.4.2.201905080442
+Save-Time: 2/17/20 2:03 PM
+Tags: Constrains
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+open_project [getProjectName]
+select_component [getProjectName] "FreeRTOS_Object"
+clear_console
+
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-tab-folder | get-tab-item Tasks | click
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-table] {
+	get-label | click
+	with [get-editbox -index 5] {
+		set-text 0
+		get-property "decorators[0].visible" | equals false | verify-true
+
+		set-text abc
+		get-property "decorators[0].visible" | equals true | verify-true
+		get-property "decorators[0].description" | equals "Error: \n- The value must be a number" | verify-true
+	}
+}
+check_console_contains_message "E04050002: The value must be a number"
+clear_console
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

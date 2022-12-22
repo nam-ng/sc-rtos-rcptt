@@ -1,0 +1,32 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _CbRv0IzaEemOC-jzSKPFQA,_QSjtsJP2EemibuIcIDpJqA,_F0yXII17EemXsdvsbcJPYw,_QWFi0JP2EemibuIcIDpJqA
+Element-Name: StackSize is out of size
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _0eT-IJQKEemUl60Z_2AvQw
+Runtime-Version: 2.4.2.201905080442
+Save-Time: 2/17/20 2:03 PM
+Tags: Constrains
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+open_project [getProjectName]
+select_component [getProjectName] "FreeRTOS_Object"
+clear_console
+
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-tab-folder | get-tab-item Tasks | click
+get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-table | get-label | click
+
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-table | get-editbox -index 2] {
+	set-text 65636
+	get-property "decorators[0].visible" | equals true | verify-true
+	get-property "decorators[0].description" | contains "Error: \n- E04050006: The value must be from 1 to 65535.0"
+		| verify-true
+}
+check_console_contains_message "E04050006: The value must be from 1 to 65535.0"
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

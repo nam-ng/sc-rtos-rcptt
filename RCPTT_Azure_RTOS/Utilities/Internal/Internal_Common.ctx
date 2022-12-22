@@ -1,0 +1,89 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.ecl
+Element-Name: Internal_Common
+Element-Type: context
+Element-Version: 2.0
+Id: _vwE3QLb5EeiYtvNGSLBIjg
+Runtime-Version: 2.4.2.201905080442
+Save-Time: 6/5/19 8:58 AM
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
+Content-Type: text/ecl
+Entry-Name: .ecl.context
+
+proc generate_code_no_consolecheck [val projectName] {
+	get-editor [concat $projectName $SCFG_EXTENSION] | get-button "Generate Code" | click	
+}
+
+proc wait_for_code_generation {
+	loop {
+	    try {
+	    	get-window "Progress Information"
+	    	wait 1000
+	        recur
+	    }-catch{
+	    }
+	}
+	
+	loop {
+	    try {
+	    	check_console_not_contains_message "Code generation is successful"
+	    	wait 1000
+	        recur
+	    }-catch{
+	    }
+	}
+}
+
+proc generate_code [val projectName] {
+	get-editor [concat $projectName $SCFG_EXTENSION] | get-button "Generate Code" | click
+	wait_for_code_generation
+}
+
+proc generate_code_ignore_error [val projectName] {
+	get-editor [concat $projectName $SCFG_EXTENSION] | get-button "Generate Code" | click
+	
+	try {
+		get-window "Code Generating" | get-button Yes | click
+	} -catch {}
+	
+	wait_for_code_generation
+}
+
+proc generate_code_ignore_error_for_first_smartconfig_project {
+	get-editor [concat ".*" $SCFG_EXTENSION] | get-button "Generate Code" | click
+	
+	try {
+		get-window "Code Generating" | get-button Yes | click
+	} -catch {}
+	
+	wait_for_code_generation
+}
+
+proc check_window_not_show [val window_name] {
+	global [val result false] -override
+	try {
+		get-window $window_name
+	} -catch {
+		global [val result true] -override
+	}
+
+	$result | assert-true -message [concat $window_name "window must not be displayed"]
+}
+
+proc check_label_text [val window_name] [val label_text] {
+	global [val result true] -override
+	try {
+		get-window $window_name | get-label $label_text
+	} -catch {
+		global [val result false] -override
+	}
+
+	$result | assert-true -message [concat $label_text "label must be displayed"]
+}
+
+proc apply_and_close_properties {
+	get-window "Properties.*" | get-button "Apply and Close" | click
+}
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--

@@ -1,0 +1,26 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _F24o4I17EemXsdvsbcJPYw,_CbRv0IzaEemOC-jzSKPFQA,_vwE3QLb5EeiYtvNGSLBIjg,_F799MI17EemXsdvsbcJPYw
+Element-Name: Add_FileX_and_generate
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _9IybcMRSEeu4Z9fZ-EbEpw
+Runtime-Version: 2.5.1.202001221320
+Save-Time: 6/4/21, 10:30 AM
+Tags: add_component
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+open_project [getProjectName]
+click_component_page [getProjectName]
+add_component [getProjectName] "Azure RTOS FileX"
+save_all_projects
+generate_code [getProjectName]
+check_file_exist [getProjectName] fx_user.h $AzureRTOSType
+
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

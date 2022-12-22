@@ -1,0 +1,26 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _CbRv0IzaEemOC-jzSKPFQA,_QSjtsJP2EemibuIcIDpJqA,_F0yXII17EemXsdvsbcJPYw
+Element-Name: Check Event Group UI
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _8YwNgJP8EemSZsTj6NrdJw
+Runtime-Version: 2.4.2.201905080442
+Save-Time: 2/17/20 2:03 PM
+Tags: ObjectGUI
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+open_project [getProjectName]
+select_component [getProjectName] FreeRTOS_Object
+with [get-editor [concat [getProjectName] $SCFG_EXTENSION] | get-section Configure | get-tab-folder] {
+	get-property "getItems().TabItem[4].getControl().getChildren().Control[1].getColumns().TableColumn[0].getText()"
+		| equals "+/-" | verify-true
+	get-property "getItems().TabItem[4].getControl().getChildren().Control[1].getColumns().TableColumn[1].getText()"
+		| equals "Event Group Handler" | verify-true
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

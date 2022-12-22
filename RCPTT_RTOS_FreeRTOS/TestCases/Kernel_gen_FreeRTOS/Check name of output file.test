@@ -1,0 +1,27 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _F0yXII17EemXsdvsbcJPYw,_8ZZJ8JDLEemjjfRe1CZFNw,_F24o4I17EemXsdvsbcJPYw,_F5kwgI17EemXsdvsbcJPYw,_GAAIoI17EemXsdvsbcJPYw,_vwE3QLb5EeiYtvNGSLBIjg
+Element-Name: Check name of output file
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _RlJ3kJJBEem_UZ4EQBrqaw
+Runtime-Version: 2.4.2.201905080442
+Save-Time: 2/17/20 2:01 PM
+Tags: Kernel_generate
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+open_project [getProjectName]
+generate_code [getProjectName]
+with [get-view "Project Explorer" | get-tree] {
+    select [concat [getProjectName] ".*/src"] | double-click
+    select [concat [getProjectName] ".*/src/frtos_config"] | double-click
+}
+get-view "Project Explorer" | get-tree | get-item 
+    -path [concat [getProjectName] ".*/src/frtos_config/FreeRTOSConfig.h"] | get-property "getText()" 
+    | equals "FreeRTOSConfig.h" | verify-true
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

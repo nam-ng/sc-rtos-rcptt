@@ -1,0 +1,103 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.ecl
+Element-Name: Internal_Project
+Element-Type: context
+Element-Version: 2.0
+Id: _Q_l5gF5JEe2uw6gVVg9dpQ
+Runtime-Version: 2.5.2.202109092356
+Save-Time: 11/7/22, 10:11 AM
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
+Content-Type: text/ecl
+Entry-Name: .ecl.context
+
+proc createRXCRTOSProject [val ProjectName] [val toolchain] [val RTOSType] [val RTOSVersion] [val Device]
+	[val Application] {
+	try {
+		delete_project $ProjectName
+	} -catch {
+	}
+	get-menu -path "File/New/C\\/C++ Project" | click
+	with [get-window "New C/C++ Project"] {
+		get-list | select "Renesas RX"
+		get-table | select [get-item -path "" -index 2]
+		get-button "Next >" | click
+		with [get-window -class WizardDialog] {
+			get-editbox -after [get-label "Project name:"] | set-text $ProjectName
+			get-button "Next >" | click
+			get-group "Toolchain Settings" | get-combo -after [get-label "Toolchain Version:"] | select $toolchain
+			get-group "Toolchain Settings" | get-combo -after [get-label "RTOS:"] | select $RTOSType
+			get-group "Toolchain Settings" | get-combo -after [get-label "RTOS Version:"] | select $RTOSVersion
+		}
+
+		with [get-window -class WizardDialog] {
+			get-group "Device Settings" | get-combo -after [get-label "Target Board:"] | select $Device
+		}
+		with [get-button "Next >"] {
+			click
+		}
+		if [$Application | eq ""] {
+			try {
+				with [get-window -class WizardDialog] {
+					get-button Finish | click
+				}
+			} -catch {
+			}
+		} -else {
+			with [get-button "Next >"] {
+				click
+			}
+			get-window -class WizardDialog | get-group "Select application:" | get-label $Application | click
+			with [get-window -class WizardDialog] {
+				get-button Finish | click
+			}
+		}
+	}
+}
+
+proc createGCCRTOSProject [val ProjectName] [val toolchain] [val RTOSType] [val RTOSVersion] [val Device]
+	[val Application] {
+	try {
+		delete_project $ProjectName
+	} -catch {
+	}
+	get-menu -path "File/New/C\\/C++ Project" | click
+	with [get-window "New C/C++ Project"] {
+		get-list | select "Renesas RX"
+		get-table | select [get-item -path "" -index 0]
+		get-button "Next >" | click
+		with [get-window -class WizardDialog] {
+			get-editbox -after [get-label "Project name:"] | set-text $ProjectName
+			get-button "Next >" | click
+			get-group "Toolchain Settings" | get-combo -after [get-label "Toolchain Version:"] | select $toolchain
+			get-group "Toolchain Settings" | get-combo -after [get-label "RTOS:"] | select $RTOSType
+			get-group "Toolchain Settings" | get-combo -after [get-label "RTOS Version:"] | select $RTOSVersion
+		}
+
+		with [get-window -class WizardDialog] {
+			get-group "Device Settings" | get-combo -after [get-label "Target Board:"] | select $Device
+		}
+
+		with [get-button "Next >"] {
+			click
+		}
+		if [$Application | eq ""] {
+			try {
+				with [get-window -class WizardDialog] {
+					get-button Finish | click
+				}
+			} -catch {
+			}
+		} -else {
+			with [get-button "Next >"] {
+				click
+			}
+			get-window -class WizardDialog | get-group "Select application:" | get-label $Application | click
+			with [get-window -class WizardDialog] {
+				get-button Finish | click
+			}
+		}
+	}
+}
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--

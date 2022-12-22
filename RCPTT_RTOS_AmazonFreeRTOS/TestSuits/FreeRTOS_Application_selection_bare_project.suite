@@ -1,0 +1,17 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Element-Name: FreeRTOS_Application_selection_bare_project
+Element-Type: testsuite
+Element-Version: 2.0
+Id: _N7RysDpUEe2BcIcAs79bvA
+Runtime-Version: 2.5.2.202109092356
+Save-Time: 9/22/22, 3:55 PM
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
+Content-Type: text/testcase
+Entry-Name: testcase-items
+
+_ee9asDpEEe2BcIcAs79bvA	// kind: 'test' name: 'FreeRTOS_Demo_sample_project' path: '../TestCases/FreeRTOS_Application_selection/FreeRTOS_Demo_sample_project.test'
+_nvvhMDpSEe2BcIcAs79bvA	// kind: 'test' name: 'IoT_bare_project_struture' path: '../TestCases/FreeRTOS_Application_selection/IoT_bare_project_struture.test'
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--

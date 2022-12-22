@@ -1,0 +1,45 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.ecl
+Element-Name: IncludePath
+Element-Type: context
+Element-Version: 2.0
+Id: _QZCwMJP2EemibuIcIDpJqA
+Runtime-Version: 2.4.0.201812200022
+Save-Time: 6/21/19 2:29 PM
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
+Content-Type: text/ecl
+Entry-Name: .ecl.context
+
+proc open_include_path_view {
+	get-view "Project Explorer" | get-tree | select [concat $projectName ".*"] | get-menu -path Properties | click
+	with [get-window "Properties.*"] {
+		get-tree | select "C\\/C\\+\\+ Build/Settings"
+		get-tree -after [get-label Settings] | select "Cross ARM C Compiler/Includes"
+	}
+}
+
+proc check_include_path_available [val projectName] [val includePath] {
+	with [get-view "Project Explorer" | get-tree] {
+		with [get-item [concat $projectName ".*"]] {
+			expand_tree_item
+			with [get-item Includes] {
+				expand_tree_item
+				get-item [concat $projectName $includePath]
+			}
+		}
+	}
+}
+
+proc check_include_path_not_available [val projectName] [val includePath] {
+	global [val isAvailable true] -override
+	try {
+		check_include_path_available $projectName $includePath
+	}-catch {
+		global [val isAvailable false] -override
+	}
+	
+	not $isAvailable | assert-true -message [concat $includePath " is available"]
+}
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--

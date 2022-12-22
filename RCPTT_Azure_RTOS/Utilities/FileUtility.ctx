@@ -1,0 +1,197 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.ecl
+Element-Name: FileUtility
+Element-Type: context
+Element-Version: 2.0
+Id: _F799MI17EemXsdvsbcJPYw
+Runtime-Version: 2.4.0.201812200022
+Save-Time: 7/2/19 2:14 PM
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
+Content-Type: text/ecl
+Entry-Name: .ecl.context
+
+proc get_wrapper_file_path [val projectName] {
+	global [val wrapper_file_path [concat [get-workspace-location | invoke replace "\\" "/"] "/" $projectName $CONFIGURATION_FOLDER $WRAPPER_FILE]] -override
+	$wrapper_file_path
+}
+
+proc get_setting_folder_path [val projectName] {
+	global [val setting_folder_path [concat [get-workspace-location | invoke replace "\\" "/"] "/" $projectName $SETTING_FOLDER]] -override
+	$setting_folder_path
+}
+
+proc get_driver_file_path [val projectName] [val driverName] {
+	global [val driver_file_path [concat [get-workspace-location | invoke replace "\\" "/"] "/" $projectName $SC_DRIVER_FOLDER $driverName "/inc/" $driverName $DRIVER_FILE_POSFIX]] -override
+	$driver_file_path
+}
+
+proc get_gpio_file_path [val projectName] {
+	global [val gpio_file_path [concat [get-workspace-location | invoke replace "\\" "/"] "/" $projectName $GPIO_INCLUDE_FOLDER $GPIO_FILE]] -override
+	$gpio_file_path
+}
+
+proc get_scfg_file_path [val projectName] {
+	global [val scfg_file_path [concat [get-workspace-location| invoke replace "\\" "/"] [concat "/" $projectName "/" $projectName $SCFG_EXTENSION]]] -override
+	$scfg_file_path
+}
+
+proc get_mmu_file_path [val projectName] {
+	global [val mmu_file_path [concat [get-workspace-location| invoke replace "\\" "/"] [concat "/" $projectName "/" $MMU_INCLUDE_FOLDER $MMU_FILE]]] -override
+	$mmu_file_path
+}
+
+proc check_file_existence [val projectName] [val path] [val isOutputTrue] {
+	global [val hasError false] -override
+	try {
+		read-file -uri $path
+	} -catch {
+		global [val hasError true] -override
+	}
+
+	if [$isOutputTrue | eq true] {
+		not $hasError | assert-true -message [concat $path " doesn't exist"]
+	} -else {
+		$hasError | assert-true -message [concat $path " exists"]
+	}
+}
+
+proc check_setting_file_existence [val projectName] [val fileName] [val isOutputTrue] {
+	check_file_existence $projectName [concat [get_setting_folder_path $projectName] $fileName] $isOutputTrue
+}
+
+proc check_driver_file_existence [val projectName] [val driverName] [val isOutputTrue] {
+	check_file_existence $projectName [get_driver_file_path $projectName $driverName] $isOutputTrue
+}
+
+proc check_driver_file_content [val projectName] [val driverName] [val text] [val isOutputTrue] {
+	global [val hasError false] -override
+	
+	try {
+		read-file -uri [get_driver_file_path $projectName $driverName] | contains $text | verify-true
+	} -catch {
+		global [val hasError true] -override
+	}
+	
+	if [$isOutputTrue | eq true] {
+		not $hasError | assert-true -message [concat "EXPECTED: driver file contains\n" $text "\nACTUAL:\n" [read-file -uri [get_driver_file_path $projectName $driverName]]]
+	} -else {
+		$hasError | assert-true -message [concat "EXPECTED: driver file doesn't contain\n" $text "\nACTUAL:\n" [read-file -uri [get_driver_file_path $projectName $driverName]]]
+	}
+}
+
+proc check_wrapper_file_content [val projectName] [val text] [val isOutputTrue] {
+	global [val hasError false] -override
+	
+	try {
+		read-file -uri [get_wrapper_file_path $projectName] | contains $text | verify-true
+	} -catch {
+		global [val hasError true] -override
+	}
+	
+	if [$isOutputTrue | eq true] {
+		not $hasError | assert-true -message [concat "EXPECTED: wrapper file contains\n" $text "\nACTUAL:\n" [read-file -uri [get_wrapper_file_path $projectName]]]
+	} -else {
+		$hasError | assert-true -message [concat "EXPECTED: wrapper file doesn't contain\n" $text "\nACTUAL:\n" [read-file -uri [get_wrapper_file_path $projectName]]]
+	}
+}
+
+proc check_gpio_file_content_text [val projectName] [val text] {
+	read-file -uri [get_gpio_file_path $projectName] | contains $text | assert-true  -message [concat "EXPECTED: gpio file contains\n" $text "\nACTUAL:\n" [read-file -uri [get_gpio_file_path $projectName]]]
+}
+
+proc check_gpio_file_not_content_text [val projectName] [val text] [val isOutputTrue] {
+	read-file -uri [get_gpio_file_path $projectName] | contains $text | not | assert-true -message [concat "EXPECTED: gpio file doesn't contain\n" $text "\nACTUAL:\n" [read-file -uri [get_gpio_file_path $projectName]]]
+}
+
+proc check_scfg_file_content_text [val projectName] [val text] {
+	read-file -uri [get_scfg_file_path $projectName] 
+	| contains $text | assert-true -message [concat "EXPECTED: scfg file contains\n" $text "\nACTUAL:\n" [read-file -uri [get_scfg_file_path $projectName]]]
+}
+
+proc check_scfg_file_not_content_text [val projectName] [val text] {
+	read-file -uri [get_scfg_file_path $projectName]  
+	| contains $text | not | assert-true -message [concat "EXPECTED: scfg file doesn't contain\n" $text "\nACTUAL:\n" [read-file -uri [get_scfg_file_path $projectName]]]
+}
+
+proc check_mmu_file_contains_text [val projectName] [val text] {
+	read-file -uri [get_mmu_file_path $projectName] | contains $text | assert-true  -message [concat "EXPECTED: gpio file contains\n" $text "\nACTUAL:\n" [read-file -uri [get_mmu_file_path $projectName]]]
+}
+
+proc get_copy_wrapper_file [val projectName] [val nameOfCopy "test"] {
+	global [val wrapper_file_path [concat [get-workspace-location | invoke replace "\\" "/"] "/" $projectName $CONFIGURATION_FOLDER $WRAPPER_FILE]] -override
+	global [val wrapper_test_file_path [concat [get-workspace-location | invoke replace "\\" "/"] "/" $projectName $CONFIGURATION_FOLDER $nameOfCopy $WRAPPER_FILE]] -override
+
+	try {
+		delete-file $wrapper_test_file_path
+	} -catch {}
+	copy-file -source [get_wrapper_file_path $projectName] -destination [concat [get-workspace-location | invoke replace "\\" "/"] "/" $projectName $CONFIGURATION_FOLDER]
+		-name [concat $nameOfCopy $WRAPPER_FILE]
+	$wrapper_test_file_path
+}
+
+proc get_copy_gpio_file [val projectName] [val nameOfCopy "test"] {
+	global [val gpio_test_file_path [concat [get-workspace-location | invoke replace "\\" "/"] "/" $projectName $GPIO_INCLUDE_FOLDER $nameOfCopy $GPIO_FILE]] -override
+
+	try {
+		delete-file $gpio_test_file_path
+	} -catch {}
+	copy-file -source [get_gpio_file_path $projectName] -destination [concat [get-workspace-location | invoke replace "\\" "/"] "/" $projectName $GPIO_INCLUDE_FOLDER]
+		-name [concat $nameOfCopy $GPIO_FILE]
+	$gpio_test_file_path
+}
+
+proc get_copy_driver_file [val projectName] [val driverName] [val nameOfCopy "test"] {
+	global [val driver_test_file_path [concat [get-workspace-location | invoke replace "\\" "/"] "/" $projectName $SC_DRIVER_FOLDER $driverName "/inc/" $nameOfCopy $DRIVER_FILE_POSFIX]] -override
+
+	try {
+		delete-file $driver_test_file_path
+	} -catch {}
+	copy-file -source [get_driver_file_path $projectName $driverName] 
+	-destination [concat [get-workspace-location | invoke replace "\\" "/"] "/" $projectName $SC_DRIVER_FOLDER $driverName "/inc/"] 
+	-name [concat $nameOfCopy $DRIVER_FILE_POSFIX]
+	$driver_test_file_path
+}
+
+proc get_file_path [val projectName] [val file] [val rtos] {
+	if [$rtos | eq FreeRTOS] {
+		global [val c_file_path [concat [get-workspace-location | invoke replace "\\" "/"] "/" $projectName "/" $file ]] -override
+	} -else {
+		if [$rtos | eq AmazonFreeRTOS] {
+			// amazon-freertos-v0.1.9\demos\renesas\rx65n-rsk\common\config_files
+		}
+	}
+	$c_file_path
+}
+
+// check contain text in header file
+proc check_header_file_contain_text [val project] [val text] [val file] [val rtos] {
+	read-file -uri [get_file_path $project $file $rtos] | contains $text | assert-true -message [concat "text contain in " $file]
+}
+
+proc check_c_file_not_contain_text [val project] [val text] [val file] [val rtos] {
+	read-file [concat "file:/" [get_file_path $project $file $rtos]] | contains $text | not | assert-true -message [concat "specified text contained in " $file]
+}
+
+proc check_c_file_contain_text [val project] [val text] [val file] [val rtos] {
+	read-file [concat "file:/" [get_file_path $project $file $rtos]] | contains $text | assert-true -message [concat "text does not contain in " $file]
+}
+
+proc check_file_exist [val project] [val file] [val rtos] {
+	global[val result true] - override
+	try {
+		read-file [concat "file:/" [get_file_path $project $file $rtos]]
+	} -catch {
+		global[val result false] - override
+	}
+	$result
+}
+
+proc delete_file [val project] [val pathInPrj] [val file]{
+	//global [val filePath [concat [get-workspace-location | invoke replace "\\" "/"] "/" $pathInPrj "/" $file]] -override
+	//delete-file [concat ]
+	str [concat "workspace:/" $project "/" $pathInPrj "/" $file] | delete-file
+}
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--

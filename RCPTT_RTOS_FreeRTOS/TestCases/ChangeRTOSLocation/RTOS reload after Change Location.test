@@ -1,0 +1,53 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _pni6YDgVEeqRHNaZE0iR2g,_F6ZP4I17EemXsdvsbcJPYw,_F24o4I17EemXsdvsbcJPYw,_CbRv0IzaEemOC-jzSKPFQA,_F5kwgI17EemXsdvsbcJPYw
+Element-Name: RTOS reload after Change Location
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _siJg0K7mEeqGiLHaD9JPUg
+Runtime-Version: 2.5.2.202109092356
+Save-Time: 7/15/22, 3:33 PM
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-preferences-menu | click
+get-window Preferences | get-tree | select "Renesas/Module Download"
+set-dialog-result Folder [concat [$userHomeLoc] "\Test10.4.3-rx-1.0.4"]
+with [get-window Preferences] {
+    get-group "Location settings" | get-button "Browse..." -after [get-link "<a>Location (RTOS)</a>:"] | click
+    get-button "Apply and Close" | click
+}
+
+clear_console
+
+get-preferences-menu | click
+get-window Preferences | get-tree | select "Renesas/Module Download"
+set-dialog-result Folder [concat [$userHomeLoc] "\Test10.4.3-rx-1.0.2"]
+with [get-window Preferences] {
+    get-group "Location settings" | get-button "Browse..." -after [get-link "<a>Location (RTOS)</a>:"] | click
+    get-button "Apply and Close" | click
+}
+
+open_project [getProjectName]
+select_component [getProjectName] $FRTOS_KERNEL
+
+check_console_not_contains_message [concat  "E04050008: RTOS Package version " $RTOSVersion " is not available"]
+clear_console
+
+get-preferences-menu | click
+get-window Preferences | get-tree | select "Renesas/Module Download"
+set-dialog-result Folder [concat [$userHomeLoc] "\Test10.4.3-rx-1.0.4"]
+with [get-window Preferences] {
+    get-group "Location settings" | get-button "Browse..." -after [get-link "<a>Location (RTOS)</a>:"] | click
+    get-button "Apply and Close" | click
+}
+
+open_project [getProjectName]
+select_component [getProjectName] $FRTOS_KERNEL
+
+check_console_not_contains_message [concat  "E04050008: RTOS Package version " $RTOSVersion " is not available"]
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

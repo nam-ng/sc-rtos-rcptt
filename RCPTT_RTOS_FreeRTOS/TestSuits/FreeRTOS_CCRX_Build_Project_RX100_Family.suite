@@ -1,0 +1,18 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Element-Name: FreeRTOS_CCRX_Build_Project_RX100_Family
+Element-Type: testsuite
+Element-Version: 2.0
+Id: _6WYhIE4MEeqaCIqEVkHFuw
+Manually-Ordered: true
+Runtime-Version: 2.5.0.201911080224
+Save-Time: 3/4/20, 3:32 PM
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8
+Content-Type: text/testcase
+Entry-Name: testcase-items
+
+_8ALl8E4LEeqaCIqEVkHFuw	//
+_uOVLYEu1EeqzocbOfTjnjA	//
+
+------=_testcase-items-62c497da-4241-31f4-811a-6b453a3ecff8--
