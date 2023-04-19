@@ -5,8 +5,8 @@ Element-Name: Change_RTOS_Location
 Element-Type: context
 Element-Version: 2.0
 Id: _4DBOsMd3EeuK3tpVI-s1HA
-Runtime-Version: 2.5.2.202109092356
-Save-Time: 6/20/22, 2:06 PM
+Runtime-Version: 2.5.4.202210020716
+Save-Time: 4/19/23, 2:57 PM
 
 ------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
 Content-Type: text/ecl
@@ -14,7 +14,7 @@ Entry-Name: .ecl.context
 
 get-preferences-menu | click
 get-window Preferences | get-tree | select "Renesas/Module Download"
-set-dialog-result Folder "C:\\Users\\giangchau\\Desktop\\new_ck"
+set-dialog-result Folder "C:SWpackage\\FreeRTOS"
 with [get-window Preferences] {
     get-group "Location settings" | get-button "Browse..." -after [get-link "<a>Location (RTOS)</a>:"] | click
     get-button "Apply and Close" | click

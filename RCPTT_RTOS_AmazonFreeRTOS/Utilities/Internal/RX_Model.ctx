@@ -5,8 +5,8 @@ Element-Name: RX_Model
 Element-Type: context
 Element-Version: 2.0
 Id: _SCNDMByqEeq6n90hKnBGOA
-Runtime-Version: 2.5.2.202109092356
-Save-Time: 9/22/22, 5:11 PM
+Runtime-Version: 2.5.4.202210020716
+Save-Time: 4/19/23, 3:01 PM
 Tags: PG
 
 ------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
@@ -40,7 +40,7 @@ proc getContext [val context] {
 	global [val AFRProjectRoot [$context | get-nodes AFR_Project_Root | get text]] -override
 }
 proc constructor {
-	global [val getContext [read-xml-file -uri "C:/JenkinsSlave/workspace/devices.xml" | get-nodes Context | to-list]]
+	global [val getContext [read-xml-file -uri "C:/JenkinsSlave/context.xml" | get-nodes Context | to-list]]
 
 	$getContext | each [val context] {
 		getContext $context
