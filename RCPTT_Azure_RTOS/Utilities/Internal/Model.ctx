@@ -5,8 +5,8 @@ Element-Name: Model
 Element-Type: context
 Element-Version: 2.0
 Id: _eCmCwDgQEeqRHNaZE0iR2g
-Runtime-Version: 2.5.2.202109092356
-Save-Time: 6/8/22, 9:28 AM
+Runtime-Version: 2.5.4.202210020716
+Save-Time: 4/19/23, 2:59 PM
 
 ------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
 Content-Type: text/ecl
@@ -28,8 +28,8 @@ proc getContext [val context] {
 }
 //C:/JenkinsSlave/workspace/devices.xml
 proc constructor {
-	if [get-file -uri "K:/JenkinsSlave/workspace/devices.xml" | get exists] {
-		global [val getContext [read-xml-file -uri "K:/JenkinsSlave/workspace/devices.xml" | get-nodes Context
+	if [get-file -uri "C:/JenkinsSlave/context.xml" | get exists] {
+		global [val getContext [read-xml-file -uri "C:/JenkinsSlave/context.xml" | get-nodes Context
 			| to-list]]
 	} -else {
 		global [val getContext [read-xml-file -uri [format "%s/contextData.xml" [get-workspace-location]] | get-nodes
