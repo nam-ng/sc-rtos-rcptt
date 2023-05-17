@@ -5,16 +5,16 @@ Element-Name: Context_Azure
 Element-Type: context
 Element-Version: 2.0
 Id: _pni6YDgVEeqRHNaZE0iR2g
-Runtime-Version: 2.5.2.202109092356
-Save-Time: 7/18/22, 5:31 PM
+Runtime-Version: 2.5.4.202210020716
+Save-Time: 5/17/23, 10:13 AM
 
 ------=_.parameters.context-2e023de5-3294-36a9-ac1d-6701f05a40ee
 Content-Type: text/properties
 Entry-Name: .parameters.context
 
-#Mon Jul 18 17:31:25 ICT 2022
+#Wed May 17 10:13:52 ICT 2023
 ProjectName=AzureRTOS
-Envision=RX72NEnvisionKit
+Envision=EnvisionKitRX72N
 NEW_CK=CK-RX65N
 IoT_Embed_SDK=IoT Embedded SDK sample project
 RSKRX66T=RSKRX66T
@@ -24,11 +24,11 @@ Filex_sample=FileX RAM Disk sample project
 PnP_temperature=PnP Temperature Control sample project
 RSKRX140=RSKRX140
 Netx_Iprf_sample=NetX Duo Iperf sample project
-Toolchain_versionCCRX=v3.03.00
+Toolchain_versionCCRX=v3.05.00
 Threadx_sample=ThreadX sample project
 USBX=USBX device CDC-ACM Class sample project
 Toolchain_version=8.3.0.202102
-CloudKit=RX65NCloudKit
+CloudKit=CloudKitRX65N
 Custom_board=RX600/RX65N/RX65N - 176pin/R5F565NCDxBG
 RSKRX65N_2MB=RSKRX65N-2MB
 GUIX_16bpp=GUIX 16bpp sample project
@@ -38,7 +38,7 @@ IoT_Embed_SDK_PnP=IoT Embedded SDK PnP sample project
 RSKRX660=RSKRX660
 Threadx_Low_power=ThreadX Low Power sample project
 RTOSType=Azure RTOS
-RTOSVersion=6.1.11_rel-rx-1.0.0
+RTOSVersion=6.2.1_rel-rx-1.0.0
 Netx_Ping_sample=NetX Duo Ping sample project
 
 ------=_.parameters.context-2e023de5-3294-36a9-ac1d-6701f05a40ee--
