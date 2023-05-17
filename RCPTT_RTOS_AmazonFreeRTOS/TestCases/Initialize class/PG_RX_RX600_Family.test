@@ -7,7 +7,7 @@ Element-Version: 3.0
 External-Reference: 
 Id: _TALscEfuEeqecdXLPfJCNQ
 Runtime-Version: 2.5.4.202210020716
-Save-Time: 11/23/22, 4:19 PM
+Save-Time: 5/17/23, 9:24 AM
 Tags: PG
 Testcase-Type: ecl
 
@@ -17,14 +17,14 @@ Entry-Name: .content
 
 try {
 	delete_project [getProjectName]
-	get-file -uri "C:/JenkinsSlave/workspace/devices.xml" | delete-file
+	get-file -uri "D:/JenkinsSlave/workspace/context.xml" | delete-file
 } -catch {
 }
 global [val createContext [newContext 1 $AFR_Config_Path $RSKRX65N_2MB $AFR_Skeleton_Folder $ProjectName $RTOSVersion $Package_AFR $RTOSType $AFR_Startup_Folder $AFR_Project_Root]]
 
 global [val tree [tree-node Contexts $createContext]]
 
-$tree | write-xml-file -uri "C:/JenkinsSlave/workspace/devices.xml"
+$tree | write-xml-file -uri "D:/JenkinsSlave/workspace/context.xml"
 
 createAFRProject [getProjectName] $Toolchain_rxc [getRTOSType] [getDevice] [getRTOSVersion] ""
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

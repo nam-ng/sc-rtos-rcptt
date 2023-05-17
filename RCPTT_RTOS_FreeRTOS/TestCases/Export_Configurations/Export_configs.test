@@ -6,8 +6,8 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _PkUYADntEeugn_0wlaPScA
-Runtime-Version: 2.5.1.202001221320
-Save-Time: 12/15/20, 10:58 AM
+Runtime-Version: 2.5.4.202210020716
+Save-Time: 5/10/23, 5:48 PM
 Tags: export
 Testcase-Type: ecl
 
@@ -35,8 +35,8 @@ with [get-editor [concat [getProjectName] $SCFG_EXTENSION]] {
 }
 
 try {
-	if [get-file "file:/C:/JenkinsSlave/Workspace/export_kernel.xml" | get exists | eq true] {
-		delete-file "file:/C:/JenkinsSlave/Workspace/export_kernel.xml"
+	if [get-file "file:/D:/JenkinsSlave/Workspace/export_kernel.xml" | get exists | eq true] {
+		delete-file "file:/D:/JenkinsSlave/Workspace/export_kernel.xml"
 	}
 } -catch {}
 set-dialog-result File "C:\\JenkinsSlave\\Workspace\\export_kernel.xml"

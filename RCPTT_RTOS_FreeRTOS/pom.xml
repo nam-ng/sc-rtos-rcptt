@@ -6,7 +6,7 @@
    <version>1.0.0</version>
    <packaging>rcpttTest</packaging>
    <properties>
-      <rcptt-runner-version>2.5.0</rcptt-runner-version> 
+      <rcptt-runner-version>2.5.5</rcptt-runner-version> 
       <rcptt-maven-version>2.5.0-M9</rcptt-maven-version> 
    </properties>
    <profiles>
@@ -27,7 +27,7 @@
                   
                   <configuration>
                      <aut>
-                        <vm>C:\JenkinsSlave\jdk-11.0.8+10</vm>
+                        <vm>C:\JenkinsSlave\jre</vm>
                      </aut>
                   </configuration>
                </plugin>
@@ -64,7 +64,7 @@
                   <vmArgs>
                      <vmArg>-javaagent:C:\JenkinsSlave\tools\jacoco-0.8.2\lib\jacocoagent.jar=destfile=C:\JenkinsSlave\workspace\${job-name}\target\results\coverage.exec</vmArg>
                   </vmArgs>
-                  <vm>C:\JenkinsSlave\jdk-11.0.8+10</vm>
+                  <vm>C:\JenkinsSlave\jre</vm>
                </aut>
                <runner>
                   <version>${rcptt-runner-version}</version>

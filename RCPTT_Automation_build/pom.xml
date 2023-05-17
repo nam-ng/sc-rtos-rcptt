@@ -1,40 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
-   <groupId>smc.basic.rz.tests</groupId>
-   <artifactId>smc-basic-rz</artifactId>
+   <groupId>smc.basic.rx.tests</groupId>
+   <artifactId>smc-basic-rx</artifactId>
    <version>1.0.0</version>
    <packaging>rcpttTest</packaging>
    <properties>
-      <rcptt-runner-version>2.5.0</rcptt-runner-version> 
-      <rcptt-maven-version>2.5.0-M9</rcptt-maven-version> 
-   </properties>
-   <profiles>
-      <profile>
-         <id>explicit-aut-vm</id>
-         <activation>
-            <property>
-               <name>${aut-vm}</name>
-            </property>
-         </activation>
-         <build>
-            <plugins>
-               <plugin>
-                  <groupId>org.eclipse.rcptt</groupId>
-                  <artifactId>rcptt-maven-plugin</artifactId>
-                  <version>${rcptt-maven-version}</version>
-                  <extensions>true</extensions>
-                  
-                  <configuration>
-                     <aut>
-                        <vm>C:\JenkinsSlave\jdk-11.0.8+10</vm>
-                     </aut>
-                  </configuration>
-               </plugin>
-            </plugins>
-         </build>
-      </profile>
-   </profiles>
+    <rcptt-runner-version>2.5.5</rcptt-runner-version> 
+    <rcptt-maven-version>2.5.0-M9</rcptt-maven-version>
+	<max-heap>6g</max-heap>	
+  </properties>
    <build>
       <plugins>
          <plugin>
@@ -62,15 +37,17 @@
                      <arg>-consoleLog</arg>
                   </args>
                   <vmArgs>
-                     <vmArg>-javaagent:C:\JenkinsSlave\tools\jacoco-0.8.2\lib\jacocoagent.jar=destfile=C:\JenkinsSlave\workspace\${job-name}\target\results\coverage.exec</vmArg>
+                  	 <vmArg>-XX:+HeapDumpOnOutOfMemoryError</vmArg>
+                     <vmArg>-javaagent:C:\JenkinsSlave\tools\jacoco-0.8.2\lib\jacocoagent.jar=destfile=D:\JenkinsSlave\workspace\Smart_Configurator_for_RTOS\${job-name}\target\results\coverage.exec</vmArg>
                   </vmArgs>
-                  <vm>C:\JenkinsSlave\jdk-11.0.8+10</vm>
+                  <vm>C:\JenkinsSlave\jre</vm>
                </aut>
                <runner>
                   <version>${rcptt-runner-version}</version>
                   <vmArgs>
                      <vmArg>-Xmx4G</vmArg>
                      <!--vmArg>-XX:MaxPermSize=256m</vmArg-->
+                     <vmArg>-XX:+HeapDumpOnOutOfMemoryError</vmArg>
                   </vmArgs>
                </runner>
                <skipTags>

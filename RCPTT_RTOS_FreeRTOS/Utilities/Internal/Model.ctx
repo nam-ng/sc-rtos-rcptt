@@ -6,7 +6,7 @@ Element-Type: context
 Element-Version: 2.0
 Id: _eCmCwDgQEeqRHNaZE0iR2g
 Runtime-Version: 2.5.4.202210020716
-Save-Time: 4/19/23, 3:01 PM
+Save-Time: 5/17/23, 9:24 AM
 
 ------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
 Content-Type: text/ecl
@@ -28,10 +28,10 @@ proc getContext [val context] {
 	global [val FreeRTOSType [$context | get-nodes RTOSType | get text]] -override
 	global [val FreeRTOSStartupFolder [$context | get-nodes FreeRTOS_Startup_Folder | get text]] -override
 }
-//C:/JenkinsSlave/workspace/devices.xml
+//D:/JenkinsSlave/workspace/context.xml
 proc constructor {
-	if [get-file -uri "C:/JenkinsSlave/context.xml" | get exists] {
-		global [val getContext [read-xml-file -uri "C:/JenkinsSlave/context.xml" | get-nodes Context
+	if [get-file -uri "D:/JenkinsSlave/workspace/context.xml" | get exists] {
+		global [val getContext [read-xml-file -uri "D:/JenkinsSlave/workspace/context.xml" | get-nodes Context
 			| to-list]]
 	} -else {
 		global [val getContext [read-xml-file -uri [format "%s/contextData.xml" [get-workspace-location]] | get-nodes

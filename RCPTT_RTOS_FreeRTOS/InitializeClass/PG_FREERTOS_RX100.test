@@ -6,8 +6,8 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _8ALl8E4LEeqaCIqEVkHFuw
-Runtime-Version: 2.5.1.202001221320
-Save-Time: 6/7/21, 5:05 PM
+Runtime-Version: 2.5.4.202210020716
+Save-Time: 5/17/23, 9:24 AM
 Testcase-Type: ecl
 
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
@@ -15,7 +15,7 @@ Content-Type: text/ecl
 Entry-Name: .content
 
 try {
-	get-file -uri "C:/JenkinsSlave/workspace/devices.xml" | delete-file
+	get-file -uri "D:/JenkinsSlave/workspace/context.xml" | delete-file
 } -catch {
 }
 global [val createContext 
@@ -26,7 +26,7 @@ global [val tree [
     tree-node "Contexts" $createContext
 ]]
  
-$tree | write-xml-file -uri "C:/JenkinsSlave/workspace/devices.xml"
+$tree | write-xml-file -uri "D:/JenkinsSlave/workspace/context.xml"
 
 createFreeRTOSProject [getProjectName] $ToolChain_RXC $RTOSType $RSKRX130 $RTOSVersion
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
