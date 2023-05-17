@@ -6,13 +6,13 @@ Element-Type: context
 Element-Version: 2.0
 Id: _ueXOQHEZEe2-uLmUpKPN3w
 Runtime-Version: 2.5.4.202210020716
-Save-Time: 12/1/22, 10:04 AM
+Save-Time: 5/10/23, 4:09 PM
 
 ------=_.parameters.context-2e023de5-3294-36a9-ac1d-6701f05a40ee
 Content-Type: text/properties
 Entry-Name: .parameters.context
 
-#Thu Dec 01 10:04:55 ICT 2022
+#Wed May 10 16:09:34 ICT 2023
 RXC_USBX_HMSC_Cloudkit65N=RXC_USBX_HMSC_Cloudkit65N
 RXC_USBX_PCDC_CK65N=RXC_USBX_PCDC_CK65N
 RXC_USBX_PCDC_Cloudkit65N=RXC_USBX_PCDC_CloudKit65N
@@ -25,7 +25,7 @@ RXC_USBX_PCDC_65N2MB=RXC_USBX_PCDC_65N2MB
 GNURX_USBX_HMSC_RSKRX671=GNU_USBX_HMSC_RSKRX671
 USBX_HMSC_application=USBX Host Mass Storage Class sample project
 GNURX_USBX_HMSC_72NEnvisionkit=GNU_USBX_HMSC_72NEnvisionkit
-RTOS_Version=6.2.0_rel-rx-1.0.0
+RTOS_Version=6.2.1_rel-rx-1.0.0
 GNURX_USBX_PCDC_Cloudkit65N=GNU_USBX_PCDC_CloudKit65N
 RXC_USBX_HMSC_65N2MB=RXC_USBX_HMSC_65N2MB
 RXC_USBX_HMSC_72NEnvisionkit=RXC_USBX_HMSC_72NEnvisionkit

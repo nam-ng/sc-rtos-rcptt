@@ -6,7 +6,7 @@ Element-Type: context
 Element-Version: 2.0
 Id: _FJIS8MRPEeu4Z9fZ-EbEpw
 Runtime-Version: 2.5.4.202210020716
-Save-Time: 4/19/23, 2:56 PM
+Save-Time: 5/10/23, 5:56 PM
 
 ------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
 Content-Type: text/ecl
@@ -14,7 +14,7 @@ Entry-Name: .ecl.context
 
 get-preferences-menu | click
 get-window Preferences | get-tree | select "Renesas/Module Download"
-set-dialog-result Folder "C:\\SWpackage\\AzureRTOS"
+set-dialog-result Folder "D:\\SWpackage\\AzureRTOS"
 with [get-window Preferences] {
     get-group "Location settings" | get-button "Browse..." -after [get-link "<a>Location (RTOS)</a>:"] | click
     get-button "Apply and Close" | click

@@ -5,21 +5,21 @@ Element-Name: Context_Azure_Iperf_application
 Element-Type: context
 Element-Version: 2.0
 Id: _WvOdYF5rEe2uw6gVVg9dpQ
-Runtime-Version: 2.5.2.202109092356
-Save-Time: 11/7/22, 2:14 PM
+Runtime-Version: 2.5.4.202210020716
+Save-Time: 5/10/23, 4:09 PM
 Tags: Azure_Ping
 
 ------=_.parameters.context-2e023de5-3294-36a9-ac1d-6701f05a40ee
 Content-Type: text/properties
 Entry-Name: .parameters.context
 
-#Mon Nov 07 14:14:38 ICT 2022
+#Wed May 10 16:09:23 ICT 2023
 RXC_Iperf_72N_Envision=RXC_Azure_Iperf_72N_Envision
 RXC_Iperf_65N_CK=RXC_Azure_Iperf_65N_CK_Ether
 GNURX_Iperf_65N2MB=GNU_Azure_Iperf_65N2MB
 RXC_Iperf_65N2MB=RXC_Azure_Iperf_65N2MB
 GNURX_Iperf_65N_CK=GNU_Azure_Iperf_65N_CK_Ether
-RTOS_Version=6.1.12_rel-rx-1.0.0
+RTOS_Version=6.2.1_rel-rx-1.0.0
 RTOS_Type=Azure RTOS
 Azure_Iperf_Application=NetX Duo Iperf sample project
 GNURX_Iperf_72N_Envision=GNU_Azure_Iperf_72N_Envision

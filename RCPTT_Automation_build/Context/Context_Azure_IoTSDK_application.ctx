@@ -5,15 +5,15 @@ Element-Name: Context_Azure_IoTSDK_application
 Element-Type: context
 Element-Version: 2.0
 Id: _u_BMwF5sEe2uw6gVVg9dpQ
-Runtime-Version: 2.5.2.202109092356
-Save-Time: 11/7/22, 2:23 PM
+Runtime-Version: 2.5.4.202210020716
+Save-Time: 5/10/23, 4:09 PM
 Tags: Azure_Ping
 
 ------=_.parameters.context-2e023de5-3294-36a9-ac1d-6701f05a40ee
 Content-Type: text/properties
 Entry-Name: .parameters.context
 
-#Mon Nov 07 14:23:12 ICT 2022
+#Wed May 10 16:09:17 ICT 2023
 RXC_IoTSDK_65N_Cloudkit=RXC_Azure_IoTSDK_65N_Cloudkit_Wifi
 GNURX_IoTSDK_72N_Envision=GNU_Azure_IoTSDK_72N_Envision
 RXC_IoTSDK_72N_Envision=RXC_Azure_IoTSDK_72N_Envision
@@ -21,7 +21,7 @@ RTOS_Type=Azure RTOS
 Azure_IoTSDK_Application=IoT Embedded SDK PnP sample project
 RXC_IoTSDK_671=RXC_Azure_IoTSDK_671
 GNURX_IoTSDK_65N2MB=GNU_Azure_IoTSDK_65N2MB
-RTOS_Version=6.1.12_rel-rx-1.0.0
+RTOS_Version=6.2.1_rel-rx-1.0.0
 GNURX_IoTSDK_65N_CK=GNU_Azure_IoTSDK_65N_CK_Ether
 GNURX_IoTSDK_65N_Cloudkit=GNU_Azure_IoTSDK_65N_Cloudkit_Wifi
 RXC_IoTSDK_65N2MB=RXC_Azure_IoTSDK_65N2MB

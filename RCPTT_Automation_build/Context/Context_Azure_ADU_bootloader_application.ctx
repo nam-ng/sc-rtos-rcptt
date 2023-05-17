@@ -6,13 +6,13 @@ Element-Type: context
 Element-Version: 2.0
 Id: _sw1r4G-tEe2aY95Y4UZw9w
 Runtime-Version: 2.5.4.202210020716
-Save-Time: 11/30/22, 2:01 PM
+Save-Time: 5/10/23, 4:09 PM
 
 ------=_.parameters.context-2e023de5-3294-36a9-ac1d-6701f05a40ee
 Content-Type: text/properties
 Entry-Name: .parameters.context
 
-#Wed Nov 30 14:01:44 ICT 2022
+#Wed May 10 16:09:07 ICT 2023
 GNURX_ADU_65N2MB=GNU_ADU_65N2MB
 RXC_ADU_72NEnvisionkit=RXC_ADU_72NEnvisionKit
 RTOS_Type=Azure RTOS
@@ -23,7 +23,7 @@ RXC_secureboot_CK65N=RXC_Secure_bootloader_CK65N
 ADU_application=Azure Device Update (ADU) sample project
 Secure_bootloader=Secure bootloader sample project
 RXC_secureboot_65N2MB=RXC_Secure_bootloader_65N2MB
-RTOS_Version=6.2.0_rel-rx-1.0.0
+RTOS_Version=6.2.1_rel-rx-1.0.0
 GNURX_secureboot_Cloudkit65N=GNU_Secure_bootloader_CloudKit65N
 GNURX_ADU_72NEnvisionkit=GNU_ADU_72NEnvisionKit
 RXC_secureboot_Cloudkit65N=RXC_Secure_bootloader_CloudKit65N

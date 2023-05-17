@@ -5,15 +5,15 @@ Element-Name: Context_Azure_Ping_application
 Element-Type: context
 Element-Version: 2.0
 Id: _fQNMsFwKEe2uw6gVVg9dpQ
-Runtime-Version: 2.5.2.202109092356
-Save-Time: 11/7/22, 10:45 AM
+Runtime-Version: 2.5.4.202210020716
+Save-Time: 5/10/23, 4:09 PM
 Tags: Azure_Ping
 
 ------=_.parameters.context-2e023de5-3294-36a9-ac1d-6701f05a40ee
 Content-Type: text/properties
 Entry-Name: .parameters.context
 
-#Mon Nov 07 10:45:05 ICT 2022
+#Wed May 10 16:09:26 ICT 2023
 GNURX_Ping_65N_Cloudkit=GNU_Azure_Ping_65N_Cloudkit_Wifi
 RXC_Ping_65N_Cloudkit=RXC_Azure_Ping_65N_Cloudkit_Wifi
 GNURX_Ping_671=GNU_Azure_Ping_671
@@ -21,7 +21,7 @@ Azure_Ping_Application=NetX Duo Ping sample project
 GNURX_Ping_72N_Envision=GNU_Azure_Ping_72N_Envision
 RTOS_Type=Azure RTOS
 RXC_Ping_72N_Envision=RXC_Azure_Ping_72N_Envision
-RTOS_Version=6.1.12_rel-rx-1.0.0
+RTOS_Version=6.2.1_rel-rx-1.0.0
 RXC_Ping_65N2MB=RXC_Azure_Ping_65N2MB
 RXC_Ping_65N_CK=RXC_Azure_Ping_65N_CK_Ether
 GNURX_Ping_65N2MB=GNU_Azure_Ping_65N2MB

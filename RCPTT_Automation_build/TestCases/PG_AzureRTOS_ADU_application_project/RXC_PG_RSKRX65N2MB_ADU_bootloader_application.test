@@ -7,7 +7,7 @@ Element-Version: 3.0
 External-Reference: 
 Id: _B8_1oHB0Ee2-uLmUpKPN3w
 Runtime-Version: 2.5.4.202210020716
-Save-Time: 4/20/23, 3:45 PM
+Save-Time: 5/17/23, 9:23 AM
 Tags: ADU
 Testcase-Type: ecl
 
@@ -16,7 +16,7 @@ Content-Type: text/ecl
 Entry-Name: .content
 
 try {
-	get-file -uri "C:/JenkinsSlave/context.xml" | delete-file
+	get-file -uri "D:/JenkinsSlave/workspace/context.xml" | delete-file
 } -catch {
 }
 
@@ -24,7 +24,7 @@ global [val createContext [newContext 1 $RSKRX65N_2MB $RXC_ADU_65N2MB $RTOS_Vers
 
 global [val tree [tree-node Contexts $createContext]]
 
-$tree | write-xml-file -uri "C:/JenkinsSlave/context.xml"
+$tree | write-xml-file -uri "D:/JenkinsSlave/workspace/context.xml"
 
 createRXCRTOSProject [getProjectName] $CCRX_Toolchain_version [getRTOSType] [getRTOSVersion] [getDevice] [getApplication]
 // create secure bootloader
